@@ -1,0 +1,62 @@
+{
+  "id_execucao": "SkinnerBox_G2_ollama-llama3.2_R2",
+  "ecos": "SkinnerBox",
+  "grupo": "G2",
+  "modelo": "ollama-llama3.2",
+  "repeticao": 2,
+  "timestamp": "2026-06-01T20:19:19.632Z",
+  "duracao_seg": 31.75,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SkinnerBox\",\n  \"atores\": [\n    {\"nome\": \"Departamento de Psicologia da UFC\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Google Drive\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Professores\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"ClienteDoCliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Departamento de Psicologia da UFC\", \"destino\": \"Google Drive\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Google Drive\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Google Drive\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"Departamento de Psicologia da UFC\", \"tipo\": \"split\", \"descricao\": \"requisitos e contexto educacional\"},\n    {\"ator\": \"Google Drive\", \"tipo\": \"join\", \"descricao\": \"disponibilização de arquivos\"}\n  ]\n}",
+  "resultado_parseado": {
+    "ecos": "SkinnerBox",
+    "atores": [
+      {
+        "nome": "Departamento de Psicologia da UFC",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Google Drive",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "ClienteDoCliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Departamento de Psicologia da UFC",
+        "destino": "Google Drive",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Google Drive",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Google Drive",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Departamento de Psicologia da UFC",
+        "tipo": "split",
+        "descricao": "requisitos e contexto educacional"
+      },
+      {
+        "ator": "Google Drive",
+        "tipo": "join",
+        "descricao": "disponibilização de arquivos"
+      }
+    ]
+  }
+}

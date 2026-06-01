@@ -1,0 +1,71 @@
+{
+  "id_execucao": "SOLAR_G1_ollama-llama3.2_R2",
+  "ecos": "SOLAR",
+  "grupo": "G1",
+  "modelo": "ollama-llama3.2",
+  "repeticao": 2,
+  "timestamp": "2026-06-01T21:29:10.885Z",
+  "duracao_seg": 37.28,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SOLAR\",\n  \"atores\": [\n    {\"nome\": \"Universidade Federal do Ceará\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Equipe de Desenvolvimento\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Comitê de Pesquisa\", \"tipo\": \"Intermediário\"},\n    {\"nome\": \"Play Store\", \"tipo\": \"Agregador\"},\n    {\"nome\": \"Desenvolvedores\", \"tipo\": \"ClienteDoCliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Universidade Federal do Ceará\", \"destino\": \"Equipe de Desenvolvimento\", \"tipo_fluxo\": \"Req\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Comitê de Pesquisa\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Comitê de Pesquisa\", \"destino\": \"Play Store\", \"tipo_fluxo\": \"Des\"},\n    {\"origen\": \"Universidade Federal do Ceará\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"P\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"Equipe de Desenvolvimento\", \"tipo\": \"split\", \"descricao\": \"Divisão de desenvolvimento\"},\n    {\"ator\": \"Comitê de Pesquisa\", \"tipo\": \"join\", \"descricao\": \"Integração com pesquisadores\"}\n  ]\n}",
+  "resultado_parseado": {
+    "ecos": "SOLAR",
+    "atores": [
+      {
+        "nome": "Universidade Federal do Ceará",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Equipe de Desenvolvimento",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Comitê de Pesquisa",
+        "tipo": "Intermediário"
+      },
+      {
+        "nome": "Play Store",
+        "tipo": "Agregador"
+      },
+      {
+        "nome": "Desenvolvedores",
+        "tipo": "ClienteDoCliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Universidade Federal do Ceará",
+        "destino": "Equipe de Desenvolvimento",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Comitê de Pesquisa",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Comitê de Pesquisa",
+        "destino": "Play Store",
+        "tipo_fluxo": "Des"
+      },
+      {
+        "origen": "Universidade Federal do Ceará",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "P"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Equipe de Desenvolvimento",
+        "tipo": "split",
+        "descricao": "Divisão de desenvolvimento"
+      },
+      {
+        "ator": "Comitê de Pesquisa",
+        "tipo": "join",
+        "descricao": "Integração com pesquisadores"
+      }
+    ]
+  }
+}

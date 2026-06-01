@@ -1,0 +1,34 @@
+{
+  "ecos": "SkinnerBox",
+  "descricao": "Simulador de experimentos de condicionamento operante utilizado no curso de Psicologia da UFC e outros cursos para atividades da disciplina de análise comportamental.",
+  "atores": [
+    { "id": "A1",  "nome": "SkinnerBox",          "tipo": "CoI" },
+    { "id": "A2",  "nome": "Unity",               "tipo": "Fornecedor" },
+    { "id": "A3",  "nome": "Maya 3D",             "tipo": "Fornecedor" },
+    { "id": "A4",  "nome": "Adobe",               "tipo": "Fornecedor" },
+    { "id": "A5",  "nome": "Depto. de Psicologia","tipo": "Fornecedor" },
+    { "id": "A6",  "nome": "Google Drive",        "tipo": "Intermediario" },
+    { "id": "A7",  "nome": "Professores",         "tipo": "Cliente" },
+    { "id": "A8",  "nome": "Alunos",              "tipo": "Cliente" }
+  ],
+  "relacoes": [
+    { "id": "R1",  "origem": "A2",  "destino": "A1",  "fluxo": "P.1",  "tipo": "P" },
+    { "id": "R2",  "origem": "A3",  "destino": "A1",  "fluxo": "P.2",  "tipo": "P" },
+    { "id": "R3",  "origem": "A4",  "destino": "A1",  "fluxo": "P.3",  "tipo": "P" },
+    { "id": "R4",  "origem": "A5",  "destino": "A1",  "fluxo": "P.4",  "tipo": "P" },
+    { "id": "R5",  "origem": "A1",  "destino": "A6",  "fluxo": "P.5",  "tipo": "P" },
+    { "id": "R6",  "origem": "A6",  "destino": "A7",  "fluxo": "S.1",  "tipo": "Ser" },
+    { "id": "R7",  "origem": "A6",  "destino": "A8",  "fluxo": "S.1",  "tipo": "Ser" }
+  ],
+  "gateways": [
+    { "id": "G1", "ator_id": "A6", "tipo": "split", "descricao": "Google Drive distribui serviço para Professores e Alunos" }
+  ],
+  "contagem": {
+    "total_atores": 8,
+    "total_relacoes": 7,
+    "fornecedores": 4,
+    "clientes": 2,
+    "intermediarios": 1,
+    "CoI": 1
+  }
+}

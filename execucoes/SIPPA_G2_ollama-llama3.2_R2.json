@@ -1,0 +1,144 @@
+{
+  "id_execucao": "SIPPA_G2_ollama-llama3.2_R2",
+  "ecos": "SIPPA",
+  "grupo": "G2",
+  "modelo": "ollama-llama3.2",
+  "repeticao": 2,
+  "timestamp": "2026-06-01T20:45:32.561Z",
+  "duracao_seg": 94.1,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SIPPA\",\n  \"atores\": [\n    {\"nome\": \"Universidade Federal do Ceará\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Fornecedor1\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Fornecedor2\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"ClienteDesenvolvedor\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"ClienteProfessor\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"ClienteAluno\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"ClienteCoordenador\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"ClienteSecretario\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"ClienteProrreitorGraduacao\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"ResponsavelRU\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"SistemaCorporativo1\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"SistemaCorporativo2\", \"tipo\": \"ClienteDoCliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Universidade Federal do Ceará\", \"destino\": \"Fornecedor1\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Universidade Federal do Ceará\", \"destino\": \"Fornecedor2\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Fornecedor1\", \"destino\": \"Universidade Federal do Ceará\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Fornecedor2\", \"destino\": \"Universidade Federal do Ceará\", \"tipo_fluxo\": \"Ser\"},\n    {\"origen\": \"ClienteDesenvolvedor\", \"destino\": \"Universidade Federal do Ceará\", \"tipo_fluxo\": \"Req\"},\n    {\"origen\": \"ClienteProfessor\", \"destino\": \"Universidade Federal do Ceará\", \"tipo_fluxo\": \"Req\"},\n    {\"origen\": \"ClienteAluno\", \"destino\": \"Universidade Federal do Ceará\", \"tipo_fluxo\": \"Req\"},\n    {\"origen\": \"ClienteCoordenador\", \"destino\": \"Universidade Federal do Ceará\", \"tipo_fluxo\": \"Req\"},\n    {\"origen\": \"ClienteSecretario\", \"destino\": \"Universidade Federal do Ceará\", \"tipo_fluxo\": \"Req\"},\n    {\"origen\": \"ClienteProrreitorGraduacao\", \"destino\": \"Universidade Federal do Ceará\", \"tipo_fluxo\": \"Req\"},\n    {\"origen\": \"ResponsavelRU\", \"destino\": \"Universidade Federal do Ceará\", \"tipo_fluxo\": \"Req\"},\n    {\"origen\": \"SistemaCorporativo1\", \"destino\": \"Universidade Federal do Ceará\", \"tipo_fluxo\": \"Req\"},\n    {\"origen\": \"SistemaCorporativo2\", \"destino\": \"Universidade Federal do Ceará\", \"tipo_fluxo\": \"Req\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"Universidade Federal do Ceará\", \"tipo\": \"split\", \"descricao\": \"Gatway de presença\"},\n    {\"ator\": \"Universidade Federal do Ceará\", \"tipo\": \"join\", \"descricao\": \"Gatway de integração com SIGAA\"}\n  ]\n}",
+  "resultado_parseado": {
+    "ecos": "SIPPA",
+    "atores": [
+      {
+        "nome": "Universidade Federal do Ceará",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Fornecedor1",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Fornecedor2",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "ClienteDesenvolvedor",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "ClienteProfessor",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "ClienteAluno",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "ClienteCoordenador",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "ClienteSecretario",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "ClienteProrreitorGraduacao",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "ResponsavelRU",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "SistemaCorporativo1",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "SistemaCorporativo2",
+        "tipo": "ClienteDoCliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Universidade Federal do Ceará",
+        "destino": "Fornecedor1",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Universidade Federal do Ceará",
+        "destino": "Fornecedor2",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Fornecedor1",
+        "destino": "Universidade Federal do Ceará",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Fornecedor2",
+        "destino": "Universidade Federal do Ceará",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origen": "ClienteDesenvolvedor",
+        "destino": "Universidade Federal do Ceará",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origen": "ClienteProfessor",
+        "destino": "Universidade Federal do Ceará",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origen": "ClienteAluno",
+        "destino": "Universidade Federal do Ceará",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origen": "ClienteCoordenador",
+        "destino": "Universidade Federal do Ceará",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origen": "ClienteSecretario",
+        "destino": "Universidade Federal do Ceará",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origen": "ClienteProrreitorGraduacao",
+        "destino": "Universidade Federal do Ceará",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origen": "ResponsavelRU",
+        "destino": "Universidade Federal do Ceará",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origen": "SistemaCorporativo1",
+        "destino": "Universidade Federal do Ceará",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origen": "SistemaCorporativo2",
+        "destino": "Universidade Federal do Ceará",
+        "tipo_fluxo": "Req"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Universidade Federal do Ceará",
+        "tipo": "split",
+        "descricao": "Gatway de presença"
+      },
+      {
+        "ator": "Universidade Federal do Ceará",
+        "tipo": "join",
+        "descricao": "Gatway de integração com SIGAA"
+      }
+    ]
+  }
+}

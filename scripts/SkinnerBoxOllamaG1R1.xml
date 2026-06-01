@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel>
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="2" value="Departamento de Psicologia da UFC" style="shape=singleArrow;fillColor=orange;strokeColor=black;fontColor=black;tipo=fornecedor;" vertex="1" parent="1">
+      <mxGeometry x="100" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="3" value="Google Drive" style="shape=parallelogram;fillColor=red;strokeColor=black;fontColor=black;tipo=agregador" vertex="1" parent="1">
+      <mxGeometry x="400" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="4" value="Professores" style="shape=step;fillColor=LightGrey;strokeColor=black;fontColor=black;flipH=1;tipo=cliente2" vertex="1" parent="1">
+      <mxGeometry x="1300" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="5" value="Alunos" style="shape=step;fillColor=LightGrey;strokeColor=black;fontColor=black;flipH=1;tipo=cliente2" vertex="1" parent="1">
+      <mxGeometry x="1300" y="200" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="6" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="2" target="3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="7" value="SER:1" style="shape=singleArrow;fillColor=white;strokeColor=black;fontColor=black;tipo=relacao" vertex="1" connectable="0" parent="6">
+      <mxGeometry x="0" y="0" width="40" height="20" relative="1" as="geometry">
+        <mxPoint x="-20" y="-10" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="8" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="4" target="3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="9" value="REQ:1" style="shape=singleArrow;fillColor=white;strokeColor=black;fontColor=black;tipo=relacao" vertex="1" connectable="0" parent="8">
+      <mxGeometry x="0" y="0" width="40" height="20" relative="1" as="geometry">
+        <mxPoint x="-20" y="-10" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="10" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="5" target="3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="11" value="DES:1" style="shape=singleArrow;fillColor=white;strokeColor=black;fontColor=black;tipo=relacao" vertex="1" connectable="0" parent="10">
+      <mxGeometry x="0" y="0" width="40" height="20" relative="1" as="geometry">
+        <mxPoint x="-20" y="-10" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="12" value="SPLIT" style="shape=rhombus;fillColor=black;strokeColor=black;fontColor=white;tipo=ou" vertex="1" parent="1">
+      <mxGeometry x="280" y="80" width="40" height="40" as="geometry">
+        <mxRectangle width="40" height="40" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="13" value="JOIN" style="shape=rhombus;fillColor=black;strokeColor=black;fontColor=white;tipo=xou" vertex="1" parent="1">
+      <mxGeometry x="580" y="80" width="40" height="40" as="geometry">
+        <mxRectangle width="40" height="40" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+  </root>
+</mxGraphModel>

@@ -1,0 +1,164 @@
+{
+  "id_execucao": "SIPPA_G1_ollama-llama3.2_R2",
+  "ecos": "SIPPA",
+  "grupo": "G1",
+  "modelo": "ollama-llama3.2",
+  "repeticao": 2,
+  "timestamp": "2026-06-01T20:40:00.090Z",
+  "duracao_seg": 95.4,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SIPPA\",\n  \"atores\": [\n    {\"nome\": \"Desenvolvedores\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Coordenadores\", \"tipo\": \"Intermediário\"},\n    {\"nome\": \"Secretários\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Pr\\u00e9-reitores de Gradua\\u00f3\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Responsáveis pelo RU\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Sistemas corporativos\", \"tipo\": \"Agregador\"},\n    {\"nome\": \"Administradores\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"SISAC\", \"tipo\": \"Sistema integrado\"},\n    {\"nome\": \"SIPAC\", \"tipo\": \"Sistema integrado\"},\n    {\"nome\": \"SAVI\", \"tipo\": \"Sistema integrado\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Desenvolvedores\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Req\"},\n    {\"origem\": \"Desenvolvedores\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Req\"},\n    {\"origem\": \"Desenvolvedores\", \"destino\": \"Coordenadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Professores\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Alunos\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origen\": \"Coordenadores\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Comp\"},\n    {\"origen\": \"Secretários\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Req\"},\n    {\"origen\": \"Pr\\u00e9-reitores de Gradua\\u00f3\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Comp\"},\n    {\"origen\": \"Responsáveis pelo RU\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Req\"},\n    {\"origem\": \"Sistemas corporativos\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Agregador\"},\n    {\"origen\": \"Administradores\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"P\"},\n    {\"origen\": \"SISAC\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Sys\"},\n    {\"origen\": \"SIPAC\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Sys\"},\n    {\"origen\": \"SAVI\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Sys\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"Desenvolvedores\", \"tipo\": \"split\", \"descricao\": \"Frontend\"},\n    {\"ator\": \"Professores\", \"tipo\": \"join\", \"descricao\": \"Plano de Aula\"},\n    {\"ator\": \"Alunos\", \"tipo\": \"join\", \"descricao\": \"Plano de Aula\"},\n    {\"ator\": \"Coordenadores\", \"tipo\": \"split\", \"descricao\": \"Integração com SIGAA\"},\n    {\"ator\": \"Secretários\", \"tipo\": \"split\", \"descricao\": \"Integração com NTIC\"}\n  ]\n}",
+  "resultado_parseado": {
+    "ecos": "SIPPA",
+    "atores": [
+      {
+        "nome": "Desenvolvedores",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Coordenadores",
+        "tipo": "Intermediário"
+      },
+      {
+        "nome": "Secretários",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Pré-reitores de Graduaó",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Responsáveis pelo RU",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Sistemas corporativos",
+        "tipo": "Agregador"
+      },
+      {
+        "nome": "Administradores",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "SISAC",
+        "tipo": "Sistema integrado"
+      },
+      {
+        "nome": "SIPAC",
+        "tipo": "Sistema integrado"
+      },
+      {
+        "nome": "SAVI",
+        "tipo": "Sistema integrado"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Desenvolvedores",
+        "destino": "Professores",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Desenvolvedores",
+        "destino": "Alunos",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Desenvolvedores",
+        "destino": "Coordenadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Professores",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Alunos",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origen": "Coordenadores",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origen": "Secretários",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origen": "Pré-reitores de Graduaó",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origen": "Responsáveis pelo RU",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Sistemas corporativos",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Agregador"
+      },
+      {
+        "origen": "Administradores",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origen": "SISAC",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origen": "SIPAC",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origen": "SAVI",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Sys"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Desenvolvedores",
+        "tipo": "split",
+        "descricao": "Frontend"
+      },
+      {
+        "ator": "Professores",
+        "tipo": "join",
+        "descricao": "Plano de Aula"
+      },
+      {
+        "ator": "Alunos",
+        "tipo": "join",
+        "descricao": "Plano de Aula"
+      },
+      {
+        "ator": "Coordenadores",
+        "tipo": "split",
+        "descricao": "Integração com SIGAA"
+      },
+      {
+        "ator": "Secretários",
+        "tipo": "split",
+        "descricao": "Integração com NTIC"
+      }
+    ]
+  }
+}

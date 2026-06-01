@@ -1,0 +1,19 @@
+{
+  "name": "tcc-ssn-experimento",
+  "version": "1.0.0",
+  "description": "Experimento TCC Victor Cavalcante — Geração de modelos SSN com LLMs",
+  "scripts": {
+    "executar": "ts-node scripts/executor_experimento.ts",
+    "metricas": "ts-node scripts/calcular_metricas.ts",
+    "piloto": "ts-node scripts/executor_experimento.ts --piloto"
+  },
+  "dependencies": {
+    "@google/genai": "^1.0.0",
+    "openai": "^6.40.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id_execucao": "SkinnerBox_G4_ollama-llama3.2_R1",
+  "ecos": "SkinnerBox",
+  "grupo": "G4",
+  "modelo": "ollama-llama3.2",
+  "repeticao": 1,
+  "timestamp": "2026-06-01T20:33:43.227Z",
+  "duracao_seg": 384.89,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"raciocinio_cot\": \"Passo 1: CoI é SkinnerBox. Passo 2: Fornecedores listados apontam para o CoI. Passo 3: Clientes são Professores, Alunos e Departamento de Psicologia da UFC que atendem os Usuários Finais (ClienteDoCliente). Passo 4: SkinnerBox passa por Google Drive (Agregador) que vai para Professores e Alunos. Passo 5: Professores e Alunos precisam de acesso ao simulador. Passo 6: Regras validadas.\",\n  \"ecos\": \"SkinnerBox\",\n  \"atores\": [\n    {\"nome\": \"SkinnerBox\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Google Drive\", \"tipo\": \"Agregador\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Departamento de Psicologia da UFC\", \"tipo\": \"Fornecedor\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Google Drive\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"Professores\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Departamento de Psicologia da UFC\", \"destino\": \"Google Drive\", \"tipo_fluxo\": \"P\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"Google Drive\", \"tipo\": \"split\", \"descricao\": \"Distribui arquivos do simulador para os públicos\"}\n  ]\n}",
+  "resultado_parseado": {
+    "raciocinio_cot": "Passo 1: CoI é SkinnerBox. Passo 2: Fornecedores listados apontam para o CoI. Passo 3: Clientes são Professores, Alunos e Departamento de Psicologia da UFC que atendem os Usuários Finais (ClienteDoCliente). Passo 4: SkinnerBox passa por Google Drive (Agregador) que vai para Professores e Alunos. Passo 5: Professores e Alunos precisam de acesso ao simulador. Passo 6: Regras validadas.",
+    "ecos": "SkinnerBox",
+    "atores": [
+      {
+        "nome": "SkinnerBox",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Google Drive",
+        "tipo": "Agregador"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Departamento de Psicologia da UFC",
+        "tipo": "Fornecedor"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Google Drive",
+        "destino": "SkinnerBox",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "Professores",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Departamento de Psicologia da UFC",
+        "destino": "Google Drive",
+        "tipo_fluxo": "P"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Google Drive",
+        "tipo": "split",
+        "descricao": "Distribui arquivos do simulador para os públicos"
+      }
+    ]
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "id_execucao": "SOLAR_G2_ollama-llama3.2_R1",
+  "ecos": "SOLAR",
+  "grupo": "G2",
+  "modelo": "ollama-llama3.2",
+  "repeticao": 1,
+  "timestamp": "2026-06-01T21:31:38.625Z",
+  "duracao_seg": 107.64,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SOLAR\",\n  \"atores\": [\n    {\"nome\": \"Coordenador Técnico\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Universidade Federal do Ceará\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Play Store\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Equipe de Desenvolvimento\", \"tipo\": \"Intermediário\"},\n    {\"nome\": \"Comitê de Pesquisa\", \"tipo\": \"Intermediário\"},\n    {\"nome\": \"Usuários Desenvolvedores\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"Módulo Acadêmico\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Editores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Administradores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Coordenadores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Tutores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"UAB\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Facebook\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Twitter\", \"tipo\": \"Fornecedor\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Universidade Federal do Ceará\", \"destino\": \"Coordenador Técnico\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Coordenador Técnico\", \"destino\": \"SOLAR\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"SOLAR MOBILE\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"SOLAR\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Comitê de Pesquisa\", \"destino\": \"SOLAR\", \"tipo_fluxo\": \"Ser\"},\n    {\"origen\": \"Coordenador Técnico\", \"destino\": \"Usuários Desenvolvedores\", \"tipo_fluxo\": \"Req\"},\n    {\"origem\": \"Universidade Federal do Ceará\", \"destino\": \"UAB\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Facebook\", \"destino\": \"SOLAR MOOC\", \"tipo_fluxo\": \"P\"},\n    {\"origen\": \"Twitter\", \"destino\": \"SOLAR MOOC\", \"tipo_fluxo\": \"P\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"Coordenador Técnico\", \"tipo\": \"split\", \"descricao\": \"Gestão do ecossistema\"},\n    {\"ator\": \"Play Store\", \"tipo\": \"join\", \"descricao\": \"Distribuição do app mobile\"}\n  ]\n}",
+  "resultado_parseado": {
+    "ecos": "SOLAR",
+    "atores": [
+      {
+        "nome": "Coordenador Técnico",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Universidade Federal do Ceará",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Play Store",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Equipe de Desenvolvimento",
+        "tipo": "Intermediário"
+      },
+      {
+        "nome": "Comitê de Pesquisa",
+        "tipo": "Intermediário"
+      },
+      {
+        "nome": "Usuários Desenvolvedores",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "Módulo Acadêmico",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Editores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Administradores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Coordenadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Tutores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "UAB",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Facebook",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Twitter",
+        "tipo": "Fornecedor"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Universidade Federal do Ceará",
+        "destino": "Coordenador Técnico",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Coordenador Técnico",
+        "destino": "SOLAR",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "SOLAR MOBILE",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "SOLAR",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Comitê de Pesquisa",
+        "destino": "SOLAR",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origen": "Coordenador Técnico",
+        "destino": "Usuários Desenvolvedores",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Universidade Federal do Ceará",
+        "destino": "UAB",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Facebook",
+        "destino": "SOLAR MOOC",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origen": "Twitter",
+        "destino": "SOLAR MOOC",
+        "tipo_fluxo": "P"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Coordenador Técnico",
+        "tipo": "split",
+        "descricao": "Gestão do ecossistema"
+      },
+      {
+        "ator": "Play Store",
+        "tipo": "join",
+        "descricao": "Distribuição do app mobile"
+      }
+    ]
+  }
+}
