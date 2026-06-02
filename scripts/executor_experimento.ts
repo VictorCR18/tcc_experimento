@@ -20,6 +20,10 @@
 import fs from "fs";
 import path from "path";
 import { GoogleGenAI } from "@google/genai";
+import OpenAI from "openai";
+
+import * as dotenv from "dotenv";
+dotenv.config();
 
 // ─── Tipos ────────────────────────────────────────────────────────────────────
 
@@ -564,19 +568,19 @@ function buildPrompt(grupo: string, ecos: string): string {
 
 // ─── Chamadas às APIs ─────────────────────────────────────────────────────────
 
-async function chamarGemini(prompt: string): Promise<string> {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) throw new Error("GEMINI_API_KEY não definida");
+// async function chamarGemini(prompt: string): Promise<string> {
+//   const apiKey = process.env.GEMINI_API_KEY;
+//   if (!apiKey) throw new Error("GEMINI_API_KEY não definida");
 
-  const ai = new GoogleGenAI({ apiKey });
-  const response = await ai.models.generateContent({
-    model: "gemini-3.5-flash",
-    contents: prompt,
-    config: { temperature: TEMPERATURA },
-  });
+//   const ai = new GoogleGenAI({ apiKey });
+//   const response = await ai.models.generateContent({
+//     model: "gemini-3.5-flash",
+//     contents: prompt,
+//     config: { temperature: TEMPERATURA },
+//   });
 
-  return response.text ?? "";
-}
+//   return response.text ?? "";
+// }
 
 // ── Claude ────────────────────────────────────────────────────────────────────
 // npm install @anthropic-ai/sdk
@@ -596,11 +600,11 @@ async function chamarGemini(prompt: string): Promise<string> {
 
 // ── GPT-4o ────────────────────────────────────────────────────────────────────
 // npm install openai
+// const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
 // async function chamarGPT4o(prompt: string): Promise<string> {
-//   const { default: OpenAI } = await import("openai");
-//   const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 //   const response = await client.chat.completions.create({
-//     model: "gpt-4o",
+//     model: "gpt-5.4-mini",
 //     temperature: TEMPERATURA,
 //     max_tokens: MAX_TOKENS,
 //     messages: [{ role: "user", content: prompt }],
@@ -639,10 +643,11 @@ async function chamarGemini(prompt: string): Promise<string> {
 //   return data.message?.content ?? "";
 // }
 
+
 const MODELOS: Record<string, (p: string) => Promise<string>> = {
-  "gemini-3.5-flash": chamarGemini,
+  // "gemini-3.5-flash": chamarGemini,
   // "claude-sonnet-4-5": chamarClaude,
-  // "gpt-4o":            chamarGPT4o,
+  // "gpt-5.4-mini": chamarGPT4o,
   // "ollama-qwen3.6": chamarOllama,
 };
 
