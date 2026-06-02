@@ -1,0 +1,233 @@
+{
+  "id_execucao": "SIPPA_G3_gemini-3.5-flash_R2",
+  "ecos": "SIPPA",
+  "grupo": "G3",
+  "modelo": "gemini-3.5-flash",
+  "repeticao": 2,
+  "timestamp": "2026-06-02T18:00:15.915Z",
+  "duracao_seg": 129.53,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "```json\n{\n  \"ecos\": \"SIPPA\",\n  \"atores\": [\n    {\"nome\": \"SIPPA\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Tecnologias Frontend\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Tecnologias Backend\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"PostgreSQL\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Linux\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Docker\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Ferramentas de Controle de Versão\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Servidor Web\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"SIGAA\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"NTIC\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Navegadores de Internet\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Desenvolvedores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Coordenadores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Secretários\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Pró-reitores de Graduação\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Responsáveis pelo RU\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Administradores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Sistemas Corporativos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"SISAC\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"SIPAC\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"SAVI\", \"tipo\": \"Cliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Tecnologias Frontend\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Tecnologias Backend\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"PostgreSQL\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Linux\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Docker\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Ferramentas de Controle de Versão\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SIGAA\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"NTIC\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Navegadores de Internet\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Sistemas Corporativos\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"SISAC\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"SIPAC\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"SAVI\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"Navegadores de Internet\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Navegadores de Internet\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Navegadores de Internet\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Navegadores de Internet\", \"destino\": \"Coordenadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Navegadores de Internet\", \"destino\": \"Secretários\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Navegadores de Internet\", \"destino\": \"Pró-reitores de Graduação\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Navegadores de Internet\", \"destino\": \"Responsáveis pelo RU\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Navegadores de Internet\", \"destino\": \"Administradores\", \"tipo_fluxo\": \"Ser\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"SIPPA\", \"tipo\": \"split\", \"descricao\": \"OU Gateway: distribui a plataforma web para navegadores de internet e integrações sistêmicas para sistemas corporativos\"},\n    {\"ator\": \"Navegadores de Internet\", \"tipo\": \"split\", \"descricao\": \"OU Gateway: distribui a interface web do SIPPA para múltiplos tipos de usuários\"}\n  ]\n}\n```",
+  "resultado_parseado": {
+    "ecos": "SIPPA",
+    "atores": [
+      {
+        "nome": "SIPPA",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Tecnologias Frontend",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Tecnologias Backend",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "PostgreSQL",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Linux",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Docker",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Ferramentas de Controle de Versão",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Servidor Web",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "SIGAA",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "NTIC",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Navegadores de Internet",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Desenvolvedores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Coordenadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Secretários",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Pró-reitores de Graduação",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Responsáveis pelo RU",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Administradores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Sistemas Corporativos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "SISAC",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "SIPAC",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "SAVI",
+        "tipo": "Cliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Tecnologias Frontend",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Tecnologias Backend",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "PostgreSQL",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Linux",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Docker",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Ferramentas de Controle de Versão",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIGAA",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIPPA",
+        "destino": "Navegadores de Internet",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "SIPPA",
+        "destino": "Sistemas Corporativos",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "SIPPA",
+        "destino": "SISAC",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "SIPPA",
+        "destino": "SIPAC",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "SIPPA",
+        "destino": "SAVI",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "Navegadores de Internet",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Navegadores de Internet",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Navegadores de Internet",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Navegadores de Internet",
+        "destino": "Coordenadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Navegadores de Internet",
+        "destino": "Secretários",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Navegadores de Internet",
+        "destino": "Pró-reitores de Graduação",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Navegadores de Internet",
+        "destino": "Responsáveis pelo RU",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Navegadores de Internet",
+        "destino": "Administradores",
+        "tipo_fluxo": "Ser"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "SIPPA",
+        "tipo": "split",
+        "descricao": "OU Gateway: distribui a plataforma web para navegadores de internet e integrações sistêmicas para sistemas corporativos"
+      },
+      {
+        "ator": "Navegadores de Internet",
+        "tipo": "split",
+        "descricao": "OU Gateway: distribui a interface web do SIPPA para múltiplos tipos de usuários"
+      }
+    ]
+  }
+}

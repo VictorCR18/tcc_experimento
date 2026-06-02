@@ -4,17 +4,21 @@
   "grupo": "G1",
   "modelo": "gemini-3.5-flash",
   "repeticao": 2,
-  "timestamp": "2026-06-01T16:52:59.085Z",
-  "duracao_seg": 17.59,
+  "timestamp": "2026-06-02T18:42:01.266Z",
+  "duracao_seg": 13.14,
   "status": "ok",
   "conformidade_formato": "ok",
-  "resposta_bruta": "{\n  \"ecos\": \"SkinnerBox\",\n  \"atores\": [\n    {\n      \"nome\": \"Departamento de Psicologia da UFC\",\n      \"tipo\": \"CoI\"\n    },\n    {\n      \"nome\": \"Unity\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Maya 3D\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Adobe\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Equipe de Desenvolvimento\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Google Drive\",\n      \"tipo\": \"Intermediario\"\n    },\n    {\n      \"nome\": \"Professores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Alunos\",\n      \"tipo\": \"ClienteDoCliente\"\n    }\n  ],\n  \"relacoes\": [\n    {\n      \"origem\": \"Departamento de Psicologia da UFC\",\n      \"destino\": \"Equipe de Desenvolvimento\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Unity\",\n      \"destino\": \"Equipe de Desenvolvimento\",\n      \"tipo_fluxo\": \"Comp\"\n    },\n    {\n      \"origem\": \"Maya 3D\",\n      \"destino\": \"Equipe de Desenvolvimento\",\n      \"tipo_fluxo\": \"Comp\"\n    },\n    {\n      \"origem\": \"Adobe\",\n      \"destino\": \"Equipe de Desenvolvimento\",\n      \"tipo_fluxo\": \"Comp\"\n    },\n    {\n      \"origem\": \"Equipe de Desenvolvimento\",\n      \"destino\": \"Google Drive\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Google Drive\",\n      \"destino\": \"Professores\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Google Drive\",\n      \"destino\": \"Alunos\",\n      \"tipo_fluxo\": \"P\"\n    }\n  ],\n  \"gateways\": [\n    {\n      \"ator\": \"Google Drive\",\n      \"tipo\": \"split\",\n      \"descricao\": \"Divisão do fluxo de distribuição dos arquivos do simulador para atender de forma distinta os Professores e os Alunos.\"\n    }\n  ]\n}",
+  "resposta_bruta": "{\n  \"ecos\": \"SkinnerBox\",\n  \"atores\": [\n    {\n      \"nome\": \"SkinnerBox\",\n      \"tipo\": \"CoI\"\n    },\n    {\n      \"nome\": \"Departamento de Psicologia da UFC\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Unity\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Maya 3D\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Adobe\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Google Drive\",\n      \"tipo\": \"Intermediario\"\n    },\n    {\n      \"nome\": \"Professores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Alunos\",\n      \"tipo\": \"ClienteDoCliente\"\n    }\n  ],\n  \"relacoes\": [\n    {\n      \"origem\": \"Departamento de Psicologia da UFC\",\n      \"destino\": \"SkinnerBox\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Unity\",\n      \"destino\": \"SkinnerBox\",\n      \"tipo_fluxo\": \"Comp\"\n    },\n    {\n      \"origem\": \"Maya 3D\",\n      \"destino\": \"SkinnerBox\",\n      \"tipo_fluxo\": \"Comp\"\n    },\n    {\n      \"origem\": \"Adobe\",\n      \"destino\": \"SkinnerBox\",\n      \"tipo_fluxo\": \"Comp\"\n    },\n    {\n      \"origem\": \"SkinnerBox\",\n      \"destino\": \"Google Drive\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Google Drive\",\n      \"destino\": \"Professores\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Google Drive\",\n      \"destino\": \"Alunos\",\n      \"tipo_fluxo\": \"P\"\n    }\n  ],\n  \"gateways\": [\n    {\n      \"ator\": \"Google Drive\",\n      \"tipo\": \"split\",\n      \"descricao\": \"Disponibilização dos arquivos do simulador para dois públicos distintos: Professores e Alunos\"\n    }\n  ]\n}",
   "resultado_parseado": {
     "ecos": "SkinnerBox",
     "atores": [
       {
-        "nome": "Departamento de Psicologia da UFC",
+        "nome": "SkinnerBox",
         "tipo": "CoI"
+      },
+      {
+        "nome": "Departamento de Psicologia da UFC",
+        "tipo": "Fornecedor"
       },
       {
         "nome": "Unity",
@@ -26,10 +30,6 @@
       },
       {
         "nome": "Adobe",
-        "tipo": "Fornecedor"
-      },
-      {
-        "nome": "Equipe de Desenvolvimento",
         "tipo": "Fornecedor"
       },
       {
@@ -48,26 +48,26 @@
     "relacoes": [
       {
         "origem": "Departamento de Psicologia da UFC",
-        "destino": "Equipe de Desenvolvimento",
+        "destino": "SkinnerBox",
         "tipo_fluxo": "Req"
       },
       {
         "origem": "Unity",
-        "destino": "Equipe de Desenvolvimento",
+        "destino": "SkinnerBox",
         "tipo_fluxo": "Comp"
       },
       {
         "origem": "Maya 3D",
-        "destino": "Equipe de Desenvolvimento",
+        "destino": "SkinnerBox",
         "tipo_fluxo": "Comp"
       },
       {
         "origem": "Adobe",
-        "destino": "Equipe de Desenvolvimento",
+        "destino": "SkinnerBox",
         "tipo_fluxo": "Comp"
       },
       {
-        "origem": "Equipe de Desenvolvimento",
+        "origem": "SkinnerBox",
         "destino": "Google Drive",
         "tipo_fluxo": "P"
       },
@@ -86,7 +86,7 @@
       {
         "ator": "Google Drive",
         "tipo": "split",
-        "descricao": "Divisão do fluxo de distribuição dos arquivos do simulador para atender de forma distinta os Professores e os Alunos."
+        "descricao": "Disponibilização dos arquivos do simulador para dois públicos distintos: Professores e Alunos"
       }
     ]
   }

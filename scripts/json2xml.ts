@@ -71,7 +71,7 @@ function escapeXml(unsafe: string): string {
 
 // ─── Conversor ───────────────────────────────────────────────────────────────
 
-function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: string) {
+export function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: string) {
   let dados: any;
 
   try {
@@ -203,15 +203,18 @@ function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: string) {
   }
 
   // 3. Processamento dos Gateways
-  // FIX: Suporta campo "ator" (execução LLM, nome do ator) e "ator_id" (gabarito, ID do ator)
+  // Losango só é renderizado para OUGateway e join (XOU)
+  // Split simples = ator com múltiplas saídas, sem símbolo extra
   let orphanGwY = 700;
 
   for (const gw of gateways) {
     const tipoGw = (gw.tipo || "split").toLowerCase();
 
-    // Resolve o nome do ator dono do gateway
-    // - Execução LLM: campo "ator" contém o nome (ex: "Google Drive")
-    // - Gabarito de referência: campo "ator_id" contém o ID (ex: "A6") -> resolve pelo mapa inverso
+    if (tipoGw === "split") {
+      continue;
+    }
+
+    // Resolve nome do ator dono
     let atorGwNome = "";
     if (gw.ator) {
       atorGwNome = (gw.ator as string).toLowerCase();
@@ -220,27 +223,30 @@ function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: string) {
     }
 
     const idAtual = String(idCounter++);
+
+    // join → XOU (losango branco/vazio), OUGateway → losango preto
     const estiloGw =
-      tipoGw === "split"
-        ? ESTILOS_SSN["gateway_split"]
-        : ESTILOS_SSN["gateway_join"];
-    const textoValue = tipoGw.toUpperCase();
+      tipoGw === "join"
+        ? ESTILOS_SSN["gateway_join"]
+        : ESTILOS_SSN["gateway_split"]; // OUGateway, ougateway, etc.
+
+    const textoValue = tipoGw === "join" ? "XOU" : "OR";
 
     let gwX = 0;
     let gwY = 0;
 
     if (atorGwNome && mapaAtores[atorGwNome]) {
-      // Gateway tem dono: posiciona no canto superior direito do ator
       const coordsAtor = coordAtores[atorGwNome];
       gwX = coordsAtor.x + 180;
       gwY = coordsAtor.y - 20;
     } else {
-      // Gateway órfão (nome não resolvido ou ator não encontrado): zona de isolamento
       gwX = 50;
       gwY = orphanGwY;
       orphanGwY += 60;
       if (atorGwNome) {
-        console.warn(`⚠ Gateway sem ator correspondente: "${gw.ator || gw.ator_id}" → posicionado na zona de isolamento`);
+        console.warn(
+          `⚠ Gateway sem ator correspondente: "${gw.ator || gw.ator_id}" → zona de isolamento`,
+        );
       }
     }
 

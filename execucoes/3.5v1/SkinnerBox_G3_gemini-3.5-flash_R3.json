@@ -1,0 +1,16 @@
+{
+  "id_execucao": "SkinnerBox_G3_gemini-3.5-flash_R3",
+  "ecos": "SkinnerBox",
+  "grupo": "G3",
+  "modelo": "gemini-3.5-flash",
+  "repeticao": 3,
+  "timestamp": "2026-06-01T16:54:38.430Z",
+  "duracao_seg": 0.28,
+  "status": "erro_api",
+  "conformidade_formato": "falha",
+  "resposta_bruta": "ERRO_API: ApiError: {\"error\":{\"code\":403,\"message\":\"The caller does not have permission\",\"status\":\"PERMISSION_DENIED\"}}",
+  "resultado_parseado": {
+    "erro_parse": "api_error",
+    "resposta_bruta": "ERRO_API: ApiError: {\"error\":{\"code\":403,\"message\":\"The caller does not have permission\",\"status\":\"PERMISSION_DENIED\"}}"
+  }
+}

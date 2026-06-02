@@ -570,7 +570,7 @@ async function chamarGemini(prompt: string): Promise<string> {
 
   const ai = new GoogleGenAI({ apiKey });
   const response = await ai.models.generateContent({
-    model: "gemini-2.5-flash",
+    model: "gemini-3.5-flash",
     contents: prompt,
     config: { temperature: TEMPERATURA },
   });
@@ -609,41 +609,41 @@ async function chamarGemini(prompt: string): Promise<string> {
 // }
 
 // ── Ollama (modelo local) ─────────────────────────────────────────────────────
-async function chamarOllama(prompt: string): Promise<string> {
-  let response: Response;
-  try {
-    response = await fetch("http://127.0.0.1:11434/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "qwen3.6:latest",
-        think: false,
-        stream: false,
-        options: {
-          temperature: TEMPERATURA,
-          num_predict: 4096,
-          num_ctx: 16384,
-        },
-        messages: [{ role: "user", content: prompt }],
-      }),
-    });
-  } catch (e) {
-    console.error("FETCH ERROR DETALHADO:", e);
-    throw e;
-  }
-  if (!response.ok) {
-    throw new Error(`Ollama HTTP ${response.status}: ${await response.text()}`);
-  }
+// async function chamarOllama(prompt: string): Promise<string> {
+//   let response: Response;
+//   try {
+//     response = await fetch("http://127.0.0.1:11434/api/chat", {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({
+//         model: "qwen3.6:latest",
+//         think: false,
+//         stream: false,
+//         options: {
+//           temperature: TEMPERATURA,
+//           num_predict: 4096,
+//           num_ctx: 16384,
+//         },
+//         messages: [{ role: "user", content: prompt }],
+//       }),
+//     });
+//   } catch (e) {
+//     console.error("FETCH ERROR DETALHADO:", e);
+//     throw e;
+//   }
+//   if (!response.ok) {
+//     throw new Error(`Ollama HTTP ${response.status}: ${await response.text()}`);
+//   }
 
-  const data = (await response.json()) as any;
-  return data.message?.content ?? "";
-}
+//   const data = (await response.json()) as any;
+//   return data.message?.content ?? "";
+// }
 
 const MODELOS: Record<string, (p: string) => Promise<string>> = {
-  // "gemini-2.5-flash": chamarGemini,
+  "gemini-3.5-flash": chamarGemini,
   // "claude-sonnet-4-5": chamarClaude,
   // "gpt-4o":            chamarGPT4o,
-  "ollama-qwen3.6": chamarOllama,
+  // "ollama-qwen3.6": chamarOllama,
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -759,12 +759,24 @@ async function main() {
     duracao: number;
   }> = [];
   let contador = 0;
+  const RPD_LIMITE = 20;
+  let reqFeitas = 0;
 
   for (const ecos of ecosLista) {
     for (const grupo of grupos) {
       for (const modelo of modelosLista) {
         for (let rep = 1; rep <= REPETICOES; rep++) {
           contador++;
+          const fname = path.join(
+            OUTPUT_DIR,
+            `${ecos}_${grupo}_${modelo}_R${rep}.json`,
+          );
+
+          if (fs.existsSync(fname)) {
+            console.log(`[${contador}/${total}] ... PULADO (já existe)`);
+            continue;
+          }
+
           process.stdout.write(
             `[${contador}/${total}] ${ecos} | ${grupo} | ${modelo} | R${rep} ... `,
           );
@@ -778,14 +790,20 @@ async function main() {
             duracao: resultado.duracao_seg,
           });
 
-          const fname = path.join(OUTPUT_DIR, `${resultado.id_execucao}.json`);
           fs.writeFileSync(fname, JSON.stringify(resultado, null, 2), "utf-8");
-
           console.log(
             `${resultado.status} | conformidade=${resultado.conformidade_formato} | ${resultado.duracao_seg}s`,
           );
 
-          await sleep(1500); // evita rate limit
+          reqFeitas++;
+          if (reqFeitas >= RPD_LIMITE) {
+            console.log(
+              `\n⚠ Limite diário atingido (${RPD_LIMITE} req). Rode novamente amanhã.`,
+            );
+            process.exit(0);
+          }
+
+          await sleep(12_200); // respeita 5 RPM
         }
       }
     }

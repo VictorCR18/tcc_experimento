@@ -1,0 +1,219 @@
+{
+  "id_execucao": "SIPPA_G2_gemini-3.5-flash_R1",
+  "ecos": "SIPPA",
+  "grupo": "G2",
+  "modelo": "gemini-3.5-flash",
+  "repeticao": 1,
+  "timestamp": "2026-06-02T17:55:48.892Z",
+  "duracao_seg": 34.57,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "```json\n{\n  \"ecos\": \"SIPPA\",\n  \"atores\": [\n    {\n      \"nome\": \"SIPPA Web Platform\",\n      \"tipo\": \"CoI\"\n    },\n    {\n      \"nome\": \"Tecnologias Frontend\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Java/Spring Boot\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"PostgreSQL\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Linux OS\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Docker\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Git/GitLab\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Servidor Web\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"SIGAA\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"NTIC\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Professores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Alunos\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Coordenadores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Secretários\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Pró-reitores de Graduação\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Responsáveis pelo RU\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Administradores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Sistemas Corporativos\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"SISAC\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"SIPAC\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"SAVI\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Desenvolvedores\",\n      \"tipo\": \"Cliente\"\n    }\n  ],\n  \"relacoes\": [\n    {\n      \"origem\": \"Tecnologias Frontend\",\n      \"destino\": \"SIPPA Web Platform\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Java/Spring Boot\",\n      \"destino\": \"SIPPA Web Platform\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"PostgreSQL\",\n      \"destino\": \"SIPPA Web Platform\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Linux OS\",\n      \"destino\": \"SIPPA Web Platform\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Docker\",\n      \"destino\": \"SIPPA Web Platform\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Git/GitLab\",\n      \"destino\": \"SIPPA Web Platform\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Servidor Web\",\n      \"destino\": \"SIPPA Web Platform\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"SIGAA\",\n      \"destino\": \"SIPPA Web Platform\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"NTIC\",\n      \"destino\": \"SIPPA Web Platform\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"SIPPA Web Platform\",\n      \"destino\": \"Professores\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web Platform\",\n      \"destino\": \"Alunos\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web Platform\",\n      \"destino\": \"Coordenadores\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web Platform\",\n      \"destino\": \"Secretários\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web Platform\",\n      \"destino\": \"Pró-reitores de Graduação\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web Platform\",\n      \"destino\": \"Responsáveis pelo RU\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web Platform\",\n      \"destino\": \"Administradores\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web Platform\",\n      \"destino\": \"Sistemas Corporativos\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web Platform\",\n      \"destino\": \"SISAC\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web Platform\",\n      \"destino\": \"SIPAC\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web Platform\",\n      \"destino\": \"SAVI\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web Platform\",\n      \"destino\": \"Desenvolvedores\",\n      \"tipo_fluxo\": \"Ser\"\n    }\n  ],\n  \"gateways\": [\n    {\n      \"ator\": \"SIPPA Web Platform\",\n      \"tipo\": \"split\",\n      \"descricao\": \"OU Gateway: distribui para um ou mais destinos\"\n    }\n  ]\n}\n```",
+  "resultado_parseado": {
+    "ecos": "SIPPA",
+    "atores": [
+      {
+        "nome": "SIPPA Web Platform",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Tecnologias Frontend",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Java/Spring Boot",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "PostgreSQL",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Linux OS",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Docker",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Git/GitLab",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Servidor Web",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "SIGAA",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "NTIC",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Coordenadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Secretários",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Pró-reitores de Graduação",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Responsáveis pelo RU",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Administradores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Sistemas Corporativos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "SISAC",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "SIPAC",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "SAVI",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Desenvolvedores",
+        "tipo": "Cliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Tecnologias Frontend",
+        "destino": "SIPPA Web Platform",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Java/Spring Boot",
+        "destino": "SIPPA Web Platform",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "PostgreSQL",
+        "destino": "SIPPA Web Platform",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Linux OS",
+        "destino": "SIPPA Web Platform",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Docker",
+        "destino": "SIPPA Web Platform",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Git/GitLab",
+        "destino": "SIPPA Web Platform",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "SIPPA Web Platform",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIGAA",
+        "destino": "SIPPA Web Platform",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "SIPPA Web Platform",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIPPA Web Platform",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web Platform",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web Platform",
+        "destino": "Coordenadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web Platform",
+        "destino": "Secretários",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web Platform",
+        "destino": "Pró-reitores de Graduação",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web Platform",
+        "destino": "Responsáveis pelo RU",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web Platform",
+        "destino": "Administradores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web Platform",
+        "destino": "Sistemas Corporativos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web Platform",
+        "destino": "SISAC",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web Platform",
+        "destino": "SIPAC",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web Platform",
+        "destino": "SAVI",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web Platform",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Ser"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "SIPPA Web Platform",
+        "tipo": "split",
+        "descricao": "OU Gateway: distribui para um ou mais destinos"
+      }
+    ]
+  }
+}

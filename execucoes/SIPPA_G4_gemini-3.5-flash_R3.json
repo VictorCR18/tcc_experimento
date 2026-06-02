@@ -1,0 +1,220 @@
+{
+  "id_execucao": "SIPPA_G4_gemini-3.5-flash_R3",
+  "ecos": "SIPPA",
+  "grupo": "G4",
+  "modelo": "gemini-3.5-flash",
+  "repeticao": 3,
+  "timestamp": "2026-06-02T18:53:23.454Z",
+  "duracao_seg": 18.06,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"raciocinio_cot\": \"Passo 1: O CoI é o SIPPA (Sistema de Presença e Plano de Aula). Passo 2: Os Fornecedores são as tecnologias e sistemas que fornecem componentes (P) para o SIPPA: Tecnologias Frontend (JS/HTML/CSS), Tecnologias Backend (Java/Spring Boot), PostgreSQL, Linux, Docker, Git/GitLab e SIGAA. Passo 3: Os Clientes são Desenvolvedores, Professores, Alunos, Coordenadores, Secretários, Pró-reitores de Graduação, Responsáveis pelo RU, Sistemas corporativos, Administradores, SISAC, SIPAC e SAVI. Passo 4: O NTIC atua como Agregador de infraestrutura (recebe Sys do CoI SIPPA e repassa Sys para o Intermediario). O Servidor Web atua como Intermediario, recebendo Sys do Agregador NTIC e distribuindo Ser para os Clientes. Passo 5: O Servidor Web distribui serviços para múltiplos clientes simultaneamente, necessitando de um gateway split. Passo 6: Todos os atores estão conectados respeitando as regras semânticas da notação SSN.\",\n  \"ecos\": \"SIPPA\",\n  \"atores\": [\n    {\"nome\": \"SIPPA\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Tecnologias Frontend (JS/HTML/CSS)\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Tecnologias Backend (Java/Spring Boot)\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"PostgreSQL\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Linux\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Docker\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Git/GitLab\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"SIGAA\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"NTIC\", \"tipo\": \"Agregador\"},\n    {\"nome\": \"Servidor Web\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Desenvolvedores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Coordenadores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Secretários\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Pró-reitores de Graduação\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Responsáveis pelo RU\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Sistemas corporativos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Administradores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"SISAC\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"SIPAC\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"SAVI\", \"tipo\": \"Cliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Tecnologias Frontend (JS/HTML/CSS)\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Tecnologias Backend (Java/Spring Boot)\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"PostgreSQL\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Linux\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Docker\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Git/GitLab\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SIGAA\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"NTIC\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"NTIC\", \"destino\": \"Servidor Web\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"Coordenadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"Secretários\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"Pró-reitores de Graduação\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"Responsáveis pelo RU\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"Sistemas corporativos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"Administradores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"SISAC\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"SIPAC\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"SAVI\", \"tipo_fluxo\": \"Ser\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"Servidor Web\", \"tipo\": \"split\", \"descricao\": \"Distribui os serviços do SIPPA para os diversos perfis de usuários e sistemas integrados\"}\n  ]\n}",
+  "resultado_parseado": {
+    "raciocinio_cot": "Passo 1: O CoI é o SIPPA (Sistema de Presença e Plano de Aula). Passo 2: Os Fornecedores são as tecnologias e sistemas que fornecem componentes (P) para o SIPPA: Tecnologias Frontend (JS/HTML/CSS), Tecnologias Backend (Java/Spring Boot), PostgreSQL, Linux, Docker, Git/GitLab e SIGAA. Passo 3: Os Clientes são Desenvolvedores, Professores, Alunos, Coordenadores, Secretários, Pró-reitores de Graduação, Responsáveis pelo RU, Sistemas corporativos, Administradores, SISAC, SIPAC e SAVI. Passo 4: O NTIC atua como Agregador de infraestrutura (recebe Sys do CoI SIPPA e repassa Sys para o Intermediario). O Servidor Web atua como Intermediario, recebendo Sys do Agregador NTIC e distribuindo Ser para os Clientes. Passo 5: O Servidor Web distribui serviços para múltiplos clientes simultaneamente, necessitando de um gateway split. Passo 6: Todos os atores estão conectados respeitando as regras semânticas da notação SSN.",
+    "ecos": "SIPPA",
+    "atores": [
+      {
+        "nome": "SIPPA",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Tecnologias Frontend (JS/HTML/CSS)",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Tecnologias Backend (Java/Spring Boot)",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "PostgreSQL",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Linux",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Docker",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Git/GitLab",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "SIGAA",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "NTIC",
+        "tipo": "Agregador"
+      },
+      {
+        "nome": "Servidor Web",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Desenvolvedores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Coordenadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Secretários",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Pró-reitores de Graduação",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Responsáveis pelo RU",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Sistemas corporativos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Administradores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "SISAC",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "SIPAC",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "SAVI",
+        "tipo": "Cliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Tecnologias Frontend (JS/HTML/CSS)",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Tecnologias Backend (Java/Spring Boot)",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "PostgreSQL",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Linux",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Docker",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Git/GitLab",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIGAA",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIPPA",
+        "destino": "NTIC",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "Servidor Web",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "Coordenadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "Secretários",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "Pró-reitores de Graduação",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "Responsáveis pelo RU",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "Sistemas corporativos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "Administradores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "SISAC",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "SIPAC",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "SAVI",
+        "tipo_fluxo": "Ser"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Servidor Web",
+        "tipo": "split",
+        "descricao": "Distribui os serviços do SIPPA para os diversos perfis de usuários e sistemas integrados"
+      }
+    ]
+  }
+}

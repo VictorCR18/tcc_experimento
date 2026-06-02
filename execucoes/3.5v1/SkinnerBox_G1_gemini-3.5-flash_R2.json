@@ -1,0 +1,93 @@
+{
+  "id_execucao": "SkinnerBox_G1_gemini-3.5-flash_R2",
+  "ecos": "SkinnerBox",
+  "grupo": "G1",
+  "modelo": "gemini-3.5-flash",
+  "repeticao": 2,
+  "timestamp": "2026-06-01T16:52:59.085Z",
+  "duracao_seg": 17.59,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SkinnerBox\",\n  \"atores\": [\n    {\n      \"nome\": \"Departamento de Psicologia da UFC\",\n      \"tipo\": \"CoI\"\n    },\n    {\n      \"nome\": \"Unity\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Maya 3D\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Adobe\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Equipe de Desenvolvimento\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Google Drive\",\n      \"tipo\": \"Intermediario\"\n    },\n    {\n      \"nome\": \"Professores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Alunos\",\n      \"tipo\": \"ClienteDoCliente\"\n    }\n  ],\n  \"relacoes\": [\n    {\n      \"origem\": \"Departamento de Psicologia da UFC\",\n      \"destino\": \"Equipe de Desenvolvimento\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Unity\",\n      \"destino\": \"Equipe de Desenvolvimento\",\n      \"tipo_fluxo\": \"Comp\"\n    },\n    {\n      \"origem\": \"Maya 3D\",\n      \"destino\": \"Equipe de Desenvolvimento\",\n      \"tipo_fluxo\": \"Comp\"\n    },\n    {\n      \"origem\": \"Adobe\",\n      \"destino\": \"Equipe de Desenvolvimento\",\n      \"tipo_fluxo\": \"Comp\"\n    },\n    {\n      \"origem\": \"Equipe de Desenvolvimento\",\n      \"destino\": \"Google Drive\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Google Drive\",\n      \"destino\": \"Professores\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Google Drive\",\n      \"destino\": \"Alunos\",\n      \"tipo_fluxo\": \"P\"\n    }\n  ],\n  \"gateways\": [\n    {\n      \"ator\": \"Google Drive\",\n      \"tipo\": \"split\",\n      \"descricao\": \"Divisão do fluxo de distribuição dos arquivos do simulador para atender de forma distinta os Professores e os Alunos.\"\n    }\n  ]\n}",
+  "resultado_parseado": {
+    "ecos": "SkinnerBox",
+    "atores": [
+      {
+        "nome": "Departamento de Psicologia da UFC",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Unity",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Maya 3D",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Adobe",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Equipe de Desenvolvimento",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Google Drive",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "ClienteDoCliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Departamento de Psicologia da UFC",
+        "destino": "Equipe de Desenvolvimento",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Unity",
+        "destino": "Equipe de Desenvolvimento",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Maya 3D",
+        "destino": "Equipe de Desenvolvimento",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Adobe",
+        "destino": "Equipe de Desenvolvimento",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Google Drive",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Google Drive",
+        "destino": "Professores",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Google Drive",
+        "destino": "Alunos",
+        "tipo_fluxo": "P"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Google Drive",
+        "tipo": "split",
+        "descricao": "Divisão do fluxo de distribuição dos arquivos do simulador para atender de forma distinta os Professores e os Alunos."
+      }
+    ]
+  }
+}
