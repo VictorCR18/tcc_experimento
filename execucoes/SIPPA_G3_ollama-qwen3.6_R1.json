@@ -1,0 +1,174 @@
+{
+  "id_execucao": "SIPPA_G3_ollama-qwen3.6_R1",
+  "ecos": "SIPPA",
+  "grupo": "G3",
+  "modelo": "ollama-qwen3.6",
+  "repeticao": 1,
+  "timestamp": "2026-06-02T13:10:13.991Z",
+  "duracao_seg": 86.27,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SIPPA\",\n  \"atores\": [\n    {\"nome\": \"SIPPA\", \"tipo\": \"CoI\"},\n    {\"nome\": \"JavaScript/HTML/CSS\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Java/Spring Boot\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"PostgreSQL\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Linux\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Docker\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Git/GitLab\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"SIGAA\", \"tipo\": \"Agregador\"},\n    {\"nome\": \"NTIC\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Desenvolvedores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Coordenadores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Secretários\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Pró-reitores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Responsáveis RU\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Sistemas Corporativos\", \"tipo\": \"ClienteDoCliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"JavaScript/HTML/CSS\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Java/Spring Boot\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"PostgreSQL\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Linux\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Docker\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Git/GitLab\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"SIGAA\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"SIGAA\", \"destino\": \"NTIC\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"NTIC\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"NTIC\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"NTIC\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"NTIC\", \"destino\": \"Coordenadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"NTIC\", \"destino\": \"Secretários\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"NTIC\", \"destino\": \"Pró-reitores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"NTIC\", \"destino\": \"Responsáveis RU\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"NTIC\", \"destino\": \"Sistemas Corporativos\", \"tipo_fluxo\": \"Sys\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"NTIC\", \"tipo\": \"split\", \"descricao\": \"Distribui serviços do SIPPA para usuários e sistemas integrados\"}\n  ]\n}",
+  "resultado_parseado": {
+    "ecos": "SIPPA",
+    "atores": [
+      {
+        "nome": "SIPPA",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "JavaScript/HTML/CSS",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Java/Spring Boot",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "PostgreSQL",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Linux",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Docker",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Git/GitLab",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "SIGAA",
+        "tipo": "Agregador"
+      },
+      {
+        "nome": "NTIC",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Desenvolvedores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Coordenadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Secretários",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Pró-reitores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Responsáveis RU",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Sistemas Corporativos",
+        "tipo": "ClienteDoCliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "JavaScript/HTML/CSS",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Java/Spring Boot",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "PostgreSQL",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Linux",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Docker",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Git/GitLab",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIPPA",
+        "destino": "SIGAA",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "SIGAA",
+        "destino": "NTIC",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "Coordenadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "Secretários",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "Pró-reitores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "Responsáveis RU",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "Sistemas Corporativos",
+        "tipo_fluxo": "Sys"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "NTIC",
+        "tipo": "split",
+        "descricao": "Distribui serviços do SIPPA para usuários e sistemas integrados"
+      }
+    ]
+  }
+}

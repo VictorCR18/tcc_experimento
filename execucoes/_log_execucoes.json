@@ -1,218 +1,218 @@
 [
   {
-    "id": "SkinnerBox_G1_ollama-llama3.2_R1",
+    "id": "SkinnerBox_G1_ollama-qwen3.6_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 296.93
+    "duracao": 303.6
   },
   {
-    "id": "SkinnerBox_G1_ollama-llama3.2_R2",
+    "id": "SkinnerBox_G1_ollama-qwen3.6_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 47.4
+    "duracao": 9.95
   },
   {
-    "id": "SkinnerBox_G1_ollama-llama3.2_R3",
+    "id": "SkinnerBox_G1_ollama-qwen3.6_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 49.65
+    "duracao": 9.5
   },
   {
-    "id": "SkinnerBox_G2_ollama-llama3.2_R1",
+    "id": "SkinnerBox_G2_ollama-qwen3.6_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 154.16
+    "duracao": 72.56
   },
   {
-    "id": "SkinnerBox_G2_ollama-llama3.2_R2",
+    "id": "SkinnerBox_G2_ollama-qwen3.6_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 31.75
+    "duracao": 18.01
   },
   {
-    "id": "SkinnerBox_G2_ollama-llama3.2_R3",
+    "id": "SkinnerBox_G2_ollama-qwen3.6_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 31.99
+    "duracao": 17.42
   },
   {
-    "id": "SkinnerBox_G3_ollama-llama3.2_R1",
+    "id": "SkinnerBox_G3_ollama-qwen3.6_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 279.26
+    "duracao": 144.97
   },
   {
-    "id": "SkinnerBox_G3_ollama-llama3.2_R2",
+    "id": "SkinnerBox_G3_ollama-qwen3.6_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 79.05
+    "duracao": 13.85
   },
   {
-    "id": "SkinnerBox_G3_ollama-llama3.2_R3",
+    "id": "SkinnerBox_G3_ollama-qwen3.6_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 79.99
+    "duracao": 12.78
   },
   {
-    "id": "SkinnerBox_G4_ollama-llama3.2_R1",
+    "id": "SkinnerBox_G4_ollama-qwen3.6_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 384.89
+    "duracao": 229.03
   },
   {
-    "id": "SkinnerBox_G4_ollama-llama3.2_R2",
+    "id": "SkinnerBox_G4_ollama-qwen3.6_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 87.55
+    "duracao": 39.28
   },
   {
-    "id": "SkinnerBox_G4_ollama-llama3.2_R3",
+    "id": "SkinnerBox_G4_ollama-qwen3.6_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 77.95
+    "duracao": 40.4
   },
   {
-    "id": "SIPPA_G1_ollama-llama3.2_R1",
+    "id": "SIPPA_G1_ollama-qwen3.6_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 109.89
+    "duracao": 69.47
   },
   {
-    "id": "SIPPA_G1_ollama-llama3.2_R2",
+    "id": "SIPPA_G1_ollama-qwen3.6_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 95.4
+    "duracao": 33.53
   },
   {
-    "id": "SIPPA_G1_ollama-llama3.2_R3",
+    "id": "SIPPA_G1_ollama-qwen3.6_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 101.72
+    "duracao": 34.48
   },
   {
-    "id": "SIPPA_G2_ollama-llama3.2_R1",
+    "id": "SIPPA_G2_ollama-qwen3.6_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 131.9
+    "duracao": 115.31
   },
   {
-    "id": "SIPPA_G2_ollama-llama3.2_R2",
+    "id": "SIPPA_G2_ollama-qwen3.6_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 94.1
+    "duracao": 87.66
   },
   {
-    "id": "SIPPA_G2_ollama-llama3.2_R3",
+    "id": "SIPPA_G2_ollama-qwen3.6_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 93.4
+    "duracao": 78.51
   },
   {
-    "id": "SIPPA_G3_ollama-llama3.2_R1",
+    "id": "SIPPA_G3_ollama-qwen3.6_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 482.69
+    "duracao": 86.27
   },
   {
-    "id": "SIPPA_G3_ollama-llama3.2_R2",
+    "id": "SIPPA_G3_ollama-qwen3.6_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 177.66
+    "duracao": 30.82
   },
   {
-    "id": "SIPPA_G3_ollama-llama3.2_R3",
+    "id": "SIPPA_G3_ollama-qwen3.6_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 177.43
+    "duracao": 28.15
   },
   {
-    "id": "SIPPA_G4_ollama-llama3.2_R1",
+    "id": "SIPPA_G4_ollama-qwen3.6_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 525.86
+    "duracao": 122.45
   },
   {
-    "id": "SIPPA_G4_ollama-llama3.2_R2",
+    "id": "SIPPA_G4_ollama-qwen3.6_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 530.86
+    "duracao": 77.63
   },
   {
-    "id": "SIPPA_G4_ollama-llama3.2_R3",
+    "id": "SIPPA_G4_ollama-qwen3.6_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 526.03
+    "duracao": 78.13
   },
   {
-    "id": "SOLAR_G1_ollama-llama3.2_R1",
+    "id": "SOLAR_G1_ollama-qwen3.6_R1",
     "status": "ok",
-    "conformidade": "ok",
-    "duracao": 53.26
+    "conformidade": "falha",
+    "duracao": 142.81
   },
   {
-    "id": "SOLAR_G1_ollama-llama3.2_R2",
+    "id": "SOLAR_G1_ollama-qwen3.6_R2",
     "status": "ok",
-    "conformidade": "ok",
-    "duracao": 37.28
+    "conformidade": "falha",
+    "duracao": 119.56
   },
   {
-    "id": "SOLAR_G1_ollama-llama3.2_R3",
+    "id": "SOLAR_G1_ollama-qwen3.6_R3",
     "status": "ok",
-    "conformidade": "ok",
-    "duracao": 37.06
+    "conformidade": "falha",
+    "duracao": 105.68
   },
   {
-    "id": "SOLAR_G2_ollama-llama3.2_R1",
+    "id": "SOLAR_G2_ollama-qwen3.6_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 107.64
+    "duracao": 124.08
   },
   {
-    "id": "SOLAR_G2_ollama-llama3.2_R2",
+    "id": "SOLAR_G2_ollama-qwen3.6_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 80.01
+    "duracao": 102.35
   },
   {
-    "id": "SOLAR_G2_ollama-llama3.2_R3",
+    "id": "SOLAR_G2_ollama-qwen3.6_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 80.25
+    "duracao": 99.71
   },
   {
-    "id": "SOLAR_G3_ollama-llama3.2_R1",
+    "id": "SOLAR_G3_ollama-qwen3.6_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 275.95
+    "duracao": 139.4
   },
   {
-    "id": "SOLAR_G3_ollama-llama3.2_R2",
+    "id": "SOLAR_G3_ollama-qwen3.6_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 113.01
+    "duracao": 82.42
   },
   {
-    "id": "SOLAR_G3_ollama-llama3.2_R3",
+    "id": "SOLAR_G3_ollama-qwen3.6_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 112.95
+    "duracao": 83.26
   },
   {
-    "id": "SOLAR_G4_ollama-llama3.2_R1",
+    "id": "SOLAR_G4_ollama-qwen3.6_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 461.32
+    "duracao": 205.19
   },
   {
-    "id": "SOLAR_G4_ollama-llama3.2_R2",
+    "id": "SOLAR_G4_ollama-qwen3.6_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 462.4
+    "duracao": 137.73
   },
   {
-    "id": "SOLAR_G4_ollama-llama3.2_R3",
+    "id": "SOLAR_G4_ollama-qwen3.6_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 462.12
+    "duracao": 141.09
   }
 ]
