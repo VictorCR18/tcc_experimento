@@ -21,6 +21,7 @@ import fs from "fs";
 import path from "path";
 import { GoogleGenAI } from "@google/genai";
 // import OpenAI from "openai";
+import Groq from "groq-sdk";
 
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -643,12 +644,30 @@ async function chamarOllama(prompt: string): Promise<string> {
   return data.message?.content ?? "";
 }
 
+// ── Groq (llama-3.3-70b-versatile) ───────────────────────────────────────────
+
+async function chamarGroq(prompt: string): Promise<string> {
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey) throw new Error("GROQ_API_KEY não definida");
+
+  const client = new Groq({ apiKey });
+
+  const response = await client.chat.completions.create({
+    model: "llama-3.3-70b-versatile",
+    temperature: TEMPERATURA,
+    max_tokens: MAX_TOKENS,
+    messages: [{ role: "user", content: prompt }],
+  });
+
+  return response.choices[0].message.content ?? "";
+}
 
 const MODELOS: Record<string, (p: string) => Promise<string>> = {
   // "gemini-3.5-flash": chamarGemini,
   // "claude-sonnet-4-5": chamarClaude,
   // "gpt-5.4-mini": chamarGPT4o,
   "ollama-qwen3.6": chamarOllama,
+  "groq-llama-3.3-70b": chamarGroq,
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -764,7 +783,7 @@ async function main() {
     duracao: number;
   }> = [];
   let contador = 0;
-  const RPD_LIMITE = 20;
+  const RPD_LIMITE = 2000; 
   let reqFeitas = 0;
 
   for (const ecos of ecosLista) {

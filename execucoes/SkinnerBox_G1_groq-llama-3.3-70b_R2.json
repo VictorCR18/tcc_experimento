@@ -1,0 +1,92 @@
+{
+  "id_execucao": "SkinnerBox_G1_groq-llama-3.3-70b_R2",
+  "ecos": "SkinnerBox",
+  "grupo": "G1",
+  "modelo": "groq-llama-3.3-70b",
+  "repeticao": 2,
+  "timestamp": "2026-06-02T23:39:00.859Z",
+  "duracao_seg": 1.13,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SkinnerBox\",\n  \"atores\": [\n    {\"nome\": \"Departamento de Psicologia da UFC\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Desenvolvedores do Simulador\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Unity\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Maya 3D\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Adobe\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"Google Drive\", \"tipo\": \"Intermediario\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Departamento de Psicologia da UFC\", \"destino\": \"Desenvolvedores do Simulador\", \"tipo_fluxo\": \"Req\"},\n    {\"origem\": \"Desenvolvedores do Simulador\", \"destino\": \"Unity\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Desenvolvedores do Simulador\", \"destino\": \"Maya 3D\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Desenvolvedores do Simulador\", \"destino\": \"Adobe\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Desenvolvedores do Simulador\", \"destino\": \"Google Drive\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Google Drive\", \"destino\": \"Professores\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Google Drive\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Professores\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Des\"}\n  ],\n  \"gateways\": []\n}",
+  "resultado_parseado": {
+    "ecos": "SkinnerBox",
+    "atores": [
+      {
+        "nome": "Departamento de Psicologia da UFC",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Desenvolvedores do Simulador",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Unity",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Maya 3D",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Adobe",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "Google Drive",
+        "tipo": "Intermediario"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Departamento de Psicologia da UFC",
+        "destino": "Desenvolvedores do Simulador",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Desenvolvedores do Simulador",
+        "destino": "Unity",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Desenvolvedores do Simulador",
+        "destino": "Maya 3D",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Desenvolvedores do Simulador",
+        "destino": "Adobe",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Desenvolvedores do Simulador",
+        "destino": "Google Drive",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Google Drive",
+        "destino": "Professores",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Google Drive",
+        "destino": "Alunos",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Professores",
+        "destino": "Alunos",
+        "tipo_fluxo": "Des"
+      }
+    ],
+    "gateways": []
+  }
+}

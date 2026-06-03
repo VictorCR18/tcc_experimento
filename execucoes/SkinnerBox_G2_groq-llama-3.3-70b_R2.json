@@ -1,0 +1,87 @@
+{
+  "id_execucao": "SkinnerBox_G2_groq-llama-3.3-70b_R2",
+  "ecos": "SkinnerBox",
+  "grupo": "G2",
+  "modelo": "groq-llama-3.3-70b",
+  "repeticao": 2,
+  "timestamp": "2026-06-02T23:39:40.980Z",
+  "duracao_seg": 1.15,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "```json\n{\n  \"ecos\": \"SkinnerBox\",\n  \"atores\": [\n    {\"nome\": \"SkinnerBox\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Unity\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Maya 3D\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Adobe\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Departamento de Psicologia da UFC\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"Google Drive\", \"tipo\": \"Intermediario\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Unity\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Maya 3D\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Adobe\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Departamento de Psicologia da UFC\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"Req\"},\n    {\"origem\": \"SkinnerBox\", \"destino\": \"Google Drive\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"Google Drive\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Professores\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"}\n  ],\n  \"gateways\": []\n}\n```",
+  "resultado_parseado": {
+    "ecos": "SkinnerBox",
+    "atores": [
+      {
+        "nome": "SkinnerBox",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Unity",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Maya 3D",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Adobe",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Departamento de Psicologia da UFC",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "Google Drive",
+        "tipo": "Intermediario"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Unity",
+        "destino": "SkinnerBox",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Maya 3D",
+        "destino": "SkinnerBox",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Adobe",
+        "destino": "SkinnerBox",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Departamento de Psicologia da UFC",
+        "destino": "SkinnerBox",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "SkinnerBox",
+        "destino": "Google Drive",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "Google Drive",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Professores",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      }
+    ],
+    "gateways": []
+  }
+}

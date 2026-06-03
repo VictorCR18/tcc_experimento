@@ -1,0 +1,364 @@
+{
+  "id_execucao": "SOLAR_G4_groq-llama-3.3-70b_R1",
+  "ecos": "SOLAR",
+  "grupo": "G4",
+  "modelo": "groq-llama-3.3-70b",
+  "repeticao": 1,
+  "timestamp": "2026-06-03T00:26:33.393Z",
+  "duracao_seg": 33.77,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "```json\n{\n  \"raciocinio_cot\": \"Passo 1: Os CoIs são SOLAR (web), SOLAR MOBILE e SOLAR MOOC, pois são os módulos principais do Ambiente Virtual de Aprendizagem (AVA) da Universidade Federal do Ceará (UFC). Passo 2: Os Fornecedores incluem Ruby on Rails, PostgreSQL, Linux, NGINX, UNICORN, ChatServer Mono, GIT, Github, Text To Speech, SIGAA, Módulo Acadêmico, Android SDK, Facebook, Twitter e Componente MOOC, pois fornecem tecnologias e componentes para os módulos do SOLAR. Passo 3: Os Clientes incluem Usuários Desenvolvedores, Módulo Acadêmico, Professores, Editores, Administradores, Coordenadores, Alunos, Tutores, UFC, UAB e Pesquisadores, pois consomem os serviços do SOLAR. Os Desenvolvedores possuem Clientes próprios, sendo ClienteDoCliente. Passo 4: A Equipe de Desenvolvimento e o Comitê de Pesquisa atuam como Intermediários, pois distribuem os serviços do SOLAR para os Clientes. O Coordenador Técnico do SOLAR gerencia o ecossistema, mas não é um ator que fornece ou consome serviços diretamente. Passo 5: A Play Store distribui o app mobile, atuando como um gateway split, pois distribui o aplicativo para múltiplos usuários. Passo 6: Todos os atores estão conectados e as regras semânticas estão satisfeitas.\",\n  \"ecos\": \"SOLAR\",\n  \"atores\": [\n    {\"nome\": \"SOLAR (web)\", \"tipo\": \"CoI\"},\n    {\"nome\": \"SOLAR MOBILE\", \"tipo\": \"CoI\"},\n    {\"nome\": \"SOLAR MOOC\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Ruby on Rails\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"PostgreSQL\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Linux\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"NGINX\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"UNICORN\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"ChatServer Mono\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"GIT\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Github\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Text To Speech\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"SIGAA\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Módulo Acadêmico\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Android SDK\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Facebook\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Twitter\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Componente MOOC\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Equipe de Desenvolvimento\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Comitê de Pesquisa\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Play Store\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Usuários Desenvolvedores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Módulo Acadêmico\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Editores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Administradores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Coordenadores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Tutores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"UFC\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"UAB\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Pesquisadores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Desenvolvedores\", \"tipo\": \"ClienteDoCliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Ruby on Rails\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"PostgreSQL\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Linux\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"NGINX\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"UNICORN\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"ChatServer Mono\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"GIT\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Github\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Text To Speech\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SIGAA\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Módulo Acadêmico\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Android SDK\", \"destino\": \"SOLAR MOBILE\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Facebook\", \"destino\": \"SOLAR MOBILE\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Twitter\", \"destino\": \"SOLAR MOBILE\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Componente MOOC\", \"destino\": \"SOLAR MOOC\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SOLAR (web)\", \"destino\": \"Equipe de Desenvolvimento\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"SOLAR MOBILE\", \"destino\": \"Play Store\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"SOLAR MOOC\", \"destino\": \"Equipe de Desenvolvimento\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Usuários Desenvolvedores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Módulo Acadêmico\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Editores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Administradores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Coordenadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Tutores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"UFC\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"UAB\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Pesquisadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Usuários Desenvolvedores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Módulo Acadêmico\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Editores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Administradores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Coordenadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Tutores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"UFC\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"UAB\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Pesquisadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Usuários Desenvolvedores\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Ser\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"Play Store\", \"tipo\": \"split\", \"descricao\": \"Distribui o aplicativo mobile para múltiplos usuários\"}\n  ]\n}\n```",
+  "resultado_parseado": {
+    "raciocinio_cot": "Passo 1: Os CoIs são SOLAR (web), SOLAR MOBILE e SOLAR MOOC, pois são os módulos principais do Ambiente Virtual de Aprendizagem (AVA) da Universidade Federal do Ceará (UFC). Passo 2: Os Fornecedores incluem Ruby on Rails, PostgreSQL, Linux, NGINX, UNICORN, ChatServer Mono, GIT, Github, Text To Speech, SIGAA, Módulo Acadêmico, Android SDK, Facebook, Twitter e Componente MOOC, pois fornecem tecnologias e componentes para os módulos do SOLAR. Passo 3: Os Clientes incluem Usuários Desenvolvedores, Módulo Acadêmico, Professores, Editores, Administradores, Coordenadores, Alunos, Tutores, UFC, UAB e Pesquisadores, pois consomem os serviços do SOLAR. Os Desenvolvedores possuem Clientes próprios, sendo ClienteDoCliente. Passo 4: A Equipe de Desenvolvimento e o Comitê de Pesquisa atuam como Intermediários, pois distribuem os serviços do SOLAR para os Clientes. O Coordenador Técnico do SOLAR gerencia o ecossistema, mas não é um ator que fornece ou consome serviços diretamente. Passo 5: A Play Store distribui o app mobile, atuando como um gateway split, pois distribui o aplicativo para múltiplos usuários. Passo 6: Todos os atores estão conectados e as regras semânticas estão satisfeitas.",
+    "ecos": "SOLAR",
+    "atores": [
+      {
+        "nome": "SOLAR (web)",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "SOLAR MOBILE",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "SOLAR MOOC",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Ruby on Rails",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "PostgreSQL",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Linux",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "NGINX",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "UNICORN",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "ChatServer Mono",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "GIT",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Github",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Text To Speech",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "SIGAA",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Módulo Acadêmico",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Android SDK",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Facebook",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Twitter",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Componente MOOC",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Equipe de Desenvolvimento",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Comitê de Pesquisa",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Play Store",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Usuários Desenvolvedores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Módulo Acadêmico",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Editores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Administradores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Coordenadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Tutores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "UFC",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "UAB",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Pesquisadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Desenvolvedores",
+        "tipo": "ClienteDoCliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Ruby on Rails",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "PostgreSQL",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Linux",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "NGINX",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "UNICORN",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "ChatServer Mono",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "GIT",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Github",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Text To Speech",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIGAA",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Módulo Acadêmico",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Android SDK",
+        "destino": "SOLAR MOBILE",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Facebook",
+        "destino": "SOLAR MOBILE",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Twitter",
+        "destino": "SOLAR MOBILE",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Componente MOOC",
+        "destino": "SOLAR MOOC",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SOLAR (web)",
+        "destino": "Equipe de Desenvolvimento",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "SOLAR MOBILE",
+        "destino": "Play Store",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "SOLAR MOOC",
+        "destino": "Equipe de Desenvolvimento",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Usuários Desenvolvedores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Módulo Acadêmico",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Editores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Administradores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Coordenadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Tutores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "UFC",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "UAB",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Pesquisadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Usuários Desenvolvedores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Módulo Acadêmico",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Editores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Administradores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Coordenadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Tutores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "UFC",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "UAB",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Pesquisadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Usuários Desenvolvedores",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Ser"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Play Store",
+        "tipo": "split",
+        "descricao": "Distribui o aplicativo mobile para múltiplos usuários"
+      }
+    ]
+  }
+}
