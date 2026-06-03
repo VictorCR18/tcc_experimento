@@ -1,98 +1,56 @@
 [
   {
-    "id": "SIPPA_G3_gemini-3.5-flash_R3",
+    "id": "SOLAR_G2_groq-llama-3.3-70b_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 17.63
+    "duracao": 3.33
   },
   {
-    "id": "SIPPA_G4_gemini-3.5-flash_R1",
+    "id": "SOLAR_G2_groq-llama-3.3-70b_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 19.62
+    "duracao": 3.35
   },
   {
-    "id": "SIPPA_G4_gemini-3.5-flash_R2",
+    "id": "SOLAR_G2_groq-llama-3.3-70b_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 28.87
+    "duracao": 2.91
   },
   {
-    "id": "SIPPA_G4_gemini-3.5-flash_R3",
+    "id": "SOLAR_G3_groq-llama-3.3-70b_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 18.06
+    "duracao": 3.3
   },
   {
-    "id": "SOLAR_G1_gemini-3.5-flash_R1",
+    "id": "SOLAR_G3_groq-llama-3.3-70b_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 30.63
+    "duracao": 20.6
   },
   {
-    "id": "SOLAR_G1_gemini-3.5-flash_R2",
+    "id": "SOLAR_G3_groq-llama-3.3-70b_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 48.16
+    "duracao": 20.44
   },
   {
-    "id": "SOLAR_G1_gemini-3.5-flash_R3",
+    "id": "SOLAR_G4_groq-llama-3.3-70b_R1",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 28.23
+    "duracao": 33.77
   },
   {
-    "id": "SOLAR_G2_gemini-3.5-flash_R1",
+    "id": "SOLAR_G4_groq-llama-3.3-70b_R2",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 35.89
+    "duracao": 16.26
   },
   {
-    "id": "SOLAR_G2_gemini-3.5-flash_R2",
+    "id": "SOLAR_G4_groq-llama-3.3-70b_R3",
     "status": "ok",
     "conformidade": "ok",
-    "duracao": 35.1
-  },
-  {
-    "id": "SOLAR_G2_gemini-3.5-flash_R3",
-    "status": "ok",
-    "conformidade": "ok",
-    "duracao": 37.09
-  },
-  {
-    "id": "SOLAR_G3_gemini-3.5-flash_R1",
-    "status": "ok",
-    "conformidade": "ok",
-    "duracao": 26.14
-  },
-  {
-    "id": "SOLAR_G3_gemini-3.5-flash_R2",
-    "status": "ok",
-    "conformidade": "ok",
-    "duracao": 26
-  },
-  {
-    "id": "SOLAR_G3_gemini-3.5-flash_R3",
-    "status": "ok",
-    "conformidade": "ok",
-    "duracao": 26.05
-  },
-  {
-    "id": "SOLAR_G4_gemini-3.5-flash_R1",
-    "status": "ok",
-    "conformidade": "ok",
-    "duracao": 25.46
-  },
-  {
-    "id": "SOLAR_G4_gemini-3.5-flash_R2",
-    "status": "ok",
-    "conformidade": "ok",
-    "duracao": 25.49
-  },
-  {
-    "id": "SOLAR_G4_gemini-3.5-flash_R3",
-    "status": "ok",
-    "conformidade": "ok",
-    "duracao": 36.31
+    "duracao": 26.4
   }
 ]
