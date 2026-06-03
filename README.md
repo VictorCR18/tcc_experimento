@@ -1,5 +1,8 @@
-# Experimento TCC — Victor Cavalcante
+# tcc_experimento — Victor Cavalcante
+
 ## Avaliação de Técnicas de Contextualização para Geração de Modelos SSN com LLMs
+
+Experimento do Trabalho de Conclusão de Curso que investiga o impacto de diferentes níveis de contextualização em prompts na capacidade de LLMs gerarem modelos de Software Social Network (SSN) a partir de descrições de ecossistemas de software (ECOS).
 
 ---
 
@@ -14,87 +17,31 @@ tcc_experimento/
 ├── prompts/
 │   └── prompts_G1_a_G4.md          ← texto completo dos 4 grupos de prompt
 ├── scripts/
-│   ├── executor_experimento.py      ← executa as 108 chamadas às APIs
-│   └── calcular_metricas.py         ← calcula PA, RA, F1-A, PR, TA
-├── execucoes/                        ← gerado automaticamente (saídas brutas)
-├── resultados_metricas/              ← gerado automaticamente (métricas)
+│   ├── executor_experimento.ts      ← executa as 108 chamadas às APIs
+│   ├── calcular_metricas.ts         ← calcula PA, RA, F1-A, PR, TA
+│   ├── converter_todos.ts           ← converte saídas JSON para XML
+│   ├── json2xml.ts                  ← utilitário de conversão JSON → XML
+│   └── resultados_metricas/
+│       ├── metricas_individuais.json
+│       └── metricas_medias_por_grupo.json
+├── execucoes/                       ← saídas JSON brutas das execuções
+├── gemini/                          ← saídas XML do Gemini 2.5 Flash
+├── groq_llama/                      ← saídas XML do LLaMA 3.3 70b (via Groq)
+├── qwen/                            ← saídas XML do Qwen 3.6 (via Ollama)
+├── package.json
+├── tsconfig.json
 └── README.md
 ```
 
 ---
 
-## Passo a Passo
+## Modelos LLM utilizados
 
-### 1. Instalar dependências
-
-```bash
-pip install google-generativeai anthropic openai
-```
-
-### 2. Configurar as chaves de API
-
-```bash
-export GEMINI_API_KEY="sua_chave_gemini"
-export ANTHROPIC_API_KEY="sua_chave_anthropic"
-export OPENAI_API_KEY="sua_chave_openai"
-```
-
-No Windows (PowerShell):
-```powershell
-$env:GEMINI_API_KEY = "sua_chave_gemini"
-$env:ANTHROPIC_API_KEY = "sua_chave_anthropic"
-$env:OPENAI_API_KEY = "sua_chave_openai"
-```
-
-### 3. Executar apenas o piloto G1 (recomendado antes do experimento completo)
-
-Edite o `executor_experimento.py` e mude temporariamente:
-```python
-grupos = ["G1"]           # só o baseline
-ecos_lista = ["SIPPA"]    # só o ECOS mais simples
-```
-
-Rode:
-```bash
-cd scripts
-python executor_experimento.py
-```
-
-Isso gera 9 arquivos (3 modelos × 3 repetições) em `execucoes/`.
-
-### 4. Calcular métricas do piloto
-
-```bash
-python calcular_metricas.py
-```
-
-Verifique `resultados_metricas/metricas_medias_por_grupo.json`.
-
-### 5. Expandir o dicionário de normalização
-
-Abra `calcular_metricas.py` e veja os campos `atores_alucinados` nos resultados.
-Adicione os termos novos a `NORM_TIPO_ATOR` e `NORM_TIPO_FLUXO`.
-
-### 6. Executar o experimento completo
-
-Restaure os parâmetros originais no `executor_experimento.py`:
-```python
-grupos = ["G1", "G2", "G3", "G4"]
-ecos_lista = ["SkinnerBox", "SIPPA", "SOLAR"]
-```
-
-Rode novamente:
-```bash
-python executor_experimento.py
-```
-
-Tempo estimado: ~30-60 minutos (108 chamadas com sleep de 1.5s entre elas).
-
-### 7. Calcular todas as métricas
-
-```bash
-python calcular_metricas.py
-```
+| ID no experimento | Modelo | Provedor |
+|---|---|---|
+| `gemini-3.5-flash` | Gemini 2.5 Flash | Google AI (API) |
+| `groq-llama-3.3-70b` | LLaMA 3.3 70b | Groq (API) |
+| `ollama-qwen3.6` | Qwen 3 (6B) | Ollama (local) |
 
 ---
 
@@ -102,12 +49,16 @@ python calcular_metricas.py
 
 | Variável | Valor |
 |---|---|
-| Temperatura | 0.0 (determinístico) |
+| ECOSs avaliados | SkinnerBox, SIPPA, SOLAR |
+| Grupos de prompt | G1 (baseline), G2, G3, G4 |
 | Repetições por unidade | 3 |
 | Total de execuções por modelo | 36 |
-| Total geral | 108 |
-| Métrica principal | F1-A (harmônica entre PA e RA) |
-| Teste estatístico | Kruskal-Wallis (entre grupos G1-G4) |
+| **Total geral** | **108** |
+| Temperatura | 0.0 (determinístico) |
+| Métrica principal | F1-A (média harmônica entre PA e RA) |
+| Teste estatístico | Kruskal-Wallis (entre grupos G1–G4) |
+
+---
 
 ## Métricas calculadas
 
@@ -121,13 +72,64 @@ python calcular_metricas.py
 
 ---
 
-## Observações importantes
+## Passo a passo para reprodução
 
-- Os modelos de referência em JSON foram extraídos manualmente das figuras do TCC.
-  **Revise-os** contra os originais antes de rodar o experimento completo.
-- O SOLAR tem 3 CoIs (SOLAR web, SOLAR MOBILE, SOLAR MOOC) — verifique se o LLM
-  os identificou corretamente como CoIs separados.
-- O SIPPA v2 (com mobile) pode ser adicionado como um quarto ECOS se desejado.
-- Os arquivos de saída individuais ficam em `execucoes/<id_execucao>.json` e
-  devem ser disponibilizados como material suplementar da pesquisa.
-# tcc_experimento
+### 1. Instalar dependências
+
+```bash
+npm install
+```
+
+### 2. Configurar as chaves de API
+
+Crie um arquivo `.env` na raiz do projeto:
+
+```env
+GEMINI_API_KEY=sua_chave_gemini
+GROQ_API_KEY=sua_chave_groq
+```
+
+> O Qwen é executado localmente via Ollama — certifique-se de ter o modelo `qwen` disponível (`ollama pull qwen`).
+
+### 3. Executar o piloto (recomendado antes do experimento completo)
+
+```bash
+npm run piloto
+```
+
+Isso executa apenas G1 no SIPPA com os 3 modelos (9 execuções). Verifique as saídas em `execucoes/` antes de prosseguir.
+
+### 4. Executar o experimento completo
+
+```bash
+npm run executar
+```
+
+Tempo estimado: ~30–60 minutos (108 chamadas com intervalo entre elas).
+
+### 5. Converter saídas JSON para XML
+
+```bash
+npx ts-node scripts/converter_todos.ts
+```
+
+Os arquivos XML são gerados nas pastas `gemini/`, `groq_llama/` e `qwen/`.
+
+### 6. Calcular as métricas
+
+```bash
+npm run metricas
+```
+
+Os resultados são salvos em `scripts/resultados_metricas/`:
+- `metricas_individuais.json` — métricas por execução
+- `metricas_medias_por_grupo.json` — médias agrupadas por ECOS × grupo × modelo
+
+---
+
+## Observações
+
+- Os modelos de referência em JSON foram extraídos manualmente das figuras do TCC. **Revise-os** antes de rodar o experimento completo.
+- O SOLAR possui 3 CoIs (SOLAR web, SOLAR MOBILE, SOLAR MOOC) — verifique se os LLMs os identificaram corretamente como CoIs distintos.
+- Os arquivos de saída em `execucoes/` devem ser disponibilizados como material suplementar da pesquisa.
+- O experimento já foi executado; as saídas XML estão nas pastas `gemini/`, `groq_llama/` e `qwen/` e as métricas calculadas estão em `scripts/resultados_metricas/`.
