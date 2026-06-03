@@ -1,0 +1,340 @@
+{
+  "id_execucao": "SOLAR_G4_ollama-qwen3.6_R1",
+  "ecos": "SOLAR",
+  "grupo": "G4",
+  "modelo": "ollama-qwen3.6",
+  "repeticao": 1,
+  "timestamp": "2026-06-02T23:44:17.127Z",
+  "duracao_seg": 179.9,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"raciocinio_cot\": \"Passo 1: Identificar os CoIs. O ecossistema SOLAR possui três módulos autônomos conforme a regra 5: 'SOLAR (Web)', 'SOLAR (Mobile)' e 'SOLAR (MOOC)'. Passo 2: Mapear Fornecedores para cada CoI. Para SOLAR (Web): Ruby on Rails, PostgreSQL, Linux, NGINX, UNICORN, ChatServer Mono, GIT, Github, Text To Speech, SIGAA e Módulo Acadêmico fornecem P. Para SOLAR (Mobile): Android SDK, SIGAA, Facebook, Twitter e GIT fornecem P. Para SOLAR (MOOC): Componente MOOC fornece P. Passo 3: Mapear Clientes e ClienteDoCliente. Os clientes diretos são Usuários Desenvolvedores, Módulo Acadêmico, Professores, Editores, Administradores, Coordenadores, Alunos, Tutores, UFC, UAB e Pesquisadores. A 'Equipe de Desenvolvimento' é listada como intermediária no texto, mas também atua como cliente do CoI para desenvolvimento (Req/Des). No entanto, a regra define Intermediario como quem distribui serviços aos Clientes. O texto diz 'Uma Equipe de Desenvolvimento e um Comitê de Pesquisa atuam como intermediários'. Isso é semanticamente estranho para Devs, mas seguirei a instrução do prompt que os classifica explicitamente como Intermediarios. Eles recebem Sys dos CoIs e repassam Ser? Ou eles são clientes que desenvolvem? O texto diz 'atuam como intermediários'. Vou tratá-los como Intermediarios que distribuem serviços (ou acesso) para os outros clientes listados, ou talvez o prompt queira dizer que eles *são* clientes que gerenciam. Releitura: 'Os Desenvolvedores possuem Clientes próprios (ClienteDoCliente)'. Isso sugere que 'Usuários Desenvolvedores' são Clientes e têm seus próprios clientes. A frase 'Equipe de Desenvolvimento... atuam como intermediários' é ambígua. Em ecossistemas de software, devs geralmente não são intermediários de distribuição para usuários finais. No entanto, seguindo estritamente o prompt: 'atuam como intermediários'. Vou modelá-los como Intermediarios que recebem Sys do CoI e distribuem Ser para os outros clientes (Professores, Alunos, etc.) ou talvez eles sejam apenas Clientes. Vamos olhar para a estrutura típica. Normalmente, Devs são Fornecedores de Des ou Clientes de Req. Mas o prompt diz explicitamente 'atuam como intermediários'. Vou seguir a instrução literal: Tipo Intermediario. Eles recebem Sys do CoI e distribuem Ser para os demais clientes (Professores, Alunos, etc.). Passo 4: Identificar Agregadores e Intermediarios. A Play Store é um Intermediario para o módulo Mobile. Ela recebe Sys de SOLAR (Mobile) e distribui Ser para Usuários/Clientes finais? Ou ela distribui o app? O fluxo é CoI -> Intermediario -> Cliente. Play Store distribui o App Mobile. Quem são os clientes do App Mobile? Alunos, Professores, etc. Então Play Store leva Sys de SOLAR (Mobile) e entrega Ser para os Clientes. Passo 5: Verificar Gateways. SOLAR (Web) não tem gateway explícito de distribuição única, mas serve múltiplos clientes. SOLAR (Mobile) serve múltiplos clientes via Play Store? Não, Play Store é o intermediario. SOLAR (Mobile) aponta para Play Store (Sys). Play Store aponta para Clientes (Ser). Play Store distribui para múltiplos clientes -> Split. SOLAR (Web) serve múltiplos clientes diretamente? Sim. Então tem Split. SOLAR (MOOC) serve múltiplos clientes? Sim. Split. Passo 6: Validar Completude. Todos os fornecedores conectados com P aos seus CoIs respectivos. Os CoIs têm saída Sys para Intermediarios ou Clientes? A regra diz 'CoI DEVE ter relações de saída (tipo Ser ou Sys)'. Se não há intermediario entre CoI e Cliente, o CoI pode enviar Ser diretamente? Sim, nos exemplos, às vezes o CoI envia Ser direto se não houver intermediario. Mas aqui temos Play Store como Intermediario para Mobile. Para Web e MOOC, não há menção de intermediarios de distribuição (como lojas ou agregadores), então SOLAR (Web) e SOLAR (MOOC) devem enviar Ser diretamente aos Clientes? Ou os 'Intermediarios' (Equipe Dev/Comitê) fazem isso? O texto diz 'Equipe de Desenvolvimento... atuam como intermediários'. Vou assumir que eles distribuem o acesso/serviço para os usuários finais (Professores, Alunos, etc.). Então: CoI -> Equipe Dev (Sys) -> Cliente (Ser). E Play Store -> Cliente (Ser).\",\n  \"ecos\": \"SOLAR\",\n  \"atores\": [\n    {\"nome\": \"SOLAR (Web)\", \"tipo\": \"CoI\"},\n    {\"nome\": \"SOLAR (Mobile)\", \"tipo\": \"CoI\"},\n    {\"nome\": \"SOLAR (MOOC)\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Ruby on Rails\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"PostgreSQL\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Linux\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"NGINX\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"UNICORN\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"ChatServer Mono\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"GIT\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Github\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Text To Speech\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"SIGAA\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Módulo Acadêmico\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Android SDK\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Facebook\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Twitter\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Componente MOOC\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Coordenador Técnico\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Equipe de Desenvolvimento\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Comitê de Pesquisa\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Play Store\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Usuários Desenvolvedores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Editores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Administradores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Coordenadores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Tutores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"UFC\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"UAB\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Pesquisadores\", \"tipo\": \"Cliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Ruby on Rails\", \"destino\": \"SOLAR (Web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"PostgreSQL\", \"destino\": \"SOLAR (Web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Linux\", \"destino\": \"SOLAR (Web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"NGINX\", \"destino\": \"SOLAR (Web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"UNICORN\", \"destino\": \"SOLAR (Web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"ChatServer Mono\", \"destino\": \"SOLAR (Web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"GIT\", \"destino\": \"SOLAR (Web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Github\", \"destino\": \"SOLAR (Web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Text To Speech\", \"destino\": \"SOLAR (Web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SIGAA\", \"destino\": \"SOLAR (Web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Módulo Acadêmico\", \"destino\": \"SOLAR (Web)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Android SDK\", \"destino\": \"SOLAR (Mobile)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SIGAA\", \"destino\": \"SOLAR (Mobile)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Facebook\", \"destino\": \"SOLAR (Mobile)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Twitter\", \"destino\": \"SOLAR (Mobile)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"GIT\", \"destino\": \"SOLAR (Mobile)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Componente MOOC\", \"destino\": \"SOLAR (MOOC)\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SOLAR (Web)\", \"destino\": \"Equipe de Desenvolvimento\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"SOLAR (Mobile)\", \"destino\": \"Play Store\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"SOLAR (MOOC)\", \"destino\": \"Comitê de Pesquisa\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Usuários Desenvolvedores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Editores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Administradores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Coordenadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Tutores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"UFC\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"UAB\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"Pesquisadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Tutores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Comitê de Pesquisa\", \"destino\": \"Pesquisadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Comitê de Pesquisa\", \"destino\": \"UAB\", \"tipo_fluxo\": \"Ser\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"Equipe de Desenvolvimento\", \"tipo\": \"split\", \"descricao\": \"Distribui serviços do SOLAR para múltiplos tipos de clientes (Usuários, Professores, Alunos, etc.)\"},\n    {\"ator\": \"Play Store\", \"tipo\": \"split\", \"descricao\": \"Distribui o aplicativo SOLAR Mobile para múltiplos tipos de clientes (Alunos, Professores, Tutores)\"},\n    {\"ator\": \"Comitê de Pesquisa\", \"tipo\": \"split\", \"descricao\": \"Distribui serviços do módulo MOOC para múltiplos tipos de clientes (Pesquisadores, UAB)\"}\n  ]\n}",
+  "resultado_parseado": {
+    "raciocinio_cot": "Passo 1: Identificar os CoIs. O ecossistema SOLAR possui três módulos autônomos conforme a regra 5: 'SOLAR (Web)', 'SOLAR (Mobile)' e 'SOLAR (MOOC)'. Passo 2: Mapear Fornecedores para cada CoI. Para SOLAR (Web): Ruby on Rails, PostgreSQL, Linux, NGINX, UNICORN, ChatServer Mono, GIT, Github, Text To Speech, SIGAA e Módulo Acadêmico fornecem P. Para SOLAR (Mobile): Android SDK, SIGAA, Facebook, Twitter e GIT fornecem P. Para SOLAR (MOOC): Componente MOOC fornece P. Passo 3: Mapear Clientes e ClienteDoCliente. Os clientes diretos são Usuários Desenvolvedores, Módulo Acadêmico, Professores, Editores, Administradores, Coordenadores, Alunos, Tutores, UFC, UAB e Pesquisadores. A 'Equipe de Desenvolvimento' é listada como intermediária no texto, mas também atua como cliente do CoI para desenvolvimento (Req/Des). No entanto, a regra define Intermediario como quem distribui serviços aos Clientes. O texto diz 'Uma Equipe de Desenvolvimento e um Comitê de Pesquisa atuam como intermediários'. Isso é semanticamente estranho para Devs, mas seguirei a instrução do prompt que os classifica explicitamente como Intermediarios. Eles recebem Sys dos CoIs e repassam Ser? Ou eles são clientes que desenvolvem? O texto diz 'atuam como intermediários'. Vou tratá-los como Intermediarios que distribuem serviços (ou acesso) para os outros clientes listados, ou talvez o prompt queira dizer que eles *são* clientes que gerenciam. Releitura: 'Os Desenvolvedores possuem Clientes próprios (ClienteDoCliente)'. Isso sugere que 'Usuários Desenvolvedores' são Clientes e têm seus próprios clientes. A frase 'Equipe de Desenvolvimento... atuam como intermediários' é ambígua. Em ecossistemas de software, devs geralmente não são intermediários de distribuição para usuários finais. No entanto, seguindo estritamente o prompt: 'atuam como intermediários'. Vou modelá-los como Intermediarios que recebem Sys do CoI e distribuem Ser para os outros clientes (Professores, Alunos, etc.) ou talvez eles sejam apenas Clientes. Vamos olhar para a estrutura típica. Normalmente, Devs são Fornecedores de Des ou Clientes de Req. Mas o prompt diz explicitamente 'atuam como intermediários'. Vou seguir a instrução literal: Tipo Intermediario. Eles recebem Sys do CoI e distribuem Ser para os demais clientes (Professores, Alunos, etc.). Passo 4: Identificar Agregadores e Intermediarios. A Play Store é um Intermediario para o módulo Mobile. Ela recebe Sys de SOLAR (Mobile) e distribui Ser para Usuários/Clientes finais? Ou ela distribui o app? O fluxo é CoI -> Intermediario -> Cliente. Play Store distribui o App Mobile. Quem são os clientes do App Mobile? Alunos, Professores, etc. Então Play Store leva Sys de SOLAR (Mobile) e entrega Ser para os Clientes. Passo 5: Verificar Gateways. SOLAR (Web) não tem gateway explícito de distribuição única, mas serve múltiplos clientes. SOLAR (Mobile) serve múltiplos clientes via Play Store? Não, Play Store é o intermediario. SOLAR (Mobile) aponta para Play Store (Sys). Play Store aponta para Clientes (Ser). Play Store distribui para múltiplos clientes -> Split. SOLAR (Web) serve múltiplos clientes diretamente? Sim. Então tem Split. SOLAR (MOOC) serve múltiplos clientes? Sim. Split. Passo 6: Validar Completude. Todos os fornecedores conectados com P aos seus CoIs respectivos. Os CoIs têm saída Sys para Intermediarios ou Clientes? A regra diz 'CoI DEVE ter relações de saída (tipo Ser ou Sys)'. Se não há intermediario entre CoI e Cliente, o CoI pode enviar Ser diretamente? Sim, nos exemplos, às vezes o CoI envia Ser direto se não houver intermediario. Mas aqui temos Play Store como Intermediario para Mobile. Para Web e MOOC, não há menção de intermediarios de distribuição (como lojas ou agregadores), então SOLAR (Web) e SOLAR (MOOC) devem enviar Ser diretamente aos Clientes? Ou os 'Intermediarios' (Equipe Dev/Comitê) fazem isso? O texto diz 'Equipe de Desenvolvimento... atuam como intermediários'. Vou assumir que eles distribuem o acesso/serviço para os usuários finais (Professores, Alunos, etc.). Então: CoI -> Equipe Dev (Sys) -> Cliente (Ser). E Play Store -> Cliente (Ser).",
+    "ecos": "SOLAR",
+    "atores": [
+      {
+        "nome": "SOLAR (Web)",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "SOLAR (Mobile)",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "SOLAR (MOOC)",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Ruby on Rails",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "PostgreSQL",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Linux",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "NGINX",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "UNICORN",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "ChatServer Mono",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "GIT",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Github",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Text To Speech",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "SIGAA",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Módulo Acadêmico",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Android SDK",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Facebook",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Twitter",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Componente MOOC",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Coordenador Técnico",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Equipe de Desenvolvimento",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Comitê de Pesquisa",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Play Store",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Usuários Desenvolvedores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Editores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Administradores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Coordenadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Tutores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "UFC",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "UAB",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Pesquisadores",
+        "tipo": "Cliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Ruby on Rails",
+        "destino": "SOLAR (Web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "PostgreSQL",
+        "destino": "SOLAR (Web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Linux",
+        "destino": "SOLAR (Web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "NGINX",
+        "destino": "SOLAR (Web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "UNICORN",
+        "destino": "SOLAR (Web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "ChatServer Mono",
+        "destino": "SOLAR (Web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "GIT",
+        "destino": "SOLAR (Web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Github",
+        "destino": "SOLAR (Web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Text To Speech",
+        "destino": "SOLAR (Web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIGAA",
+        "destino": "SOLAR (Web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Módulo Acadêmico",
+        "destino": "SOLAR (Web)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Android SDK",
+        "destino": "SOLAR (Mobile)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIGAA",
+        "destino": "SOLAR (Mobile)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Facebook",
+        "destino": "SOLAR (Mobile)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Twitter",
+        "destino": "SOLAR (Mobile)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "GIT",
+        "destino": "SOLAR (Mobile)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Componente MOOC",
+        "destino": "SOLAR (MOOC)",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SOLAR (Web)",
+        "destino": "Equipe de Desenvolvimento",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "SOLAR (Mobile)",
+        "destino": "Play Store",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "SOLAR (MOOC)",
+        "destino": "Comitê de Pesquisa",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Usuários Desenvolvedores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Editores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Administradores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Coordenadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Tutores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "UFC",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "UAB",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "Pesquisadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Tutores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Comitê de Pesquisa",
+        "destino": "Pesquisadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Comitê de Pesquisa",
+        "destino": "UAB",
+        "tipo_fluxo": "Ser"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Equipe de Desenvolvimento",
+        "tipo": "split",
+        "descricao": "Distribui serviços do SOLAR para múltiplos tipos de clientes (Usuários, Professores, Alunos, etc.)"
+      },
+      {
+        "ator": "Play Store",
+        "tipo": "split",
+        "descricao": "Distribui o aplicativo SOLAR Mobile para múltiplos tipos de clientes (Alunos, Professores, Tutores)"
+      },
+      {
+        "ator": "Comitê de Pesquisa",
+        "tipo": "split",
+        "descricao": "Distribui serviços do módulo MOOC para múltiplos tipos de clientes (Pesquisadores, UAB)"
+      }
+    ]
+  }
+}

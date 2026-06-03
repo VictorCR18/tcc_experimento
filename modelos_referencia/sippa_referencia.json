@@ -1,67 +1,301 @@
 {
-  "ecos": "SIPPA",
-  "versao": "v1_web",
-  "descricao": "Sistema de Presença e Plano de Aula da UFC. Plataforma web para gestão de presenças e planos de aula, integrando professores, alunos e sistemas corporativos da universidade.",
+  "ecos": "sippa",
   "atores": [
-    { "id": "A1",  "nome": "SIPPA (web)",           "tipo": "CoI" },
-    { "id": "A2",  "nome": "JavaScript",            "tipo": "Fornecedor" },
-    { "id": "A3",  "nome": "HTML e CSS",            "tipo": "Fornecedor" },
-    { "id": "A4",  "nome": "PostgreSQL",            "tipo": "Fornecedor" },
-    { "id": "A5",  "nome": "Linux",                 "tipo": "Fornecedor" },
-    { "id": "A6",  "nome": "Docker",                "tipo": "Fornecedor" },
-    { "id": "A7",  "nome": "Git",                   "tipo": "Fornecedor" },
-    { "id": "A8",  "nome": "GitLab",               "tipo": "Fornecedor" },
-    { "id": "A9",  "nome": "Java",                  "tipo": "Fornecedor" },
-    { "id": "A10", "nome": "Spring Boot",           "tipo": "Fornecedor" },
-    { "id": "A11", "nome": "Servidor web",          "tipo": "Fornecedor" },
-    { "id": "A12", "nome": "SIGAA",                 "tipo": "Fornecedor" },
-    { "id": "A13", "nome": "NTIC",                  "tipo": "Fornecedor" },
-    { "id": "A14", "nome": "Desenvolvedores",       "tipo": "Cliente" },
-    { "id": "A15", "nome": "Professor",             "tipo": "Cliente" },
-    { "id": "A16", "nome": "Aluno",                 "tipo": "Cliente" },
-    { "id": "A17", "nome": "Coordenador",           "tipo": "Cliente" },
-    { "id": "A18", "nome": "Secretário",            "tipo": "Cliente" },
-    { "id": "A19", "nome": "Pró-reitor de Grad.",   "tipo": "Cliente" },
-    { "id": "A20", "nome": "Responsável R.U.",      "tipo": "Cliente" },
-    { "id": "A21", "nome": "Sistemas corporativos", "tipo": "Cliente" },
-    { "id": "A22", "nome": "Administrador",         "tipo": "Cliente" },
-    { "id": "A23", "nome": "SISAC",                 "tipo": "Cliente" },
-    { "id": "A24", "nome": "SIPAC",                 "tipo": "Cliente" },
-    { "id": "A25", "nome": "SAVI",                  "tipo": "Cliente" }
+    {
+      "id": "a1",
+      "nome": "SIPPA (web)",
+      "tipo": "CoI"
+    },
+    {
+      "id": "a2",
+      "nome": "JavaScript",
+      "tipo": "Fornecedor"
+    },
+    {
+      "id": "a3",
+      "nome": "HTML e CSS",
+      "tipo": "Fornecedor"
+    },
+    {
+      "id": "a4",
+      "nome": "PostgreSQL",
+      "tipo": "Fornecedor"
+    },
+    {
+      "id": "a5",
+      "nome": "Linux",
+      "tipo": "Fornecedor"
+    },
+    {
+      "id": "a6",
+      "nome": "Docker",
+      "tipo": "Fornecedor"
+    },
+    {
+      "id": "a7",
+      "nome": "Git",
+      "tipo": "Fornecedor"
+    },
+    {
+      "id": "a8",
+      "nome": "GitLab",
+      "tipo": "Fornecedor"
+    },
+    {
+      "id": "a9",
+      "nome": "Java",
+      "tipo": "Fornecedor"
+    },
+    {
+      "id": "a10",
+      "nome": "Spring Boot",
+      "tipo": "Fornecedor"
+    },
+    {
+      "id": "a11",
+      "nome": "Servidor web",
+      "tipo": "Fornecedor"
+    },
+    {
+      "id": "a12",
+      "nome": "SIGAA",
+      "tipo": "Fornecedor"
+    },
+    {
+      "id": "a13",
+      "nome": "NTIC",
+      "tipo": "Fornecedor"
+    },
+    {
+      "id": "a14",
+      "nome": "Desenvolvedores",
+      "tipo": "Cliente"
+    },
+    {
+      "id": "a15",
+      "nome": "Professor",
+      "tipo": "Cliente"
+    },
+    {
+      "id": "a16",
+      "nome": "Aluno",
+      "tipo": "Cliente"
+    },
+    {
+      "id": "a17",
+      "nome": "Coordenador",
+      "tipo": "Cliente"
+    },
+    {
+      "id": "a18",
+      "nome": "Secretário",
+      "tipo": "Cliente"
+    },
+    {
+      "id": "a19",
+      "nome": "Pró-reitor de Grad.",
+      "tipo": "Cliente"
+    },
+    {
+      "id": "a20",
+      "nome": "Responsável R.U.",
+      "tipo": "Cliente"
+    },
+    {
+      "id": "a21",
+      "nome": "Sistemas corporativos",
+      "tipo": "Cliente"
+    },
+    {
+      "id": "a22",
+      "nome": "Administrador",
+      "tipo": "Cliente"
+    },
+    {
+      "id": "a23",
+      "nome": "SISAC",
+      "tipo": "Cliente"
+    },
+    {
+      "id": "a24",
+      "nome": "SIPAC",
+      "tipo": "Cliente"
+    },
+    {
+      "id": "a25",
+      "nome": "SAVI",
+      "tipo": "Cliente"
+    }
   ],
   "relacoes": [
-    { "id": "R1",  "origem": "A2",  "destino": "A1",  "fluxo": "P.1",  "tipo": "P" },
-    { "id": "R2",  "origem": "A3",  "destino": "A1",  "fluxo": "P.2",  "tipo": "P" },
-    { "id": "R3",  "origem": "A4",  "destino": "A1",  "fluxo": "P.3",  "tipo": "P" },
-    { "id": "R4",  "origem": "A5",  "destino": "A1",  "fluxo": "P.4",  "tipo": "P" },
-    { "id": "R5",  "origem": "A6",  "destino": "A1",  "fluxo": "P.5",  "tipo": "P" },
-    { "id": "R6",  "origem": "A7",  "destino": "A1",  "fluxo": "P.6",  "tipo": "P" },
-    { "id": "R7",  "origem": "A8",  "destino": "A1",  "fluxo": "P.7",  "tipo": "P" },
-    { "id": "R8",  "origem": "A9",  "destino": "A1",  "fluxo": "P.8",  "tipo": "P" },
-    { "id": "R9",  "origem": "A10", "destino": "A1",  "fluxo": "P.9",  "tipo": "P" },
-    { "id": "R10", "origem": "A11", "destino": "A1",  "fluxo": "P.10", "tipo": "P" },
-    { "id": "R11", "origem": "A12", "destino": "A1",  "fluxo": "P.11", "tipo": "P" },
-    { "id": "R12", "origem": "A13", "destino": "A1",  "fluxo": "P.12", "tipo": "P" },
-    { "id": "R13", "origem": "A1",  "destino": "A14", "fluxo": "S.1",  "tipo": "Ser" },
-    { "id": "R14", "origem": "A1",  "destino": "A15", "fluxo": "S.2",  "tipo": "Ser" },
-    { "id": "R15", "origem": "A1",  "destino": "A16", "fluxo": "S.3",  "tipo": "Ser" },
-    { "id": "R16", "origem": "A1",  "destino": "A17", "fluxo": "S.4",  "tipo": "Ser" },
-    { "id": "R17", "origem": "A1",  "destino": "A18", "fluxo": "S.5",  "tipo": "Ser" },
-    { "id": "R18", "origem": "A1",  "destino": "A19", "fluxo": "S.6",  "tipo": "Ser" },
-    { "id": "R19", "origem": "A1",  "destino": "A20", "fluxo": "S.7",  "tipo": "Ser" },
-    { "id": "R20", "origem": "A1",  "destino": "A21", "fluxo": "S.8",  "tipo": "Ser" },
-    { "id": "R21", "origem": "A1",  "destino": "A22", "fluxo": "S.9",  "tipo": "Ser" },
-    { "id": "R22", "origem": "A1",  "destino": "A23", "fluxo": "S.10", "tipo": "Ser" },
-    { "id": "R23", "origem": "A1",  "destino": "A24", "fluxo": "S.11", "tipo": "Ser" },
-    { "id": "R24", "origem": "A1",  "destino": "A25", "fluxo": "S.12", "tipo": "Ser" }
+    {
+      "id": "r1",
+      "origem": "a2",
+      "destino": "a1",
+      "tipo": "P",
+      "fluxo": "P.1"
+    },
+    {
+      "id": "r2",
+      "origem": "a3",
+      "destino": "a1",
+      "tipo": "P",
+      "fluxo": "P.2"
+    },
+    {
+      "id": "r3",
+      "origem": "a4",
+      "destino": "a1",
+      "tipo": "P",
+      "fluxo": "P.3"
+    },
+    {
+      "id": "r4",
+      "origem": "a5",
+      "destino": "a1",
+      "tipo": "P",
+      "fluxo": "P.4"
+    },
+    {
+      "id": "r5",
+      "origem": "a6",
+      "destino": "a1",
+      "tipo": "P",
+      "fluxo": "P.5"
+    },
+    {
+      "id": "r6",
+      "origem": "a7",
+      "destino": "a1",
+      "tipo": "P",
+      "fluxo": "P.6"
+    },
+    {
+      "id": "r7",
+      "origem": "a8",
+      "destino": "a1",
+      "tipo": "P",
+      "fluxo": "P.7"
+    },
+    {
+      "id": "r8",
+      "origem": "a9",
+      "destino": "a1",
+      "tipo": "P",
+      "fluxo": "P.8"
+    },
+    {
+      "id": "r9",
+      "origem": "a10",
+      "destino": "a1",
+      "tipo": "P",
+      "fluxo": "P.9"
+    },
+    {
+      "id": "r10",
+      "origem": "a11",
+      "destino": "a1",
+      "tipo": "P",
+      "fluxo": "P.10"
+    },
+    {
+      "id": "r11",
+      "origem": "a12",
+      "destino": "a1",
+      "tipo": "P",
+      "fluxo": "P.11"
+    },
+    {
+      "id": "r12",
+      "origem": "a13",
+      "destino": "a1",
+      "tipo": "P",
+      "fluxo": "P.12"
+    },
+    {
+      "id": "r13",
+      "origem": "a1",
+      "destino": "a14",
+      "tipo": "Ser",
+      "fluxo": "Ser.1"
+    },
+    {
+      "id": "r14",
+      "origem": "a1",
+      "destino": "a15",
+      "tipo": "Ser",
+      "fluxo": "Ser.2"
+    },
+    {
+      "id": "r15",
+      "origem": "a1",
+      "destino": "a16",
+      "tipo": "Ser",
+      "fluxo": "Ser.3"
+    },
+    {
+      "id": "r16",
+      "origem": "a1",
+      "destino": "a17",
+      "tipo": "Ser",
+      "fluxo": "Ser.4"
+    },
+    {
+      "id": "r17",
+      "origem": "a1",
+      "destino": "a18",
+      "tipo": "Ser",
+      "fluxo": "Ser.5"
+    },
+    {
+      "id": "r18",
+      "origem": "a1",
+      "destino": "a19",
+      "tipo": "Ser",
+      "fluxo": "Ser.6"
+    },
+    {
+      "id": "r19",
+      "origem": "a1",
+      "destino": "a20",
+      "tipo": "Ser",
+      "fluxo": "Ser.7"
+    },
+    {
+      "id": "r20",
+      "origem": "a1",
+      "destino": "a21",
+      "tipo": "Ser",
+      "fluxo": "Ser.8"
+    },
+    {
+      "id": "r21",
+      "origem": "a1",
+      "destino": "a22",
+      "tipo": "Ser",
+      "fluxo": "Ser.9"
+    },
+    {
+      "id": "r22",
+      "origem": "a1",
+      "destino": "a23",
+      "tipo": "Ser",
+      "fluxo": "Ser.10"
+    },
+    {
+      "id": "r23",
+      "origem": "a1",
+      "destino": "a24",
+      "tipo": "Ser",
+      "fluxo": "Ser.11"
+    },
+    {
+      "id": "r24",
+      "origem": "a1",
+      "destino": "a25",
+      "tipo": "Ser",
+      "fluxo": "Ser.12"
+    }
   ],
-  "gateways": [],
-  "contagem": {
-    "total_atores": 25,
-    "total_relacoes": 24,
-    "fornecedores": 12,
-    "clientes": 12,
-    "intermediarios": 0,
-    "CoI": 1
-  }
+  "gateways": []
 }

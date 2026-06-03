@@ -1,0 +1,342 @@
+{
+  "id_execucao": "SOLAR_G1_gemini-3.5-flash_R1",
+  "ecos": "SOLAR",
+  "grupo": "G1",
+  "modelo": "gemini-3.5-flash",
+  "repeticao": 1,
+  "timestamp": "2026-06-02T18:54:06.301Z",
+  "duracao_seg": 30.63,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SOLAR\",\n  \"atores\": [\n    {\"nome\": \"Coordenador Técnico do SOLAR\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Equipe de Desenvolvimento\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Comitê de Pesquisa\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Play Store\", \"tipo\": \"Agregador\"},\n    {\"nome\": \"SOLAR (web)\", \"tipo\": \"Agregador\"},\n    {\"nome\": \"SOLAR MOBILE\", \"tipo\": \"Agregador\"},\n    {\"nome\": \"SOLAR MOOC\", \"tipo\": \"Agregador\"},\n    {\"nome\": \"Ruby on Rails\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"PostgreSQL\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Linux\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"NGINX\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"UNICORN\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"ChatServer Mono\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"GIT\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Github\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Text To Speech\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"SIGAA\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Android SDK\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Facebook\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Twitter\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Componente MOOC\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Usuários Desenvolvedores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Módulo Acadêmico\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Editores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Administradores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Coordenadores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Tutores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"UFC\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"UAB\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Pesquisadores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Clientes dos Desenvolvedores\", \"tipo\": \"ClienteDoCliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Coordenador Técnico do SOLAR\", \"destino\": \"Equipe de Desenvolvimento\", \"tipo_fluxo\": \"Req\"},\n    {\"origem\": \"Coordenador Técnico do SOLAR\", \"destino\": \"Comitê de Pesquisa\", \"tipo_fluxo\": \"Req\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"Des\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"SOLAR MOBILE\", \"tipo_fluxo\": \"Des\"},\n    {\"origem\": \"Equipe de Desenvolvimento\", \"destino\": \"SOLAR MOOC\", \"tipo_fluxo\": \"Des\"},\n    {\"origem\": \"Ruby on Rails\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"PostgreSQL\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"Linux\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"NGINX\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"UNICORN\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"ChatServer Mono\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"GIT\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"Github\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"Text To Speech\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"SIGAA\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"Módulo Acadêmico\", \"destino\": \"SOLAR (web)\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"Android SDK\", \"destino\": \"SOLAR MOBILE\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"SIGAA\", \"destino\": \"SOLAR MOBILE\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"Facebook\", \"destino\": \"SOLAR MOBILE\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"Twitter\", \"destino\": \"SOLAR MOBILE\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"GIT\", \"destino\": \"SOLAR MOBILE\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"Componente MOOC\", \"destino\": \"SOLAR MOOC\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"SOLAR MOBILE\", \"destino\": \"Play Store\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Play Store\", \"destino\": \"Professores\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SOLAR (web)\", \"destino\": \"UFC\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SOLAR (web)\", \"destino\": \"UAB\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SOLAR (web)\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SOLAR (web)\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SOLAR (web)\", \"destino\": \"Tutores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SOLAR (web)\", \"destino\": \"Coordenadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SOLAR (web)\", \"destino\": \"Administradores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SOLAR (web)\", \"destino\": \"Editores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SOLAR (web)\", \"destino\": \"Módulo Acadêmico\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SOLAR (web)\", \"destino\": \"Usuários Desenvolvedores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SOLAR MOOC\", \"destino\": \"Pesquisadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SOLAR MOOC\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Usuários Desenvolvedores\", \"destino\": \"Clientes dos Desenvolvedores\", \"tipo_fluxo\": \"P\"}\n  ],\n  \"gateways\": []\n}",
+  "resultado_parseado": {
+    "ecos": "SOLAR",
+    "atores": [
+      {
+        "nome": "Coordenador Técnico do SOLAR",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Equipe de Desenvolvimento",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Comitê de Pesquisa",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Play Store",
+        "tipo": "Agregador"
+      },
+      {
+        "nome": "SOLAR (web)",
+        "tipo": "Agregador"
+      },
+      {
+        "nome": "SOLAR MOBILE",
+        "tipo": "Agregador"
+      },
+      {
+        "nome": "SOLAR MOOC",
+        "tipo": "Agregador"
+      },
+      {
+        "nome": "Ruby on Rails",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "PostgreSQL",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Linux",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "NGINX",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "UNICORN",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "ChatServer Mono",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "GIT",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Github",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Text To Speech",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "SIGAA",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Android SDK",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Facebook",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Twitter",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Componente MOOC",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Usuários Desenvolvedores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Módulo Acadêmico",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Editores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Administradores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Coordenadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Tutores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "UFC",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "UAB",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Pesquisadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Clientes dos Desenvolvedores",
+        "tipo": "ClienteDoCliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Coordenador Técnico do SOLAR",
+        "destino": "Equipe de Desenvolvimento",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Coordenador Técnico do SOLAR",
+        "destino": "Comitê de Pesquisa",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "Des"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "SOLAR MOBILE",
+        "tipo_fluxo": "Des"
+      },
+      {
+        "origem": "Equipe de Desenvolvimento",
+        "destino": "SOLAR MOOC",
+        "tipo_fluxo": "Des"
+      },
+      {
+        "origem": "Ruby on Rails",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "PostgreSQL",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Linux",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "NGINX",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "UNICORN",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "ChatServer Mono",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "GIT",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Github",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Text To Speech",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "SIGAA",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Módulo Acadêmico",
+        "destino": "SOLAR (web)",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Android SDK",
+        "destino": "SOLAR MOBILE",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "SIGAA",
+        "destino": "SOLAR MOBILE",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Facebook",
+        "destino": "SOLAR MOBILE",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Twitter",
+        "destino": "SOLAR MOBILE",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "GIT",
+        "destino": "SOLAR MOBILE",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Componente MOOC",
+        "destino": "SOLAR MOOC",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "SOLAR MOBILE",
+        "destino": "Play Store",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Alunos",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Play Store",
+        "destino": "Professores",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SOLAR (web)",
+        "destino": "UFC",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SOLAR (web)",
+        "destino": "UAB",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SOLAR (web)",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SOLAR (web)",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SOLAR (web)",
+        "destino": "Tutores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SOLAR (web)",
+        "destino": "Coordenadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SOLAR (web)",
+        "destino": "Administradores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SOLAR (web)",
+        "destino": "Editores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SOLAR (web)",
+        "destino": "Módulo Acadêmico",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SOLAR (web)",
+        "destino": "Usuários Desenvolvedores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SOLAR MOOC",
+        "destino": "Pesquisadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SOLAR MOOC",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Usuários Desenvolvedores",
+        "destino": "Clientes dos Desenvolvedores",
+        "tipo_fluxo": "P"
+      }
+    ],
+    "gateways": []
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id_execucao": "SkinnerBox_G1_ollama-qwen3.6_R3",
+  "ecos": "SkinnerBox",
+  "grupo": "G1",
+  "modelo": "ollama-qwen3.6",
+  "repeticao": 3,
+  "timestamp": "2026-06-02T22:24:46.077Z",
+  "duracao_seg": 11.12,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SkinnerBox\",\n  \"atores\": [\n    {\n      \"nome\": \"Departamento de Psicologia da UFC\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Desenvolvedores do Simulador\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Professores\",\n      \"tipo\": \"ClienteDoCliente\"\n    },\n    {\n      \"nome\": \"Alunos\",\n      \"tipo\": \"ClienteDoCliente\"\n    }\n  ],\n  \"relacoes\": [\n    {\n      \"origem\": \"Departamento de Psicologia da UFC\",\n      \"destino\": \"Desenvolvedores do Simulador\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Desenvolvedores do Simulador\",\n      \"destino\": \"Professores\",\n      \"tipo_fluxo\": \"Des\"\n    },\n    {\n      \"origem\": \"Desenvolvedores do Simulador\",\n      \"destino\": \"Alunos\",\n      \"tipo_fluxo\": \"Des\"\n    }\n  ],\n  \"gateways\": [\n    {\n      \"ator\": \"Desenvolvedores do Simulador\",\n      \"tipo\": \"split\",\n      \"descricao\": \"Distribuição dos arquivos do simulador via Google Drive para Professores e Alunos\"\n    }\n  ]\n}",
+  "resultado_parseado": {
+    "ecos": "SkinnerBox",
+    "atores": [
+      {
+        "nome": "Departamento de Psicologia da UFC",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Desenvolvedores do Simulador",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "ClienteDoCliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Departamento de Psicologia da UFC",
+        "destino": "Desenvolvedores do Simulador",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Desenvolvedores do Simulador",
+        "destino": "Professores",
+        "tipo_fluxo": "Des"
+      },
+      {
+        "origem": "Desenvolvedores do Simulador",
+        "destino": "Alunos",
+        "tipo_fluxo": "Des"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Desenvolvedores do Simulador",
+        "tipo": "split",
+        "descricao": "Distribuição dos arquivos do simulador via Google Drive para Professores e Alunos"
+      }
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "id_execucao": "SIPPA_G1_ollama-qwen3.6_R2",
+  "ecos": "SIPPA",
+  "grupo": "G1",
+  "modelo": "ollama-qwen3.6",
+  "repeticao": 2,
+  "timestamp": "2026-06-02T22:41:50.842Z",
+  "duracao_seg": 37.7,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SIPPA\",\n  \"atores\": [\n    {\n      \"nome\": \"Desenvolvedores\",\n      \"tipo\": \"CoI\"\n    },\n    {\n      \"nome\": \"Professores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Alunos\",\n      \"tipo\": \"ClienteDoCliente\"\n    },\n    {\n      \"nome\": \"Coordenadores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Secretários\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Pró-reitores de Graduação\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Responsáveis pelo RU\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Sistemas corporativos\",\n      \"tipo\": \"Intermediario\"\n    },\n    {\n      \"nome\": \"Administradores\",\n      \"tipo\": \"CoI\"\n    },\n    {\n      \"nome\": \"SIGAA\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"NTIC\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"SISAC\",\n      \"tipo\": \"ClienteDoCliente\"\n    },\n    {\n      \"nome\": \"SIPAC\",\n      \"tipo\": \"ClienteDoCliente\"\n    },\n    {\n      \"nome\": \"SAVI\",\n      \"tipo\": \"ClienteDoCliente\"\n    }\n  ],\n  \"relacoes\": [\n    {\n      \"origem\": \"Desenvolvedores\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Des\"\n    },\n    {\n      \"origem\": \"Professores\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Alunos\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Coordenadores\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Secretários\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Pró-reitores de Graduação\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Responsáveis pelo RU\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"SIPPA\",\n      \"destino\": \"SIGAA\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"NTIC\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Comp\"\n    },\n    {\n      \"origem\": \"Administradores\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Des\"\n    },\n    {\n      \"origem\": \"SIPPA\",\n      \"destino\": \"Sistemas corporativos\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"Sistemas corporativos\",\n      \"destino\": \"SISAC\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"Sistemas corporativos\",\n      \"destino\": \"SIPAC\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"Sistemas corporativos\",\n      \"destino\": \"SAVI\",\n      \"tipo_fluxo\": \"Ser\"\n    }\n  ],\n  \"gateways\": []\n}",
+  "resultado_parseado": {
+    "ecos": "SIPPA",
+    "atores": [
+      {
+        "nome": "Desenvolvedores",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "Coordenadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Secretários",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Pró-reitores de Graduação",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Responsáveis pelo RU",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Sistemas corporativos",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "Administradores",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "SIGAA",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "NTIC",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "SISAC",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "SIPAC",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "SAVI",
+        "tipo": "ClienteDoCliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Desenvolvedores",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Des"
+      },
+      {
+        "origem": "Professores",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Alunos",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Coordenadores",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Secretários",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Pró-reitores de Graduação",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Responsáveis pelo RU",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "SIPPA",
+        "destino": "SIGAA",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Administradores",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Des"
+      },
+      {
+        "origem": "SIPPA",
+        "destino": "Sistemas corporativos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Sistemas corporativos",
+        "destino": "SISAC",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Sistemas corporativos",
+        "destino": "SIPAC",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Sistemas corporativos",
+        "destino": "SAVI",
+        "tipo_fluxo": "Ser"
+      }
+    ],
+    "gateways": []
+  }
+}
