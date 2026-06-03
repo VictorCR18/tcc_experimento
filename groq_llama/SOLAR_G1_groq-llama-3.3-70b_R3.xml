@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel>
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="2" value="Coordenador Técnico do SOLAR" style="fillColor=blue;strokeColor=black;fontColor=white;tipo=empresa" vertex="1" parent="1">
+      <mxGeometry x="400" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="3" value="Equipe de Desenvolvimento" style="shape=doubleArrow;fillColor=LimeGreen;strokeColor=black;fontColor=black;tipo=intermediario" vertex="1" parent="1">
+      <mxGeometry x="700" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="4" value="Comitê de Pesquisa" style="shape=doubleArrow;fillColor=LimeGreen;strokeColor=black;fontColor=black;tipo=intermediario" vertex="1" parent="1">
+      <mxGeometry x="700" y="200" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="5" value="Play Store" style="shape=parallelogram;fillColor=red;strokeColor=black;fontColor=black;tipo=agregador" vertex="1" parent="1">
+      <mxGeometry x="400" y="200" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="6" value="Usuários Desenvolvedores" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="7" value="Módulo Acadêmico" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="200" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="8" value="Professores" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="300" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="9" value="Editores" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="400" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="10" value="Administradores" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="500" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="11" value="Coordenadores" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="600" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="12" value="Alunos" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="700" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="13" value="Tutores" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="800" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="14" value="UFC" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="900" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="15" value="UAB" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="1000" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="16" value="Pesquisadores" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="1100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="17" value="Desenvolvedores" style="shape=singleArrow;fillColor=orange;strokeColor=black;fontColor=black;tipo=fornecedor;" vertex="1" parent="1">
+      <mxGeometry x="100" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="18" value="ClienteDoCliente" style="shape=step;fillColor=LightGrey;strokeColor=black;fontColor=black;flipH=1;tipo=cliente2" vertex="1" parent="1">
+      <mxGeometry x="1300" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="19" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="2" target="3">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="20" value="REQ:1" style="shape=singleArrow;fillColor=white;strokeColor=black;fontColor=black;tipo=relacao" vertex="1" connectable="0" parent="19">
+      <mxGeometry x="0" y="0" width="40" height="20" relative="1" as="geometry">
+        <mxPoint x="-20" y="-10" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="21" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="3" target="4">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="22" value="DES:1" style="shape=singleArrow;fillColor=white;strokeColor=black;fontColor=black;tipo=relacao" vertex="1" connectable="0" parent="21">
+      <mxGeometry x="0" y="0" width="40" height="20" relative="1" as="geometry">
+        <mxPoint x="-20" y="-10" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="23" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="4" target="2">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="24" value="DES:2" style="shape=singleArrow;fillColor=white;strokeColor=black;fontColor=black;tipo=relacao" vertex="1" connectable="0" parent="23">
+      <mxGeometry x="0" y="0" width="40" height="20" relative="1" as="geometry">
+        <mxPoint x="-20" y="-10" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="25" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="17" target="18">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="26" value="SER:1" style="shape=singleArrow;fillColor=white;strokeColor=black;fontColor=black;tipo=relacao" vertex="1" connectable="0" parent="25">
+      <mxGeometry x="0" y="0" width="40" height="20" relative="1" as="geometry">
+        <mxPoint x="-20" y="-10" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+  </root>
+</mxGraphModel>

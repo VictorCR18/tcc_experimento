@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel>
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="2" value="Desenvolvedores" style="fillColor=blue;strokeColor=black;fontColor=white;tipo=empresa" vertex="1" parent="1">
+      <mxGeometry x="400" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="3" value="Professores" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="4" value="Alunos" style="shape=step;fillColor=LightGrey;strokeColor=black;fontColor=black;flipH=1;tipo=cliente2" vertex="1" parent="1">
+      <mxGeometry x="1300" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="5" value="Coordenadores" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="200" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="6" value="Secretários" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="300" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="7" value="Pró-reitores de Graduação" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="400" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="8" value="Responsáveis pelo RU" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="500" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="9" value="Sistemas corporativos" style="shape=doubleArrow;fillColor=LimeGreen;strokeColor=black;fontColor=black;tipo=intermediario" vertex="1" parent="1">
+      <mxGeometry x="700" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="10" value="Administradores" style="fillColor=blue;strokeColor=black;fontColor=white;tipo=empresa" vertex="1" parent="1">
+      <mxGeometry x="400" y="200" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="11" value="SIGAA" style="shape=singleArrow;fillColor=orange;strokeColor=black;fontColor=black;tipo=fornecedor;" vertex="1" parent="1">
+      <mxGeometry x="100" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="12" value="NTIC" style="shape=singleArrow;fillColor=orange;strokeColor=black;fontColor=black;tipo=fornecedor;" vertex="1" parent="1">
+      <mxGeometry x="100" y="200" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="13" value="SISAC" style="shape=step;fillColor=LightGrey;strokeColor=black;fontColor=black;flipH=1;tipo=cliente2" vertex="1" parent="1">
+      <mxGeometry x="1300" y="200" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="14" value="SIPAC" style="shape=step;fillColor=LightGrey;strokeColor=black;fontColor=black;flipH=1;tipo=cliente2" vertex="1" parent="1">
+      <mxGeometry x="1300" y="300" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="15" value="SAVI" style="shape=step;fillColor=LightGrey;strokeColor=black;fontColor=black;flipH=1;tipo=cliente2" vertex="1" parent="1">
+      <mxGeometry x="1300" y="400" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="16" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="9" target="13">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="17" value="SER:1" style="shape=singleArrow;fillColor=white;strokeColor=black;fontColor=black;tipo=relacao" vertex="1" connectable="0" parent="16">
+      <mxGeometry x="0" y="0" width="40" height="20" relative="1" as="geometry">
+        <mxPoint x="-20" y="-10" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="18" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="9" target="14">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="19" value="SER:2" style="shape=singleArrow;fillColor=white;strokeColor=black;fontColor=black;tipo=relacao" vertex="1" connectable="0" parent="18">
+      <mxGeometry x="0" y="0" width="40" height="20" relative="1" as="geometry">
+        <mxPoint x="-20" y="-10" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="20" value="" style="endArrow=classic;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="9" target="15">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="21" value="SER:3" style="shape=singleArrow;fillColor=white;strokeColor=black;fontColor=black;tipo=relacao" vertex="1" connectable="0" parent="20">
+      <mxGeometry x="0" y="0" width="40" height="20" relative="1" as="geometry">
+        <mxPoint x="-20" y="-10" as="offset"/>
+      </mxGeometry>
+    </mxCell>
+  </root>
+</mxGraphModel>

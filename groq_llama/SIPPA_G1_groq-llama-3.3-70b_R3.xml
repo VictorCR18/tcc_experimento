@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel>
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+    <mxCell id="2" value="Desenvolvedores" style="shape=singleArrow;fillColor=orange;strokeColor=black;fontColor=black;tipo=fornecedor;" vertex="1" parent="1">
+      <mxGeometry x="100" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="3" value="Professores" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="4" value="Alunos" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="200" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="5" value="Coordenadores" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="300" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="6" value="Secretários" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="400" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="7" value="Pró-reitores de Graduação" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="500" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="8" value="Responsáveis pelo RU" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="600" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="9" value="Sistemas corporativos" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="700" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="10" value="Administradores" style="shape=singleArrow;fillColor=yellow;strokeColor=black;fontColor=black;flipH=1;tipo=cliente1" vertex="1" parent="1">
+      <mxGeometry x="1000" y="800" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="11" value="SISAC" style="shape=doubleArrow;fillColor=LimeGreen;strokeColor=black;fontColor=black;tipo=intermediario" vertex="1" parent="1">
+      <mxGeometry x="700" y="100" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="12" value="SIPAC" style="shape=doubleArrow;fillColor=LimeGreen;strokeColor=black;fontColor=black;tipo=intermediario" vertex="1" parent="1">
+      <mxGeometry x="700" y="200" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="13" value="SAVI" style="shape=doubleArrow;fillColor=LimeGreen;strokeColor=black;fontColor=black;tipo=intermediario" vertex="1" parent="1">
+      <mxGeometry x="700" y="300" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="14" value="SIGAA" style="shape=doubleArrow;fillColor=LimeGreen;strokeColor=black;fontColor=black;tipo=intermediario" vertex="1" parent="1">
+      <mxGeometry x="700" y="400" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="15" value="NTIC" style="shape=singleArrow;fillColor=orange;strokeColor=black;fontColor=black;tipo=fornecedor;" vertex="1" parent="1">
+      <mxGeometry x="100" y="200" width="200" height="50" as="geometry">
+        <mxRectangle width="200" height="50" as="alternateBounds"/>
+      </mxGeometry>
+    </mxCell>
+  </root>
+</mxGraphModel>
