@@ -4,11 +4,11 @@
   "grupo": "G3",
   "modelo": "ollama-qwen3.6",
   "repeticao": 1,
-  "timestamp": "2026-06-02T12:55:55.107Z",
-  "duracao_seg": 144.97,
+  "timestamp": "2026-06-02T22:31:12.521Z",
+  "duracao_seg": 201.99,
   "status": "ok",
   "conformidade_formato": "ok",
-  "resposta_bruta": "{\n  \"ecos\": \"SkinnerBox\",\n  \"atores\": [\n    {\"nome\": \"SkinnerBox\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Unity\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Maya 3D\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Adobe\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Departamento de Psicologia UFC\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Google Drive\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Unity\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Maya 3D\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Adobe\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Departamento de Psicologia UFC\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"Req\"},\n    {\"origem\": \"SkinnerBox\", \"destino\": \"Google Drive\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"Google Drive\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Google Drive\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"Google Drive\", \"tipo\": \"split\", \"descricao\": \"Distribui o simulador para Professores e Alunos\"}\n  ]\n}",
+  "resposta_bruta": "{\n  \"ecos\": \"SkinnerBox\",\n  \"atores\": [\n    {\"nome\": \"SkinnerBox\", \"tipo\": \"CoI\"},\n    {\"nome\": \"Unity\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Maya 3D\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Adobe\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Departamento de Psicologia UFC\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Google Drive\", \"tipo\": \"Intermediario\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Unity\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Maya 3D\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Adobe\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Departamento de Psicologia UFC\", \"destino\": \"SkinnerBox\", \"tipo_fluxo\": \"Req\"},\n    {\"origem\": \"SkinnerBox\", \"destino\": \"Google Drive\", \"tipo_fluxo\": \"Sys\"},\n    {\"origem\": \"Google Drive\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"Google Drive\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"Google Drive\", \"tipo\": \"split\", \"descricao\": \"Distribui o simulador para múltiplos tipos de clientes (Professores e Alunos)\"}\n  ]\n}",
   "resultado_parseado": {
     "ecos": "SkinnerBox",
     "atores": [
@@ -86,7 +86,7 @@
       {
         "ator": "Google Drive",
         "tipo": "split",
-        "descricao": "Distribui o simulador para Professores e Alunos"
+        "descricao": "Distribui o simulador para múltiplos tipos de clientes (Professores e Alunos)"
       }
     ]
   }

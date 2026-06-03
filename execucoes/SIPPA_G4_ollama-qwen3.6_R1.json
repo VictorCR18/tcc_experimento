@@ -4,13 +4,13 @@
   "grupo": "G4",
   "modelo": "ollama-qwen3.6",
   "repeticao": 1,
-  "timestamp": "2026-06-02T13:13:19.952Z",
-  "duracao_seg": 122.45,
+  "timestamp": "2026-06-03T00:33:59.397Z",
+  "duracao_seg": 75.78,
   "status": "ok",
   "conformidade_formato": "ok",
-  "resposta_bruta": "{\n  \"raciocinio_cot\": \"Passo 1: Identificar o CoI. O software central é o SIPPA (Sistema de Presença e Plano de Aula), uma plataforma web da UFC. Passo 2: Mapear Fornecedores. As tecnologias que compõem ou suportam o desenvolvimento do SIPPA são: JavaScript/HTML/CSS (frontend), Java/Spring Boot (backend), PostgreSQL (banco de dados), Linux (SO), Docker (containerização), Git/GitLab (versionamento). Além disso, a NTIC fornece infraestrutura e suporte. O SIGAA atua como um fornecedor de dados/integração externa crítica para o funcionamento do SIPPA no contexto acadêmico. Passo 3: Mapear Clientes e ClienteDoCliente. Os usuários diretos que consomem os serviços do SIPPA são: Professores, Alunos, Coordenadores, Secretários, Pró-reitores, Responsáveis pelo RU, Administradores e Desenvolvedores (usuários finais da plataforma). Sistemas corporativos (SISAC, SIPAC, SAVI) também consomem serviços ou integram-se. Os usuários finais indiretos (ex: estudantes que recebem a presença registrada, ou a universidade como entidade final beneficiada pelos dados consolidados) podem ser considerados ClienteDoCliente, mas neste modelo focamos nos atores diretos da plataforma. Passo 4: Identificar Intermediarios e Agregadores. O GitLab atua como intermediário para o código fonte (fornecido aos devs). A NTIC pode atuar como agregador de infraestrutura. O SIGAA é um sistema externo com o qual o SIPPA se integra, mas não é um intermediário no fluxo de serviço do SIPPA para o usuário final; ele é mais um parceiro de integração ou fornecedor de contexto acadêmico. Vamos tratar o SIGAA como um parceiro de integração (Sys) e a NTIC como fornecedor de infraestrutura. Passo 5: Verificar Gateways. O SIPPA distribui serviços para múltiplos tipos de usuários (Professores, Alunos, etc.), exigindo um gateway de split na saída do CoI. Passo 6: Validar Completude. Todos os fornecedores apontam para o CoI com P. O CoI tem saídas Ser para os clientes. Não há relações diretas de fornecedores para clientes finais.\",\n  \"ecos\": \"SIPPA\",\n  \"atores\": [\n    {\"nome\": \"SIPPA\", \"tipo\": \"CoI\"},\n    {\"nome\": \"JavaScript/HTML/CSS\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Java/Spring Boot\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"PostgreSQL\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Linux\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Docker\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Git/GitLab\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"NTIC\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"SIGAA\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Coordenadores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Secretários\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Pró-reitores de Graduação\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Responsáveis pelo RU\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Administradores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Desenvolvedores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Sistemas Corporativos (SISAC/SIPAC/SAVI)\", \"tipo\": \"Cliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"JavaScript/HTML/CSS\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Java/Spring Boot\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"PostgreSQL\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Linux\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Docker\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Git/GitLab\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"NTIC\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SIGAA\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Coordenadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Secretários\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Pró-reitores de Graduação\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Responsáveis pelo RU\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Administradores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Sistemas Corporativos (SISAC/SIPAC/SAVI)\", \"tipo_fluxo\": \"Sys\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"SIPPA\", \"tipo\": \"split\", \"descricao\": \"Distribui serviços de gestão de presença e plano de aula para múltiplos perfis de usuários e sistemas integrados\"}\n  ]\n}",
+  "resposta_bruta": "{\n  \"raciocinio_cot\": \"Passo 1: Identificar o CoI. O software central é o SIPPA (Sistema de Presença e Plano de Aula). Passo 2: Mapear Fornecedores. As tecnologias que compõem o SIPPA são JavaScript, HTML, CSS, Java, Spring Boot, PostgreSQL, Linux, Docker, Git e GitLab. Todos esses fornecem componentes/tecnologias (P) para o desenvolvimento do CoI. O SIGAA é um sistema externo com o qual o SIPPA integra, mas também pode ser visto como um fornecedor de dados/requisitos ou parte da infraestrutura de integração. A NTIC fornece a infraestrutura física/lógica. Passo 3: Mapear Clientes e ClienteDoCliente. Os usuários diretos são Desenvolvedores (que usam para gerenciar o sistema), Professores, Alunos, Coordenadores, Secretários, Pró-reitores, Responsáveis pelo RU. Os sistemas corporativos (SISAC, SIPAC, SAVI) são clientes indiretos ou integrados que consomem serviços do SIPPA. Passo 4: Identificar Agregadores e Intermediarios. O SIPPA entrega serviços para os usuários finais. Não há um intermediário comercial claro como uma loja de apps. No entanto, a integração com o SIGAA sugere um fluxo de dados. Os sistemas corporativos (SISAC, SIPAC, SAVI) consomem serviços do SIPPA ou vice-versa? O enunciado diz 'sistemas integrados SISAC, SIPAC e SAVI' como destinatários dos serviços. Isso os classifica como Clientes ou ClienteDoCliente dependendo da hierarquia. Vamos tratá-los como Clientes diretos que consomem dados/serviços do SIPPA para seus processos corporativos. Passo 5: Verificar Gateways. O CoI (SIPPA) distribui serviços para múltiplos tipos de usuários (Professores, Alunos, etc.) e sistemas. Isso requer um gateway split no SIPPA ou nos intermediários se houver. Como não há intermediário comercial explícito entre o SIPPA e os usuários finais da universidade, o próprio SIPPA atua como a plataforma de distribuição. Portanto, o SIPPA tem um gateway split para distribuir os serviços para as diferentes categorias de clientes. Passo 6: Validar Completude. Todos os fornecedores apontam P para SIPPA. SIPPA aponta Ser para os Clientes. As regras estão satisfeitas.\",\n  \"ecos\": \"SIPPA\",\n  \"atores\": [\n    {\"nome\": \"SIPPA\", \"tipo\": \"CoI\"},\n    {\"nome\": \"JavaScript/HTML/CSS\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Java/Spring Boot\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"PostgreSQL\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Linux\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Docker\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Git/GitLab\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"SIGAA\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"NTIC\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Servidor Web\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Desenvolvedores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Professores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Coordenadores\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Secretários\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Pró-reitores de Graduação\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Responsáveis pelo RU\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Sistemas Corporativos (SISAC/SIPAC/SAVI)\", \"tipo\": \"Cliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"JavaScript/HTML/CSS\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Java/Spring Boot\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"PostgreSQL\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Linux\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Docker\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Git/GitLab\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SIGAA\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"NTIC\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"Servidor Web\", \"destino\": \"SIPPA\", \"tipo_fluxo\": \"P\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Desenvolvedores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Coordenadores\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Secretários\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Pró-reitores de Graduação\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Responsáveis pelo RU\", \"tipo_fluxo\": \"Ser\"},\n    {\"origem\": \"SIPPA\", \"destino\": \"Sistemas Corporativos (SISAC/SIPAC/SAVI)\", \"tipo_fluxo\": \"Ser\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"SIPPA\", \"tipo\": \"split\", \"descricao\": \"Distribui serviços de gestão de presença e plano de aula para múltiplos tipos de usuários e sistemas corporativos\"}\n  ]\n}",
   "resultado_parseado": {
-    "raciocinio_cot": "Passo 1: Identificar o CoI. O software central é o SIPPA (Sistema de Presença e Plano de Aula), uma plataforma web da UFC. Passo 2: Mapear Fornecedores. As tecnologias que compõem ou suportam o desenvolvimento do SIPPA são: JavaScript/HTML/CSS (frontend), Java/Spring Boot (backend), PostgreSQL (banco de dados), Linux (SO), Docker (containerização), Git/GitLab (versionamento). Além disso, a NTIC fornece infraestrutura e suporte. O SIGAA atua como um fornecedor de dados/integração externa crítica para o funcionamento do SIPPA no contexto acadêmico. Passo 3: Mapear Clientes e ClienteDoCliente. Os usuários diretos que consomem os serviços do SIPPA são: Professores, Alunos, Coordenadores, Secretários, Pró-reitores, Responsáveis pelo RU, Administradores e Desenvolvedores (usuários finais da plataforma). Sistemas corporativos (SISAC, SIPAC, SAVI) também consomem serviços ou integram-se. Os usuários finais indiretos (ex: estudantes que recebem a presença registrada, ou a universidade como entidade final beneficiada pelos dados consolidados) podem ser considerados ClienteDoCliente, mas neste modelo focamos nos atores diretos da plataforma. Passo 4: Identificar Intermediarios e Agregadores. O GitLab atua como intermediário para o código fonte (fornecido aos devs). A NTIC pode atuar como agregador de infraestrutura. O SIGAA é um sistema externo com o qual o SIPPA se integra, mas não é um intermediário no fluxo de serviço do SIPPA para o usuário final; ele é mais um parceiro de integração ou fornecedor de contexto acadêmico. Vamos tratar o SIGAA como um parceiro de integração (Sys) e a NTIC como fornecedor de infraestrutura. Passo 5: Verificar Gateways. O SIPPA distribui serviços para múltiplos tipos de usuários (Professores, Alunos, etc.), exigindo um gateway de split na saída do CoI. Passo 6: Validar Completude. Todos os fornecedores apontam para o CoI com P. O CoI tem saídas Ser para os clientes. Não há relações diretas de fornecedores para clientes finais.",
+    "raciocinio_cot": "Passo 1: Identificar o CoI. O software central é o SIPPA (Sistema de Presença e Plano de Aula). Passo 2: Mapear Fornecedores. As tecnologias que compõem o SIPPA são JavaScript, HTML, CSS, Java, Spring Boot, PostgreSQL, Linux, Docker, Git e GitLab. Todos esses fornecem componentes/tecnologias (P) para o desenvolvimento do CoI. O SIGAA é um sistema externo com o qual o SIPPA integra, mas também pode ser visto como um fornecedor de dados/requisitos ou parte da infraestrutura de integração. A NTIC fornece a infraestrutura física/lógica. Passo 3: Mapear Clientes e ClienteDoCliente. Os usuários diretos são Desenvolvedores (que usam para gerenciar o sistema), Professores, Alunos, Coordenadores, Secretários, Pró-reitores, Responsáveis pelo RU. Os sistemas corporativos (SISAC, SIPAC, SAVI) são clientes indiretos ou integrados que consomem serviços do SIPPA. Passo 4: Identificar Agregadores e Intermediarios. O SIPPA entrega serviços para os usuários finais. Não há um intermediário comercial claro como uma loja de apps. No entanto, a integração com o SIGAA sugere um fluxo de dados. Os sistemas corporativos (SISAC, SIPAC, SAVI) consomem serviços do SIPPA ou vice-versa? O enunciado diz 'sistemas integrados SISAC, SIPAC e SAVI' como destinatários dos serviços. Isso os classifica como Clientes ou ClienteDoCliente dependendo da hierarquia. Vamos tratá-los como Clientes diretos que consomem dados/serviços do SIPPA para seus processos corporativos. Passo 5: Verificar Gateways. O CoI (SIPPA) distribui serviços para múltiplos tipos de usuários (Professores, Alunos, etc.) e sistemas. Isso requer um gateway split no SIPPA ou nos intermediários se houver. Como não há intermediário comercial explícito entre o SIPPA e os usuários finais da universidade, o próprio SIPPA atua como a plataforma de distribuição. Portanto, o SIPPA tem um gateway split para distribuir os serviços para as diferentes categorias de clientes. Passo 6: Validar Completude. Todos os fornecedores apontam P para SIPPA. SIPPA aponta Ser para os Clientes. As regras estão satisfeitas.",
     "ecos": "SIPPA",
     "atores": [
       {
@@ -42,12 +42,20 @@
         "tipo": "Fornecedor"
       },
       {
+        "nome": "SIGAA",
+        "tipo": "Fornecedor"
+      },
+      {
         "nome": "NTIC",
         "tipo": "Fornecedor"
       },
       {
-        "nome": "SIGAA",
+        "nome": "Servidor Web",
         "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Desenvolvedores",
+        "tipo": "Cliente"
       },
       {
         "nome": "Professores",
@@ -71,14 +79,6 @@
       },
       {
         "nome": "Responsáveis pelo RU",
-        "tipo": "Cliente"
-      },
-      {
-        "nome": "Administradores",
-        "tipo": "Cliente"
-      },
-      {
-        "nome": "Desenvolvedores",
         "tipo": "Cliente"
       },
       {
@@ -118,14 +118,24 @@
         "tipo_fluxo": "P"
       },
       {
+        "origem": "SIGAA",
+        "destino": "SIPPA",
+        "tipo_fluxo": "P"
+      },
+      {
         "origem": "NTIC",
         "destino": "SIPPA",
         "tipo_fluxo": "P"
       },
       {
-        "origem": "SIGAA",
+        "origem": "Servidor Web",
         "destino": "SIPPA",
         "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIPPA",
+        "destino": "Desenvolvedores",
+        "tipo_fluxo": "Ser"
       },
       {
         "origem": "SIPPA",
@@ -159,25 +169,15 @@
       },
       {
         "origem": "SIPPA",
-        "destino": "Administradores",
-        "tipo_fluxo": "Ser"
-      },
-      {
-        "origem": "SIPPA",
-        "destino": "Desenvolvedores",
-        "tipo_fluxo": "Ser"
-      },
-      {
-        "origem": "SIPPA",
         "destino": "Sistemas Corporativos (SISAC/SIPAC/SAVI)",
-        "tipo_fluxo": "Sys"
+        "tipo_fluxo": "Ser"
       }
     ],
     "gateways": [
       {
         "ator": "SIPPA",
         "tipo": "split",
-        "descricao": "Distribui serviços de gestão de presença e plano de aula para múltiplos perfis de usuários e sistemas integrados"
+        "descricao": "Distribui serviços de gestão de presença e plano de aula para múltiplos tipos de usuários e sistemas corporativos"
       }
     ]
   }

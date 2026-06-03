@@ -1,0 +1,130 @@
+{
+  "id_execucao": "SIPPA_G1_ollama-qwen3.6_R1",
+  "ecos": "SIPPA",
+  "grupo": "G1",
+  "modelo": "ollama-qwen3.6",
+  "repeticao": 1,
+  "timestamp": "2026-06-02T13:02:49.110Z",
+  "duracao_seg": 69.47,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SIPPA\",\n  \"atores\": [\n    {\n      \"nome\": \"Desenvolvedores\",\n      \"tipo\": \"CoI\"\n    },\n    {\n      \"nome\": \"Professores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Alunos\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Coordenadores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Secretários\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Pró-reitores de Graduação\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Responsáveis pelo RU\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"SIGAA\",\n      \"tipo\": \"Intermediario\"\n    },\n    {\n      \"nome\": \"NTIC\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Sistemas corporativos\",\n      \"tipo\": \"ClienteDoCliente\"\n    },\n    {\n      \"nome\": \"Administradores\",\n      \"tipo\": \"CoI\"\n    }\n  ],\n  \"relacoes\": [\n    {\n      \"origem\": \"Desenvolvedores\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Comp\"\n    },\n    {\n      \"origem\": \"Professores\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Alunos\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Coordenadores\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Secretários\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Pró-reitores de Graduação\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Responsáveis pelo RU\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"SIPPA\",\n      \"destino\": \"SIGAA\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"NTIC\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Des\"\n    },\n    {\n      \"origem\": \"SIPPA\",\n      \"destino\": \"Sistemas corporativos\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"Administradores\",\n      \"destino\": \"SIPPA\",\n      \"tipo_fluxo\": \"Des\"\n    }\n  ],\n  \"gateways\": [\n    {\n      \"ator\": \"SIGAA\",\n      \"tipo\": \"split\",\n      \"descricao\": \"Integração bidirecional com sistema acadêmico para sincronização de dados de turmas e alunos\"\n    },\n    {\n      \"ator\": \"Sistemas corporativos\",\n      \"tipo\": \"join\",\n      \"descricao\": \"Consolidação de dados de presença e planos em sistemas SISAC, SIPAC e SAVI\"\n    }\n  ]\n}",
+  "resultado_parseado": {
+    "ecos": "SIPPA",
+    "atores": [
+      {
+        "nome": "Desenvolvedores",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Coordenadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Secretários",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Pró-reitores de Graduação",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Responsáveis pelo RU",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "SIGAA",
+        "tipo": "Intermediario"
+      },
+      {
+        "nome": "NTIC",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Sistemas corporativos",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "Administradores",
+        "tipo": "CoI"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Desenvolvedores",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Professores",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Alunos",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Coordenadores",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Secretários",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Pró-reitores de Graduação",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Responsáveis pelo RU",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "SIPPA",
+        "destino": "SIGAA",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Des"
+      },
+      {
+        "origem": "SIPPA",
+        "destino": "Sistemas corporativos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Administradores",
+        "destino": "SIPPA",
+        "tipo_fluxo": "Des"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "SIGAA",
+        "tipo": "split",
+        "descricao": "Integração bidirecional com sistema acadêmico para sincronização de dados de turmas e alunos"
+      },
+      {
+        "ator": "Sistemas corporativos",
+        "tipo": "join",
+        "descricao": "Consolidação de dados de presença e planos em sistemas SISAC, SIPAC e SAVI"
+      }
+    ]
+  }
+}

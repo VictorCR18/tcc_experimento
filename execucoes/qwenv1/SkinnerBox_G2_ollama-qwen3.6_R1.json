@@ -1,0 +1,93 @@
+{
+  "id_execucao": "SkinnerBox_G2_ollama-qwen3.6_R1",
+  "ecos": "SkinnerBox",
+  "grupo": "G2",
+  "modelo": "ollama-qwen3.6",
+  "repeticao": 1,
+  "timestamp": "2026-06-02T12:52:50.170Z",
+  "duracao_seg": 72.56,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SkinnerBox\",\n  \"atores\": [\n    {\n      \"nome\": \"SkinnerBox\",\n      \"tipo\": \"CoI\"\n    },\n    {\n      \"nome\": \"Unity\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Maya 3D\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Adobe\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"UFC Psicologia\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Professores\",\n      \"tipo\": \"ClienteDoCliente\"\n    },\n    {\n      \"nome\": \"Alunos\",\n      \"tipo\": \"ClienteDoCliente\"\n    },\n    {\n      \"nome\": \"Google Drive\",\n      \"tipo\": \"Intermediario\"\n    }\n  ],\n  \"relacoes\": [\n    {\n      \"origem\": \"Unity\",\n      \"destino\": \"SkinnerBox\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Maya 3D\",\n      \"destino\": \"SkinnerBox\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Adobe\",\n      \"destino\": \"SkinnerBox\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"UFC Psicologia\",\n      \"destino\": \"SkinnerBox\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"SkinnerBox\",\n      \"destino\": \"Google Drive\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Google Drive\",\n      \"destino\": \"Professores\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"Google Drive\",\n      \"destino\": \"Alunos\",\n      \"tipo_fluxo\": \"Ser\"\n    }\n  ],\n  \"gateways\": [\n    {\n      \"ator\": \"Google Drive\",\n      \"tipo\": \"split\",\n      \"descricao\": \"Distribui o produto SkinnerBox para Professores e Alunos\"\n    }\n  ]\n}",
+  "resultado_parseado": {
+    "ecos": "SkinnerBox",
+    "atores": [
+      {
+        "nome": "SkinnerBox",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "Unity",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Maya 3D",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Adobe",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "UFC Psicologia",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "Google Drive",
+        "tipo": "Intermediario"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Unity",
+        "destino": "SkinnerBox",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Maya 3D",
+        "destino": "SkinnerBox",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Adobe",
+        "destino": "SkinnerBox",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "UFC Psicologia",
+        "destino": "SkinnerBox",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "SkinnerBox",
+        "destino": "Google Drive",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Google Drive",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Google Drive",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Google Drive",
+        "tipo": "split",
+        "descricao": "Distribui o produto SkinnerBox para Professores e Alunos"
+      }
+    ]
+  }
+}

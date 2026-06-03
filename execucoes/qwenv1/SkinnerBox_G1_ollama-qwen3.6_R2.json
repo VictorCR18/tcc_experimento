@@ -1,0 +1,62 @@
+{
+  "id_execucao": "SkinnerBox_G1_ollama-qwen3.6_R2",
+  "ecos": "SkinnerBox",
+  "grupo": "G1",
+  "modelo": "ollama-qwen3.6",
+  "repeticao": 2,
+  "timestamp": "2026-06-02T12:51:25.087Z",
+  "duracao_seg": 9.95,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SkinnerBox\",\n  \"atores\": [\n    {\"nome\": \"Departamento de Psicologia UFC\", \"tipo\": \"Cliente\"},\n    {\"nome\": \"Desenvolvedores Unity/Maya/Adobe\", \"tipo\": \"Fornecedor\"},\n    {\"nome\": \"Professores\", \"tipo\": \"ClienteDoCliente\"},\n    {\"nome\": \"Alunos\", \"tipo\": \"ClienteDoCliente\"}\n  ],\n  \"relacoes\": [\n    {\"origem\": \"Departamento de Psicologia UFC\", \"destino\": \"Desenvolvedores Unity/Maya/Adobe\", \"tipo_fluxo\": \"Req\"},\n    {\"origem\": \"Desenvolvedores Unity/Maya/Adobe\", \"destino\": \"Departamento de Psicologia UFC\", \"tipo_fluxo\": \"Comp\"},\n    {\"origem\": \"Departamento de Psicologia UFC\", \"destino\": \"Professores\", \"tipo_fluxo\": \"Des\"},\n    {\"origem\": \"Departamento de Psicologia UFC\", \"destino\": \"Alunos\", \"tipo_fluxo\": \"Des\"}\n  ],\n  \"gateways\": [\n    {\"ator\": \"Google Drive\", \"tipo\": \"split\", \"descricao\": \"Distribui os arquivos do simulador para Professores e Alunos\"}\n  ]\n}",
+  "resultado_parseado": {
+    "ecos": "SkinnerBox",
+    "atores": [
+      {
+        "nome": "Departamento de Psicologia UFC",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Desenvolvedores Unity/Maya/Adobe",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "ClienteDoCliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "Departamento de Psicologia UFC",
+        "destino": "Desenvolvedores Unity/Maya/Adobe",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Desenvolvedores Unity/Maya/Adobe",
+        "destino": "Departamento de Psicologia UFC",
+        "tipo_fluxo": "Comp"
+      },
+      {
+        "origem": "Departamento de Psicologia UFC",
+        "destino": "Professores",
+        "tipo_fluxo": "Des"
+      },
+      {
+        "origem": "Departamento de Psicologia UFC",
+        "destino": "Alunos",
+        "tipo_fluxo": "Des"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "Google Drive",
+        "tipo": "split",
+        "descricao": "Distribui os arquivos do simulador para Professores e Alunos"
+      }
+    ]
+  }
+}

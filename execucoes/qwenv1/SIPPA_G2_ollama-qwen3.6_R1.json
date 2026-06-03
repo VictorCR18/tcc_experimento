@@ -1,0 +1,236 @@
+{
+  "id_execucao": "SIPPA_G2_ollama-qwen3.6_R1",
+  "ecos": "SIPPA",
+  "grupo": "G2",
+  "modelo": "ollama-qwen3.6",
+  "repeticao": 1,
+  "timestamp": "2026-06-02T13:05:56.979Z",
+  "duracao_seg": 115.31,
+  "status": "ok",
+  "conformidade_formato": "ok",
+  "resposta_bruta": "{\n  \"ecos\": \"SIPPA\",\n  \"atores\": [\n    {\n      \"nome\": \"SIPPA Web\",\n      \"tipo\": \"CoI\"\n    },\n    {\n      \"nome\": \"JavaScript/HTML/CSS\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Java/Spring Boot\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"PostgreSQL\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Linux\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Docker\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Git/GitLab\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"SIGAA\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"NTIC\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Servidor Web\",\n      \"tipo\": \"Fornecedor\"\n    },\n    {\n      \"nome\": \"Professores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Alunos\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Coordenadores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Secretários\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Pro-reitores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Responsaveis RU\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Sistemas Corporativos\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Administradores\",\n      \"tipo\": \"Cliente\"\n    },\n    {\n      \"nome\": \"Desenvolvedores\",\n      \"tipo\": \"ClienteDoCliente\"\n    },\n    {\n      \"nome\": \"SISAC/SIPAC/SAVI\",\n      \"tipo\": \"ClienteDoCliente\"\n    }\n  ],\n  \"relacoes\": [\n    {\n      \"origem\": \"JavaScript/HTML/CSS\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Java/Spring Boot\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"PostgreSQL\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Linux\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Docker\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Git/GitLab\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"SIGAA\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"Sys\"\n    },\n    {\n      \"origem\": \"NTIC\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"Servidor Web\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"P\"\n    },\n    {\n      \"origem\": \"SIPPA Web\",\n      \"destino\": \"Professores\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web\",\n      \"destino\": \"Alunos\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web\",\n      \"destino\": \"Coordenadores\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web\",\n      \"destino\": \"Secretários\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web\",\n      \"destino\": \"Pro-reitores\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web\",\n      \"destino\": \"Responsaveis RU\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"SIPPA Web\",\n      \"destino\": \"Administradores\",\n      \"tipo_fluxo\": \"Ser\"\n    },\n    {\n      \"origem\": \"Professores\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Alunos\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Coordenadores\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Secretários\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Pro-reitores\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Responsaveis RU\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Administradores\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"Req\"\n    },\n    {\n      \"origem\": \"Desenvolvedores\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"Des\"\n    },\n    {\n      \"origem\": \"Sistemas Corporativos\",\n      \"destino\": \"SIPPA Web\",\n      \"tipo_fluxo\": \"Sys\"\n    }\n  ],\n  \"gateways\": [\n    {\n      \"ator\": \"NTIC\",\n      \"tipo\": \"split\",\n      \"descricao\": \"Infraestrutura que distribui recursos de hardware e rede para o SIPPA Web\"\n    },\n    {\n      \"ator\": \"Servidor Web\",\n      \"tipo\": \"join\",\n      \"descricao\": \"Ponto de agregação que conecta o backend SIPPA aos clientes finais via HTTP/HTTPS\"\n    }\n  ]\n}",
+  "resultado_parseado": {
+    "ecos": "SIPPA",
+    "atores": [
+      {
+        "nome": "SIPPA Web",
+        "tipo": "CoI"
+      },
+      {
+        "nome": "JavaScript/HTML/CSS",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Java/Spring Boot",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "PostgreSQL",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Linux",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Docker",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Git/GitLab",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "SIGAA",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "NTIC",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Servidor Web",
+        "tipo": "Fornecedor"
+      },
+      {
+        "nome": "Professores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Alunos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Coordenadores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Secretários",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Pro-reitores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Responsaveis RU",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Sistemas Corporativos",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Administradores",
+        "tipo": "Cliente"
+      },
+      {
+        "nome": "Desenvolvedores",
+        "tipo": "ClienteDoCliente"
+      },
+      {
+        "nome": "SISAC/SIPAC/SAVI",
+        "tipo": "ClienteDoCliente"
+      }
+    ],
+    "relacoes": [
+      {
+        "origem": "JavaScript/HTML/CSS",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Java/Spring Boot",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "PostgreSQL",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Linux",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Docker",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Git/GitLab",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIGAA",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "Sys"
+      },
+      {
+        "origem": "NTIC",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "Servidor Web",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "P"
+      },
+      {
+        "origem": "SIPPA Web",
+        "destino": "Professores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web",
+        "destino": "Alunos",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web",
+        "destino": "Coordenadores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web",
+        "destino": "Secretários",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web",
+        "destino": "Pro-reitores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web",
+        "destino": "Responsaveis RU",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "SIPPA Web",
+        "destino": "Administradores",
+        "tipo_fluxo": "Ser"
+      },
+      {
+        "origem": "Professores",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Alunos",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Coordenadores",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Secretários",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Pro-reitores",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Responsaveis RU",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Administradores",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "Req"
+      },
+      {
+        "origem": "Desenvolvedores",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "Des"
+      },
+      {
+        "origem": "Sistemas Corporativos",
+        "destino": "SIPPA Web",
+        "tipo_fluxo": "Sys"
+      }
+    ],
+    "gateways": [
+      {
+        "ator": "NTIC",
+        "tipo": "split",
+        "descricao": "Infraestrutura que distribui recursos de hardware e rede para o SIPPA Web"
+      },
+      {
+        "ator": "Servidor Web",
+        "tipo": "join",
+        "descricao": "Ponto de agregação que conecta o backend SIPPA aos clientes finais via HTTP/HTTPS"
+      }
+    ]
+  }
+}

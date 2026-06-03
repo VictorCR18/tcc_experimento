@@ -20,7 +20,7 @@
 import fs from "fs";
 import path from "path";
 import { GoogleGenAI } from "@google/genai";
-import OpenAI from "openai";
+// import OpenAI from "openai";
 
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -613,42 +613,42 @@ function buildPrompt(grupo: string, ecos: string): string {
 // }
 
 // ── Ollama (modelo local) ─────────────────────────────────────────────────────
-// async function chamarOllama(prompt: string): Promise<string> {
-//   let response: Response;
-//   try {
-//     response = await fetch("http://127.0.0.1:11434/api/chat", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({
-//         model: "qwen3.6:latest",
-//         think: false,
-//         stream: false,
-//         options: {
-//           temperature: TEMPERATURA,
-//           num_predict: 4096,
-//           num_ctx: 16384,
-//         },
-//         messages: [{ role: "user", content: prompt }],
-//       }),
-//     });
-//   } catch (e) {
-//     console.error("FETCH ERROR DETALHADO:", e);
-//     throw e;
-//   }
-//   if (!response.ok) {
-//     throw new Error(`Ollama HTTP ${response.status}: ${await response.text()}`);
-//   }
+async function chamarOllama(prompt: string): Promise<string> {
+  let response: Response;
+  try {
+    response = await fetch("http://127.0.0.1:11434/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "qwen3.6:latest",
+        think: false,
+        stream: false,
+        options: {
+          temperature: TEMPERATURA,
+          num_predict: 4096,
+          num_ctx: 16384,
+        },
+        messages: [{ role: "user", content: prompt }],
+      }),
+    });
+  } catch (e) {
+    console.error("FETCH ERROR DETALHADO:", e);
+    throw e;
+  }
+  if (!response.ok) {
+    throw new Error(`Ollama HTTP ${response.status}: ${await response.text()}`);
+  }
 
-//   const data = (await response.json()) as any;
-//   return data.message?.content ?? "";
-// }
+  const data = (await response.json()) as any;
+  return data.message?.content ?? "";
+}
 
 
 const MODELOS: Record<string, (p: string) => Promise<string>> = {
   // "gemini-3.5-flash": chamarGemini,
   // "claude-sonnet-4-5": chamarClaude,
   // "gpt-5.4-mini": chamarGPT4o,
-  // "ollama-qwen3.6": chamarOllama,
+  "ollama-qwen3.6": chamarOllama,
 };
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
