@@ -20,7 +20,7 @@
 import fs from "fs";
 import path from "path";
 import { GoogleGenAI } from "@google/genai";
-// import OpenAI from "openai";
+import OpenAI from "openai";
 import Groq from "groq-sdk";
 
 import * as dotenv from "dotenv";
@@ -41,7 +41,8 @@ interface Relacao {
 
 interface Gateway {
   ator: string;
-  tipo: "split" | "join";
+  direcao: "split" | "join";
+  logica: "OU" | "XOU";
   descricao: string;
 }
 
@@ -72,7 +73,7 @@ interface Execucao {
 // ─── Configurações ────────────────────────────────────────────────────────────
 
 const TEMPERATURA = 0.0;
-const MAX_TOKENS = 4096;
+const MAX_TOKENS = 16384;
 const REPETICOES = 3;
 const OUTPUT_DIR = "execucoes";
 
@@ -118,50 +119,75 @@ const SCHEMA_BASE = `{
   "ecos": "<nome>",
   "atores": [{"nome": "<nome>", "tipo": "<CoI|Fornecedor|Cliente|Intermediario|Agregador|ClienteDoCliente>"}],
   "relacoes": [{"origem": "<nome>", "destino": "<nome>", "tipo_fluxo": "<P|Ser|Req|Des|Comp|Sys>"}],
-  "gateways": [{"ator": "<nome do ator que possui o gateway>", "tipo": "<split|join>", "descricao": "<descricao>"}]
+  "gateways": [{"ator": "<nome de um ator já listado em 'atores'>", "direcao": "<split|join>", "logica": "<OU|XOU>", "descricao": "<descricao>"}]
 }
-Importante: se não houver gateways, use "gateways": [].`;
+Importante:
+- Se não houver gateways, use "gateways": [].
+- O campo "ator" de um gateway DEVE ser o nome de um ator já presente em "atores". Nunca invente um ator do tipo "Gateway X" apenas para representar o ponto de convergência/divergência — o split ou join é uma propriedade de um ator que já existe no modelo.
+- "direcao": "split" = o ator distribui para múltiplos destinos; "join" = o ator recebe de múltiplas origens e consolida em um destino.
+- "logica": "XOU" = exatamente um relacionamento ocorre por vez (exclusivo); "OU" = um, vários ou todos os relacionamentos podem ocorrer simultaneamente (inclusivo).`;
 
 const SCHEMA_G4 = `{
   "raciocinio_cot": "<Seu raciocínio passo a passo aqui>",
   "ecos": "<nome>",
   "atores": [{"nome": "<nome>", "tipo": "<CoI|Fornecedor|Cliente|Intermediario|Agregador|ClienteDoCliente>"}],
   "relacoes": [{"origem": "<nome>", "destino": "<nome>", "tipo_fluxo": "<P|Ser|Req|Des|Comp|Sys>"}],
-  "gateways": [{"ator": "<nome do ator que possui o gateway>", "tipo": "<split|join>", "descricao": "<descricao>"}]
+  "gateways": [{"ator": "<nome de um ator já listado em 'atores'>", "direcao": "<split|join>", "logica": "<OU|XOU>", "descricao": "<descricao>"}]
 }
-Importante: se não houver gateways, use "gateways": [].`;
+Importante:
+- Se não houver gateways, use "gateways": [].
+- O campo "ator" de um gateway DEVE ser o nome de um ator já presente em "atores". Nunca invente um ator do tipo "Gateway X" apenas para representar o ponto de convergência/divergência — o split ou join é uma propriedade de um ator que já existe no modelo.
+- "direcao": "split" = o ator distribui para múltiplos destinos; "join" = o ator recebe de múltiplas origens e consolida em um destino.
+- "logica": "XOU" = exatamente um relacionamento ocorre por vez (exclusivo); "OU" = um, vários ou todos os relacionamentos podem ocorrer simultaneamente (inclusivo).`;
 
 const DEFINICOES_SSN = `## Definições da Notação SSN
 
+Baseado em Boucharas, Jansen e Brinkkemper (2009), com a extensão do ator
+Agregador proposta por Costa et al. (2013).
+ 
 **Tipos de Atores:**
-- CoI (Core of Interest): software/plataforma central — pode haver múltiplos módulos autônomos, cada um modelado como um CoI separado
-- Fornecedor: fornece produtos (tecnologias, componentes) ao CoI
-- Cliente: consome serviços do CoI
-- Intermediario: distribui serviços entre CoI e Clientes (ex: lojas de apps, IDEs)
-- Agregador: agrega serviços de múltiplos fornecedores ou módulos antes de repassar
-- ClienteDoCliente: recebe serviços indiretamente via outro Cliente
-
-**Tipos de Fluxo:**
-- P: produto (tecnologia/componente fornecido ao CoI)
-- Ser: serviço prestado pelo CoI ou Intermediario aos Clientes
+- CoI (Core of Interest / Companhia de Interesse): software/plataforma central sob avaliação — pode haver múltiplos módulos autônomos, cada um modelado como um CoI separado
+- Fornecedor: fornece produtos e/ou serviços ao CoI
+- Cliente: consome, direta ou indiretamente, o produto/serviço do CoI
+- Intermediario: revendedor, distribuidor ou canal que atua entre o CoI (ou um Agregador) e os Clientes
+- ClienteDoCliente: recebe produto/serviço indiretamente, através de outro Cliente
+- Agregador: consolida fluxos vindos do CoI (ou de múltiplos módulos/CoIs) antes de repassá-los aos Intermediarios — extensão de Costa et al. (2013), não presente no artigo original de 2009
+ 
+**Tipos de Fluxo (convenção deste projeto):**
+Boucharas et al. (2009) definem Fluxo de forma genérica — produto, serviço,
+financeiro ou de conteúdo, no formato X.Y. Para tornar os modelos comparáveis
+entre diferentes ECOS, usamos os seguintes códigos fixos:
+- P: produto (tecnologia/componente fornecido ao CoI). Por convenção, mesmo quando o fornecimento tem caráter de serviço, use P nas relações Fornecedor→CoI.
+- Ser: serviço prestado pelo CoI, Agregador ou Intermediario aos Clientes
 - Req: requisito/solicitação feita ao CoI
 - Des: atividade de desenvolvimento realizada sobre o CoI
 - Comp: compensação financeira entre atores
-- Sys: integração sistêmica entre plataformas, módulos ou agregadores
-
+- Sys: integração sistêmica entre plataformas, módulos, CoIs ou Agregadores
+ 
 **Gateways:**
-- split (XOU): o ator distribui serviços para EXATAMENTE UM dos destinos por vez
-- join: o ator recebe de múltiplas origens e consolida para um único destino
-- Se um ator distribui para UM OU MAIS destinos simultaneamente, indique isso na descrição do gateway como "OU Gateway: distribui para um ou mais destinos"
-- Se não houver gateway, omita o ator da lista (use "gateways": [])
-
+Boucharas et al. (2009) definem dois tipos de gateway, ortogonais à direção do fluxo:
+- OU Gateway: permite que um, vários ou todos os relacionamentos de entrada/saída ocorram simultaneamente (lógica inclusiva)
+- XOU Gateway: permite exatamente um relacionamento de entrada/saída por vez (lógica exclusiva)
+ 
+No JSON, represente cada gateway com dois campos independentes:
+- "direcao": "split" (o ator distribui para múltiplos destinos) ou "join" (o ator recebe de múltiplas origens e consolida em um destino)
+- "logica": "OU" ou "XOU", conforme as definições acima
+ 
+O gateway é sempre associado a um ator que já existe em "atores" — nunca crie
+um ator fictício do tipo "Gateway X" só para representar o ponto de
+convergência ou divergência; represente-o apenas pelas relações de
+entrada/saída do próprio ator, mais o registro em "gateways".
+ 
+Se não houver gateway, omita o ator da lista (use "gateways": []).
+ 
 **Regras Semânticas Obrigatórias:**
-1. Todo Fornecedor DEVE ter relação apontando para o CoI com tipo P
+1. Todo Fornecedor DEVE ter relação apontando para o CoI com tipo_fluxo P (convenção deste projeto — ver acima)
 2. O CoI DEVE ter relações de saída (tipo Ser ou Sys)
 3. Intermediarios recebem do CoI (ou Agregador) e repassam para Clientes — nunca recebem diretamente do CoI se houver um Agregador no caminho
 4. Não modele relações diretas de Fornecedores para Clientes
 5. Se houver módulos (web, mobile, MOOC), cada um é um CoI separado
-6. Agregadores ficam entre o CoI e os Intermediarios; o CoI aponta para o Agregador (Sys), e o Agregador aponta para os Intermediarios (Sys)`;
+6. Agregadores ficam entre o CoI e os Intermediarios; o CoI aponta para o Agregador (Sys), e o Agregador aponta para os Intermediarios (Sys)
+7. Todo "ator" referenciado em "gateways" DEVE existir em "atores"`;
 
 const EXEMPLOS_G3 = `## Exemplo 1 (Pandas)
 Saída:
@@ -197,10 +223,10 @@ Saída:
     {"origem": "Softwares/Frameworks", "destino": "Clientes", "tipo_fluxo": "Ser"}
   ],
   "gateways": [
-    {"ator": "Plataformas e IDEs", "tipo": "split", "descricao": "Distribui o pacote Pandas para múltiplos tipos de clientes"}
+    {"ator": "Plataformas e IDEs", "direcao": "split", "logica": "OU", "descricao": "Distribui o pacote Pandas simultaneamente para múltiplos tipos de clientes"}
   ]
 }
-
+ 
 ## Exemplo 2 (VSCode)
 Saída:
 {
@@ -237,12 +263,12 @@ Saída:
     {"origem": "Desenvolvedor", "destino": "Revisores", "tipo_fluxo": "Ser"}
   ],
   "gateways": [
-    {"ator": "Github", "tipo": "split", "descricao": "OU Gateway: distribui para VSCode (Plataforma) e Copilot simultaneamente"},
-    {"ator": "VSCode (Plataforma)", "tipo": "split", "descricao": "Distribui ambiente de desenvolvimento para múltiplos tipos de clientes"},
-    {"ator": "Copilot", "tipo": "split", "descricao": "Distribui assistência de IA para múltiplos tipos de clientes"}
+    {"ator": "Github", "direcao": "split", "logica": "OU", "descricao": "Distribui simultaneamente para VSCode (Plataforma) e Copilot"},
+    {"ator": "VSCode (Plataforma)", "direcao": "split", "logica": "OU", "descricao": "Distribui ambiente de desenvolvimento simultaneamente para múltiplos tipos de clientes"},
+    {"ator": "Copilot", "direcao": "split", "logica": "OU", "descricao": "Distribui assistência de IA simultaneamente para múltiplos tipos de clientes"}
   ]
 }
-
+ 
 ## Exemplo 3 (LangChain)
 Saída:
 {
@@ -280,10 +306,10 @@ Saída:
     {"origem": "Empresas de Automação", "destino": "Usuários final", "tipo_fluxo": "Ser"}
   ],
   "gateways": [
-    {"ator": "Integradores de API", "tipo": "split", "descricao": "Distribui integrações para múltiplos tipos de clientes"}
+    {"ator": "Integradores de API", "direcao": "split", "logica": "OU", "descricao": "Distribui integrações simultaneamente para múltiplos tipos de clientes"}
   ]
 }
-  
+ 
 ## Exemplo 4 (Netflix)
 Saída:
 {
@@ -304,35 +330,32 @@ Saída:
     {"nome": "USUÁRIOS", "tipo": "Cliente"}
   ],
   "relacoes": [
-    {"origem": "PRODUTORAS DE MÍDIAS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "N/A"},
-    {"origem": "BANCO DE DADOS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "N/A"},
-    {"origem": "SERVIDORES", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (EMPRESA)", "destino": "INTERNET", "tipo_fluxo": "N/A"},
-    {"origem": "INTERNET", "destino": "NETFLIX (PC)", "tipo_fluxo": "N/A"},
-    {"origem": "INTERNET", "destino": "NETFLIX (MOBILE)", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (PC)", "destino": "NAVEGADORES DE INTERNET", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (MOBILE)", "destino": "APP STORE", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (MOBILE)", "destino": "PLAY STORE", "tipo_fluxo": "N/A"},
-    {"origem": "NAVEGADORES DE INTERNET", "destino": "Gateway OR 1", "tipo_fluxo": "S.1"},
-    {"origem": "APP STORE", "destino": "Gateway OR 2", "tipo_fluxo": "S.2"},
-    {"origem": "PLAY STORE", "destino": "Gateway OR 2", "tipo_fluxo": "S.2"},
-    {"origem": "Gateway OR 2", "destino": "Gateway OR 1", "tipo_fluxo": "N/A"},
-    {"origem": "Gateway OR 1", "destino": "USUÁRIOS", "tipo_fluxo": "N/A"},
-    {"origem": "VENDEDOR DE PC", "destino": "USUÁRIOS", "tipo_fluxo": "P.1"},
-    {"origem": "VENDEDOR DE SMARTPHONES", "destino": "USUÁRIOS", "tipo_fluxo": "P.2"}
+    {"origem": "PRODUTORAS DE MÍDIAS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "P"},
+    {"origem": "BANCO DE DADOS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "P"},
+    {"origem": "SERVIDORES", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "P"},
+    {"origem": "NETFLIX (EMPRESA)", "destino": "INTERNET", "tipo_fluxo": "Sys"},
+    {"origem": "INTERNET", "destino": "NETFLIX (PC)", "tipo_fluxo": "Sys"},
+    {"origem": "INTERNET", "destino": "NETFLIX (MOBILE)", "tipo_fluxo": "Sys"},
+    {"origem": "NETFLIX (PC)", "destino": "NAVEGADORES DE INTERNET", "tipo_fluxo": "Sys"},
+    {"origem": "NETFLIX (MOBILE)", "destino": "APP STORE", "tipo_fluxo": "Sys"},
+    {"origem": "NETFLIX (MOBILE)", "destino": "PLAY STORE", "tipo_fluxo": "Sys"},
+    {"origem": "NAVEGADORES DE INTERNET", "destino": "USUÁRIOS", "tipo_fluxo": "Ser"},
+    {"origem": "APP STORE", "destino": "USUÁRIOS", "tipo_fluxo": "Ser"},
+    {"origem": "PLAY STORE", "destino": "USUÁRIOS", "tipo_fluxo": "Ser"},
+    {"origem": "VENDEDOR DE PC", "destino": "USUÁRIOS", "tipo_fluxo": "P"},
+    {"origem": "VENDEDOR DE SMARTPHONES", "destino": "USUÁRIOS", "tipo_fluxo": "P"}
   ],
   "gateways": [
-    {"ator": "INTERNET", "tipo": "split", "descricao": "Distribui o sinal da Netflix (Empresa) para as plataformas PC e Mobile"},
-    {"ator": "NETFLIX (MOBILE)", "tipo": "split", "descricao": "Distribui o acesso mobile para as lojas de aplicativos App Store e Play Store"},
-    {"ator": "Gateway OR 2", "tipo": "OUGateway", "descricao": "Losango preto inferior: Unifica os fluxos de aplicativos mobile (S.2) vindos da App Store e Play Store"},
-    {"ator": "Gateway OR 1", "tipo": "OUGateway", "descricao": "Losango preto superior: Unifica o fluxo web (S.1) com os fluxos mobile do Gateway OR 2, entregando o serviço aos Usuários"}
+    {"ator": "INTERNET", "direcao": "split", "logica": "OU", "descricao": "Distribui o sinal da Netflix (Empresa) simultaneamente para as plataformas PC e Mobile"},
+    {"ator": "NETFLIX (MOBILE)", "direcao": "split", "logica": "OU", "descricao": "Distribui o acesso mobile simultaneamente para App Store e Play Store"},
+    {"ator": "USUÁRIOS", "direcao": "join", "logica": "OU", "descricao": "Consolida o serviço de streaming recebido por Navegador, App Store ou Play Store, podendo vir de um ou mais canais simultaneamente"}
   ]
 }`;
 
 const EXEMPLOS_G4 = `## Exemplo 1 (Pandas)
 Saída:
 {
-  "raciocinio_cot": "Passo 1: CoI é Pandas. Passo 2: Fornecedores (Contribuidores, Mantenedores, Statsmodels, Distribuidores, Xorbits, Featuretools) apontam com P para Pandas. Passo 3: Clientes são Softwares/Frameworks, Cientistas, Usuário/Dev. 'Clientes' recebe de Softwares/Frameworks, portanto é ClienteDoCliente. Passo 4: Comunidade open-source atua como Agregador (recebe Sys do CoI e repassa Sys ao Intermediario). Plataformas e IDEs é Intermediario (recebe Sys do Agregador e distribui Ser para Clientes). Passo 5: Plataformas e IDEs serve múltiplos Clientes — requer gateway split. Passo 6: Todos os atores estão conectados e as regras semânticas estão satisfeitas.",
+  "raciocinio_cot": "Passo 1: CoI é Pandas. Passo 2: Fornecedores (Contribuidores, Mantenedores, Statsmodels, Distribuidores, Xorbits, Featuretools) apontam com P para Pandas (convenção do projeto). Passo 3: Clientes são Softwares/Frameworks, Cientistas, Usuário/Dev. 'Clientes' recebe de Softwares/Frameworks, portanto é ClienteDoCliente. Passo 4: Comunidade open-source atua como Agregador (extensão de Costa et al. 2013) — recebe Sys do CoI e repassa Sys ao Intermediario. Plataformas e IDEs é Intermediario (recebe Sys do Agregador e distribui Ser para Clientes). Passo 5: Plataformas e IDEs serve múltiplos Clientes simultaneamente — gateway split/OU nesse próprio ator, sem criar nó fictício. Passo 6: Todos os atores referenciados em gateways existem em atores; regras semânticas satisfeitas.",
   "ecos": "Pandas",
   "atores": [
     {"nome": "Pandas", "tipo": "CoI"},
@@ -364,14 +387,14 @@ Saída:
     {"origem": "Softwares/Frameworks", "destino": "Clientes", "tipo_fluxo": "Ser"}
   ],
   "gateways": [
-    {"ator": "Plataformas e IDEs", "tipo": "split", "descricao": "Distribui o pacote Pandas para múltiplos tipos de clientes"}
+    {"ator": "Plataformas e IDEs", "direcao": "split", "logica": "OU", "descricao": "Distribui o pacote Pandas simultaneamente para múltiplos tipos de clientes"}
   ]
 }
-
+ 
 ## Exemplo 2 (VSCode)
 Saída:
 {
-  "raciocinio_cot": "Passo 1: CoI é VSCode. Passo 2: Fornecedores (GitHub Copilot, OpenAI, IDEs, Microsoft, Devs de Extensões) fornecem P ao CoI. Passo 3: Clientes são Estudantes, Desenvolvedor e Equipe de Devs. Revisores recebem serviço de Desenvolvedor, sendo ClienteDoCliente. Passo 4: Github é o Agregador (Vermelho) — recebe Sys do CoI e distribui Sys para ambos os Intermediarios: VSCode (Plataforma) e Copilot. Nenhuma relação direta do CoI para os Intermediarios — tudo passa pelo Agregador. Passo 5: Github distribui para dois Intermediarios simultaneamente — OU Gateway no Github. VSCode (Plataforma) e Copilot servem múltiplos Clientes — split em cada um. Passo 6: Todos os atores conectados, regras semânticas satisfeitas.",
+  "raciocinio_cot": "Passo 1: CoI é VSCode. Passo 2: Fornecedores (GitHub Copilot, OpenAI, IDEs, Microsoft, Devs de Extensões) fornecem P ao CoI (convenção do projeto). Passo 3: Clientes são Estudantes, Desenvolvedor e Equipe de Devs. Revisores recebem serviço de Desenvolvedor, sendo ClienteDoCliente. Passo 4: Github é o Agregador (extensão de Costa et al. 2013) — recebe Sys do CoI e distribui Sys para ambos os Intermediarios: VSCode (Plataforma) e Copilot. Nenhuma relação direta do CoI para os Intermediarios — tudo passa pelo Agregador. Passo 5: Github distribui para dois Intermediarios simultaneamente — gateway split/OU em Github. VSCode (Plataforma) e Copilot servem múltiplos Clientes simultaneamente — split/OU em cada um. Passo 6: Todos os atores referenciados em gateways existem em atores; regras semânticas satisfeitas.",
   "ecos": "VSCode",
   "atores": [
     {"nome": "VSCode", "tipo": "CoI"},
@@ -405,16 +428,16 @@ Saída:
     {"origem": "Desenvolvedor", "destino": "Revisores", "tipo_fluxo": "Ser"}
   ],
   "gateways": [
-    {"ator": "Github", "tipo": "split", "descricao": "OU Gateway: distribui para VSCode (Plataforma) e Copilot simultaneamente"},
-    {"ator": "VSCode (Plataforma)", "tipo": "split", "descricao": "Distribui ambiente de desenvolvimento para múltiplos tipos de clientes"},
-    {"ator": "Copilot", "tipo": "split", "descricao": "Distribui assistência de IA para múltiplos tipos de clientes"}
+    {"ator": "Github", "direcao": "split", "logica": "OU", "descricao": "Distribui simultaneamente para VSCode (Plataforma) e Copilot"},
+    {"ator": "VSCode (Plataforma)", "direcao": "split", "logica": "OU", "descricao": "Distribui ambiente de desenvolvimento simultaneamente para múltiplos tipos de clientes"},
+    {"ator": "Copilot", "direcao": "split", "logica": "OU", "descricao": "Distribui assistência de IA simultaneamente para múltiplos tipos de clientes"}
   ]
 }
-
+ 
 ## Exemplo 3 (LangChain)
 Saída:
 {
-  "raciocinio_cot": "Passo 1: CoI é LangChain. Passo 2: Fornecedores (APIs LLMs, OpenAI, Anthropic, IDEs, Google, Infraestrutura Cloud, Comunidade/Fórum) fornecem P ao CoI. Passo 3: Clientes são Startups, Desenvolvedor e Empresas de Automação. Usuários finais recebem serviço dos Clientes, sendo ClienteDoCliente. Passo 4: APIs/LLMs é o Agregador — recebe Sys do CoI e repassa Sys ao Intermediario (Integradores de API). Passo 5: Integradores de API servem múltiplos Clientes — requer gateway split. Passo 6: Todos os atores conectados, regras semânticas satisfeitas.",
+  "raciocinio_cot": "Passo 1: CoI é LangChain. Passo 2: Fornecedores (APIs LLMs, OpenAI, Anthropic, IDEs, Google, Infraestrutura Cloud, Comunidade/Fórum) fornecem P ao CoI (convenção do projeto). Passo 3: Clientes são Startups, Desenvolvedor e Empresas de Automação. Usuários finais recebem serviço dos Clientes, sendo ClienteDoCliente. Passo 4: APIs/LLMs é o Agregador (extensão de Costa et al. 2013) — recebe Sys do CoI e repassa Sys ao Intermediario. Passo 5: Integradores de API serve múltiplos Clientes simultaneamente — gateway split/OU nesse ator. Passo 6: Todos os atores referenciados em gateways existem em atores; regras semânticas satisfeitas.",
   "ecos": "LangChain",
   "atores": [
     {"nome": "LangChain", "tipo": "CoI"},
@@ -449,14 +472,14 @@ Saída:
     {"origem": "Empresas de Automação", "destino": "Usuários final", "tipo_fluxo": "Ser"}
   ],
   "gateways": [
-    {"ator": "Integradores de API", "tipo": "split", "descricao": "Distribui integrações para múltiplos tipos de clientes"}
+    {"ator": "Integradores de API", "direcao": "split", "logica": "OU", "descricao": "Distribui integrações simultaneamente para múltiplos tipos de clientes"}
   ]
 }
-  
+ 
 ## Exemplo 4 (Netflix)
 Saída:
 {
-  "raciocinio_cot": "Passo 1: A CoI (Azul) é representada em três blocos: NETFLIX (EMPRESA), NETFLIX (PC) e NETFLIX (MOBILE). Passo 2: Os Fornecedores (Laranja) PRODUTORAS DE MÍDIAS, BANCO DE DADOS e SERVIDORES fornecem para a NETFLIX (EMPRESA). VENDEDOR DE PC e VENDEDOR DE SMARTPHONES fornecem diretamente ao Cliente. Passo 3: O Cliente (Amarelo) é USUÁRIOS. Passo 4: Os Intermediários (Verde) são INTERNET, NAVEGADORES DE INTERNET, APP STORE e PLAY STORE. Passo 5: O diagrama apresenta fluxos de split implícitos na INTERNET e na NETFLIX (MOBILE). Passo 6: Diferente dos modelos anteriores, este utiliza as figuras corretas de OUGateways (losangos pretos com a inscrição 'OR') para consolidar os caminhos (fluxos S.1 e S.2) antes de entregá-los aos USUÁRIOS.",
+  "raciocinio_cot": "Passo 1: A CoI (Azul) é representada em três blocos autônomos: NETFLIX (EMPRESA), NETFLIX (PC) e NETFLIX (MOBILE). Passo 2: Fornecedores (Laranja) PRODUTORAS DE MÍDIAS, BANCO DE DADOS e SERVIDORES fornecem à NETFLIX (EMPRESA) com tipo_fluxo P (convenção do projeto); VENDEDOR DE PC e VENDEDOR DE SMARTPHONES fornecem diretamente ao Cliente, também com P. Passo 3: O Cliente (Amarelo) é USUÁRIOS. Passo 4: Os Intermediários (Verde) são INTERNET, NAVEGADORES DE INTERNET, APP STORE e PLAY STORE; os fluxos entre CoIs e Intermediários são Sys, e o fluxo final ao Cliente é Ser. Passo 5: INTERNET distribui simultaneamente para NETFLIX (PC) e NETFLIX (MOBILE) — gateway split/OU em INTERNET; NETFLIX (MOBILE) distribui simultaneamente para APP STORE e PLAY STORE — gateway split/OU em NETFLIX (MOBILE). Passo 6: USUÁRIOS recebe de três canais que podem ocorrer simultaneamente (NAVEGADORES DE INTERNET, APP STORE, PLAY STORE) — gateway join/OU em USUÁRIOS, sem criar atores fictícios do tipo 'Gateway OR': o join é representado apenas pelas três relações de entrada mais o registro em gateways. Passo 7: Todos os atores referenciados em gateways existem em atores; regras semânticas satisfeitas.",
   "ecos": "Netflix",
   "atores": [
     {"nome": "NETFLIX (EMPRESA)", "tipo": "CoI"},
@@ -474,28 +497,25 @@ Saída:
     {"nome": "USUÁRIOS", "tipo": "Cliente"}
   ],
   "relacoes": [
-    {"origem": "PRODUTORAS DE MÍDIAS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "N/A"},
-    {"origem": "BANCO DE DADOS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "N/A"},
-    {"origem": "SERVIDORES", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (EMPRESA)", "destino": "INTERNET", "tipo_fluxo": "N/A"},
-    {"origem": "INTERNET", "destino": "NETFLIX (PC)", "tipo_fluxo": "N/A"},
-    {"origem": "INTERNET", "destino": "NETFLIX (MOBILE)", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (PC)", "destino": "NAVEGADORES DE INTERNET", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (MOBILE)", "destino": "APP STORE", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (MOBILE)", "destino": "PLAY STORE", "tipo_fluxo": "N/A"},
-    {"origem": "NAVEGADORES DE INTERNET", "destino": "Gateway OR 1", "tipo_fluxo": "S.1"},
-    {"origem": "APP STORE", "destino": "Gateway OR 2", "tipo_fluxo": "S.2"},
-    {"origem": "PLAY STORE", "destino": "Gateway OR 2", "tipo_fluxo": "S.2"},
-    {"origem": "Gateway OR 2", "destino": "Gateway OR 1", "tipo_fluxo": "N/A"},
-    {"origem": "Gateway OR 1", "destino": "USUÁRIOS", "tipo_fluxo": "N/A"},
-    {"origem": "VENDEDOR DE PC", "destino": "USUÁRIOS", "tipo_fluxo": "P.1"},
-    {"origem": "VENDEDOR DE SMARTPHONES", "destino": "USUÁRIOS", "tipo_fluxo": "P.2"}
+    {"origem": "PRODUTORAS DE MÍDIAS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "P"},
+    {"origem": "BANCO DE DADOS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "P"},
+    {"origem": "SERVIDORES", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "P"},
+    {"origem": "NETFLIX (EMPRESA)", "destino": "INTERNET", "tipo_fluxo": "Sys"},
+    {"origem": "INTERNET", "destino": "NETFLIX (PC)", "tipo_fluxo": "Sys"},
+    {"origem": "INTERNET", "destino": "NETFLIX (MOBILE)", "tipo_fluxo": "Sys"},
+    {"origem": "NETFLIX (PC)", "destino": "NAVEGADORES DE INTERNET", "tipo_fluxo": "Sys"},
+    {"origem": "NETFLIX (MOBILE)", "destino": "APP STORE", "tipo_fluxo": "Sys"},
+    {"origem": "NETFLIX (MOBILE)", "destino": "PLAY STORE", "tipo_fluxo": "Sys"},
+    {"origem": "NAVEGADORES DE INTERNET", "destino": "USUÁRIOS", "tipo_fluxo": "Ser"},
+    {"origem": "APP STORE", "destino": "USUÁRIOS", "tipo_fluxo": "Ser"},
+    {"origem": "PLAY STORE", "destino": "USUÁRIOS", "tipo_fluxo": "Ser"},
+    {"origem": "VENDEDOR DE PC", "destino": "USUÁRIOS", "tipo_fluxo": "P"},
+    {"origem": "VENDEDOR DE SMARTPHONES", "destino": "USUÁRIOS", "tipo_fluxo": "P"}
   ],
   "gateways": [
-    {"ator": "INTERNET", "tipo": "split", "descricao": "Distribui o sinal da Netflix (Empresa) para as plataformas PC e Mobile"},
-    {"ator": "NETFLIX (MOBILE)", "tipo": "split", "descricao": "Distribui o acesso mobile para as lojas de aplicativos App Store e Play Store"},
-    {"ator": "Gateway OR 2", "tipo": "OUGateway", "descricao": "Losango preto inferior: Unifica os fluxos de aplicativos mobile (S.2) vindos da App Store e Play Store"},
-    {"ator": "Gateway OR 1", "tipo": "OUGateway", "descricao": "Losango preto superior: Unifica o fluxo web (S.1) com os fluxos mobile do Gateway OR 2, entregando o serviço aos Usuários"}
+    {"ator": "INTERNET", "direcao": "split", "logica": "OU", "descricao": "Distribui o sinal da Netflix (Empresa) simultaneamente para as plataformas PC e Mobile"},
+    {"ator": "NETFLIX (MOBILE)", "direcao": "split", "logica": "OU", "descricao": "Distribui o acesso mobile simultaneamente para App Store e Play Store"},
+    {"ator": "USUÁRIOS", "direcao": "join", "logica": "OU", "descricao": "Consolida o serviço de streaming recebido por Navegador, App Store ou Play Store, podendo vir de um ou mais canais simultaneamente"}
   ]
 }`;
 
@@ -569,107 +589,170 @@ function buildPrompt(grupo: string, ecos: string): string {
 
 // ─── Chamadas às APIs ─────────────────────────────────────────────────────────
 
-// async function chamarGemini(prompt: string): Promise<string> {
-//   const apiKey = process.env.GEMINI_API_KEY;
-//   if (!apiKey) throw new Error("GEMINI_API_KEY não definida");
+async function chamarGemini(prompt: string): Promise<string> {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new Error("GEMINI_API_KEY não definida");
 
-//   const ai = new GoogleGenAI({ apiKey });
-//   const response = await ai.models.generateContent({
-//     model: "gemini-3.5-flash",
-//     contents: prompt,
-//     config: { temperature: TEMPERATURA },
-//   });
+  const ai = new GoogleGenAI({ apiKey });
+  const response = await ai.models.generateContent({
+    model: process.env.GEMINI_MODEL ?? "gemini-3.5-flash",
+    contents: prompt,
+    // thinkingBudget: 0 desliga o "thinking mode" do Gemini (que vem LIGADO
+    // por padrão na série 3.x/2.5). Sem isso, o modelo gera tokens de
+    // raciocínio interno antes da resposta mesmo sem pedirmos.
+    config: {
+      temperature: TEMPERATURA,
+      thinkingConfig: { thinkingBudget: 0 },
+    },
+  });
 
-//   return response.text ?? "";
-// }
-
-// ── Claude ────────────────────────────────────────────────────────────────────
-// npm install @anthropic-ai/sdk
-// async function chamarClaude(prompt: string): Promise<string> {
-//   const { default: Anthropic } = await import("@anthropic-ai/sdk");
-//   const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-//   const message = await client.messages.create({
-//     model: "claude-sonnet-4-5",
-//     max_tokens: MAX_TOKENS,
-//     temperature: TEMPERATURA,
-//     messages: [{ role: "user", content: prompt }],
-//   });
-//   const block = message.content[0];
-//   if (block.type !== "text") throw new Error("Resposta inesperada do Claude");
-//   return block.text;
-// }
-
-// ── GPT-4o ────────────────────────────────────────────────────────────────────
-// npm install openai
-// const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-// async function chamarGPT4o(prompt: string): Promise<string> {
-//   const response = await client.chat.completions.create({
-//     model: "gpt-5.4-mini",
-//     temperature: TEMPERATURA,
-//     max_tokens: MAX_TOKENS,
-//     messages: [{ role: "user", content: prompt }],
-//   });
-//   return response.choices[0].message.content ?? "";
-// }
-
-// ── Ollama (modelo local) ─────────────────────────────────────────────────────
-async function chamarOllama(prompt: string): Promise<string> {
-  let response: Response;
-  try {
-    response = await fetch("http://127.0.0.1:11434/api/chat", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "qwen3.6:latest",
-        think: false,
-        stream: false,
-        options: {
-          temperature: TEMPERATURA,
-          num_predict: 4096,
-          num_ctx: 16384,
-        },
-        messages: [{ role: "user", content: prompt }],
-      }),
-    });
-  } catch (e) {
-    console.error("FETCH ERROR DETALHADO:", e);
-    throw e;
-  }
-  if (!response.ok) {
-    throw new Error(`Ollama HTTP ${response.status}: ${await response.text()}`);
-  }
-
-  const data = (await response.json()) as any;
-  return data.message?.content ?? "";
+  return response.text ?? "";
 }
 
-// ── Groq (llama-3.3-70b-versatile) ───────────────────────────────────────────
+// ── Groq (parametrizável por modelo) ─────────────────────────────────────────
 
-// async function chamarGroq(prompt: string): Promise<string> {
-//   const apiKey = process.env.GROQ_API_KEY;
-//   if (!apiKey) throw new Error("GROQ_API_KEY não definida");
+async function chamarGroqModelo(
+  prompt: string,
+  model: string,
+): Promise<string> {
+  const apiKey = process.env.GROQ_API_KEY;
+  if (!apiKey) throw new Error("GROQ_API_KEY não definida");
 
-//   const client = new Groq({ apiKey });
+  const client = new Groq({ apiKey });
+  const isQwenReasoning = model.startsWith("qwen/");
+  // openai/gpt-oss-120b na Groq é um modelo de raciocínio que NÃO aceita um
+  // valor "off"/"none" para reasoning_effort (só low/medium/high) — ver nota
+  // abaixo em chamarGroqGptOss120b. "low" é o mínimo possível de raciocínio.
+  const isGptOssReasoning = model.startsWith("openai/gpt-oss");
 
-//   const response = await client.chat.completions.create({
-//     model: "llama-3.3-70b-versatile",
-//     temperature: TEMPERATURA,
-//     max_tokens: MAX_TOKENS,
-//     messages: [{ role: "user", content: prompt }],
-//   });
+  const response = await client.chat.completions.create({
+    model,
+    temperature: TEMPERATURA,
+    max_completion_tokens: MAX_TOKENS,
+    messages: [{ role: "user", content: prompt }],
+    ...(isQwenReasoning ? { reasoning_effort: "none" } : {}),
+    ...(isGptOssReasoning ? { reasoning_effort: "low" } : {}),
+  });
 
-//   return response.choices[0].message.content ?? "";
-// }
+  return response.choices[0].message.content ?? "";
+}
+
+// Cada modelo da NVIDIA NIM expõe um mecanismo diferente para desligar/reduzir
+// o raciocínio interno (CoT), com chaves que não são intercambiáveis:
+//   - nemotron-3-ultra: chat_template_kwargs.enable_thinking (boolean)
+//   - deepseek-v4-pro:  chat_template_kwargs.thinking (boolean) — NOTA: chave
+//     diferente de "enable_thinking"; passar "enable_thinking" nela é um
+//     no-op silencioso (o parâmetro é simplesmente ignorado pela API).
+//   - kimi-k3:          reasoning_effort (top-level, "low" | "high" | "max").
+//     Kimi-K3 sempre raciocina — não existe flag para desligar — então usamos
+//     o menor esforço ("low") para manter o comportamento o mais próximo
+//     possível dos demais modelos configurados sem CoT extra.
+type ModoRaciocinio =
+  | {
+      tipo: "chat_template_kwargs";
+      chave: "enable_thinking" | "thinking";
+      valor: boolean;
+    }
+  | { tipo: "reasoning_effort"; valor: "low" | "high" | "max" }
+  | { tipo: "nenhum" };
+
+async function chamarNvidiaModelo(
+  prompt: string,
+  model: string,
+  modoRaciocinio: ModoRaciocinio = { tipo: "nenhum" },
+): Promise<string> {
+  const apiKey = process.env.NVIDIA_API_KEY;
+  if (!apiKey) throw new Error("NVIDIA_API_KEY não definida");
+
+  const client = new OpenAI({
+    apiKey,
+    baseURL: "https://integrate.api.nvidia.com/v1",
+  });
+
+  const extra: Record<string, unknown> = {};
+  if (modoRaciocinio.tipo === "chat_template_kwargs") {
+    extra.chat_template_kwargs = {
+      [modoRaciocinio.chave]: modoRaciocinio.valor,
+    };
+  } else if (modoRaciocinio.tipo === "reasoning_effort") {
+    extra.reasoning_effort = modoRaciocinio.valor;
+  }
+
+  const stream = (await client.chat.completions.create({
+    model,
+    messages: [{ role: "user", content: prompt }],
+    temperature: TEMPERATURA,
+    top_p: 0.95,
+    max_tokens: MAX_TOKENS,
+    stream: true,
+    ...extra,
+  } as any)) as unknown as AsyncIterable<OpenAI.Chat.Completions.ChatCompletionChunk>;
+
+  let content = "";
+  for await (const chunk of stream) {
+    // reasoning_content (quando existir) fica em um campo separado do SSE e
+    // não é acumulado aqui — só o texto final da resposta interessa para o parseJsonSeguro().
+    content += chunk.choices[0]?.delta?.content ?? "";
+  }
+
+  return content;
+}
+
+async function chamarNvidiaNemotron(prompt: string): Promise<string> {
+  return chamarNvidiaModelo(prompt, "nvidia/nemotron-3-ultra-550b-a55b", {
+    tipo: "chat_template_kwargs",
+    chave: "enable_thinking",
+    valor: false,
+  });
+}
+
+async function chamarNvidiaKimi(prompt: string): Promise<string> {
+  // ID corrigido: "nvidia/kimi-k3" não existe mais (404) — o modelo está
+  // hospedado sob o namespace do provedor original, "moonshotai/kimi-k3".
+  //
+  // ATENÇÃO: pela documentação oficial da Moonshot (platform.kimi.ai), o
+  // Kimi-K3 é um modelo "always reasons" — thinking/Preserved Thinking ficam
+  // SEMPRE ligados e não existe parâmetro para desligar (o próprio doc
+  // recomenda nem sequer enviar um campo "thinking"). O único controle
+  // disponível é reasoning_effort ("low" | "high" | "max"), que reduz mas
+  // NUNCA zera o raciocínio. "low" abaixo é o mínimo possível — não é
+  // tecnicamente viável atender "sem thinking nenhum" com este modelo via API.
+  return chamarNvidiaModelo(prompt, "moonshotai/kimi-k3", {
+    tipo: "reasoning_effort",
+    valor: "low",
+  });
+}
+
+async function chamarDeepseekNvidia(prompt: string): Promise<string> {
+  // ID corrigido: o modelo está sob "deepseek-ai/", não "nvidia/".
+  return chamarNvidiaModelo(prompt, "deepseek-ai/deepseek-v4-pro-0813", {
+    tipo: "chat_template_kwargs",
+    chave: "thinking",
+    valor: false,
+  });
+}
+
+// ATENÇÃO: openai/gpt-oss-120b na Groq é um "reasoning model" e a própria
+// Groq/OpenClaw documentam que ele NÃO suporta um valor de reasoning_effort
+// que desligue o raciocínio (só existem low/medium/high; "off" não é uma
+// opção válida). "low" (aplicado em chamarGroqModelo acima) é o mínimo
+// possível de raciocínio para este modelo — não dá pra zerar via API.
+async function chamarGroqGptOss120b(prompt: string): Promise<string> {
+  return chamarGroqModelo(prompt, "openai/gpt-oss-120b");
+}
+
+async function chamarGroqQwen36(prompt: string): Promise<string> {
+  return chamarGroqModelo(prompt, "qwen/qwen3.6-27b");
+}
 
 const MODELOS: Record<string, (p: string) => Promise<string>> = {
-  // "gemini-3.5-flash": chamarGemini,
-  // "claude-sonnet-4-5": chamarClaude,
-  // "gpt-5.4-mini": chamarGPT4o,
-  "ollama-qwen3.6": chamarOllama,
-  // "groq-llama-3.3-70b": chamarGroq,
+  "gemini-3.5-flash": chamarGemini,
+  "nvidia-kimi-k3": chamarNvidiaKimi,
+  "nvidia-deepseek-v4-pro-0813": chamarDeepseekNvidia,
+  "nvidia-nemotron-3-ultra-550b-a55b": chamarNvidiaNemotron,
+  "groq-gpt-oss-120b": chamarGroqGptOss120b,
+  "groq-qwen-3.6-27b": chamarGroqQwen36,
 };
-
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function parseJsonSeguro(texto: string) {
@@ -708,10 +791,16 @@ async function chamarComRetry(
         msg.includes("503") ||
         msg.includes("UNAVAILABLE") ||
         msg.includes("high demand");
-      if (is503 && tentativa < MAX_TENTATIVAS) {
-        const espera = tentativa * 15000;
+      const isTpmLimit =
+        msg.includes("429") ||
+        msg.includes("413") ||
+        msg.includes("rate_limit_exceeded") ||
+        msg.includes("tokens per minute");
+
+      if ((is503 || isTpmLimit) && tentativa < MAX_TENTATIVAS) {
+        const espera = isTpmLimit ? 65_000 : tentativa * 15_000; // TPM reseta por minuto, espera fixa ~65s é mais segura
         console.log(
-          `\n  ⚠ Servidor sobrecarregado. Tentativa ${tentativa}/${MAX_TENTATIVAS - 1}. Aguardando ${espera / 1000}s...`,
+          `\n  ⚠ ${isTpmLimit ? "Limite de TPM" : "Servidor sobrecarregado"}. Tentativa ${tentativa}/${MAX_TENTATIVAS - 1}. Aguardando ${espera / 1000}s...`,
         );
         await sleep(espera);
       } else {
@@ -740,6 +829,7 @@ async function executarUnidade(
   } catch (e) {
     respostaBruta = `ERRO_API: ${String(e)}`;
     status = "erro_api";
+    console.error(`\n  Erro em ${modelo}: ${String(e)}`);
   }
 
   const duracaoSeg = parseFloat(((Date.now() - inicio) / 1000).toFixed(2));
@@ -783,7 +873,7 @@ async function main() {
     duracao: number;
   }> = [];
   let contador = 0;
-  const RPD_LIMITE = 2000; 
+  const RPD_LIMITE = 2000;
   let reqFeitas = 0;
 
   for (const ecos of ecosLista) {
@@ -797,10 +887,25 @@ async function main() {
           );
 
           if (fs.existsSync(fname)) {
-            console.log(`[${contador}/${total}] ... PULADO (já existe)`);
-            continue;
+            try {
+              const existente = JSON.parse(
+                fs.readFileSync(fname, "utf-8"),
+              ) as Execucao;
+              if (existente.status === "ok") {
+                console.log(
+                  `[${contador}/${total}] ... PULADO (já existe e ok)`,
+                );
+                continue;
+              }
+              console.log(
+                `[${contador}/${total}] ... reexecutando (status anterior: ${existente.status})`,
+              );
+            } catch {
+              console.log(
+                `[${contador}/${total}] ... arquivo corrompido, reexecutando`,
+              );
+            }
           }
-
           process.stdout.write(
             `[${contador}/${total}] ${ecos} | ${grupo} | ${modelo} | R${rep} ... `,
           );

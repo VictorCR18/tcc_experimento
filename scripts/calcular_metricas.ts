@@ -5,6 +5,16 @@
  * Compara cada modelo SSN gerado pelos LLMs com o modelo de referência.
  * Calcula: PA, RA, F1-A, PR, TA
  *
+ * v2: adiciona categorização fina de divergências, distinguindo, conforme a
+ * Seção "Critério de Correspondência" da metodologia:
+ *   - alucinação/ausência PURA: nome do ator (ou par origem::destino da relação)
+ *     não existe do outro lado — o LLM inventou ou omitiu o elemento inteiro.
+ *   - erro de TIPO/FLUXO: o nome do ator (ou par da relação) existe nos dois
+ *     lados, mas o tipo do ator (ou o tipo de fluxo da relação) diverge.
+ * Nenhuma das duas categorias conta como acerto em PA/RA/PR/TA — a separação
+ * só refina o diagnóstico usado na análise qualitativa de alucinações
+ * (Nível 3 da Seção "Análise Comparativa e Síntese dos Resultados").
+ *
  * Uso:
  * npx ts-node calcular_metricas.ts
  * npx ts-node calcular_metricas.ts --ecos SIPPA --grupo G2 --modelo gpt-4o
@@ -32,7 +42,7 @@ interface RelacaoRef {
 interface GatewayRef {
   id: string;
   ator_id: string; // ID do ator dono do gateway
-  tipo: "split" | "join";
+  direcao: "split" | "join";
   descricao?: string;
 }
 
@@ -56,7 +66,8 @@ interface RelacaoGerada {
 
 interface GatewayGerado {
   ator: string; // nome do ator
-  tipo: "split" | "join";
+  direcao: "split" | "join";
+  logica?: "OU" | "XOU";
   descricao?: string;
 }
 
@@ -64,6 +75,28 @@ interface ResultadoGerado {
   atores?: AtorGerado[];
   relacoes?: RelacaoGerada[];
   gateways?: GatewayGerado[]; // capturado mas NÃO avaliado nas métricas quantitativas
+}
+
+/** Ator gerado cujo nome bate com o gabarito, mas o tipo diverge. */
+interface ErroTipoAtor {
+  nome: string;
+  tipo_gerado: string;
+  tipo_esperado: string;
+}
+
+/** Relação gerada cujo par origem::destino bate com o gabarito, mas o tipo de fluxo diverge. */
+interface ErroFluxoRelacao {
+  origem: string;
+  destino: string;
+  fluxo_gerado: string;
+  fluxo_esperado: string;
+}
+
+/** Gateway gerado cujo ator bate com o gabarito, mas a direção (split/join) diverge. */
+interface ErroDirecaoGateway {
+  ator: string;
+  direcao_gerada: string;
+  direcao_esperada: string;
 }
 
 interface Metricas {
@@ -78,12 +111,17 @@ interface Metricas {
   total_relacoes_ref: number;
   total_relacoes_gerado: number;
   relacoes_corretas: number;
-  // Diagnóstico de divergências
-  atores_alucinados: string[]; // gerados mas ausentes no gabarito
-  atores_ausentes: string[]; // no gabarito mas não gerados
-  relacoes_alucinadas: string[]; // geradas mas ausentes no gabarito
-  relacoes_ausentes: string[]; // no gabarito mas não geradas
+  // Diagnóstico de divergências — versões "puras" (excluem erro de tipo/fluxo, ver abaixo)
+  atores_alucinados: string[]; // gerados, nome INEXISTENTE no gabarito
+  atores_ausentes: string[]; // no gabarito, nome NUNCA gerado
+  relacoes_alucinadas: string[]; // geradas, par de atores INEXISTENTE no gabarito
+  relacoes_ausentes: string[]; // no gabarito, par de atores NUNCA gerado
   // Info sobre gateways (não entram nas métricas quantitativas)
+  // Diagnóstico de divergências — nome/par corretos, mas tipo/fluxo errado
+  atores_erro_tipo: ErroTipoAtor[];
+  relacoes_erro_fluxo: ErroFluxoRelacao[];
+  total_atores_erro_tipo: number;
+  total_relacoes_erro_fluxo: number;
   gateways_gerados: number;
   gateways_ref: number;
 }
@@ -130,10 +168,6 @@ const NORM_TIPO_ATOR: Record<string, string> = {
   distribuidor: "Intermediario",
   loja: "Intermediario",
   store: "Intermediario",
-  // Coordenador
-  coordenador: "Coordenador",
-  coordinator: "Coordenador",
-  gestor: "Coordenador",
   // Agregador
   agregador: "Agregador",
   aggregator: "Agregador",
@@ -185,13 +219,13 @@ function normNome(nome: string): string {
   // 1. Minúsculas e remoção de espaços múltiplos
   let n = nome.trim().toLowerCase().replace(/\s+/g, " ");
 
-// 2. Remoção de sufixos de plataforma e escopo que a IA separa/isola
+  // 2. Remoção de sufixos de plataforma e escopo que a IA separa/isola
   // (Ex: "sippa (plataforma web)" -> "sippa")
   let nSemSufixo = n.replace(/\s*\b(web|plataforma|mobile|mooc)\b\s*/g, "");
   nSemSufixo = nSemSufixo.replace(/\s*\(.*?\)\s*/g, ""); // Remove o que sobrar entre parênteses
   nSemSufixo = nSemSufixo.trim();
 
-  // TRAVA DE SEGURANÇA: Se a remoção apagar o nome inteiro 
+  // TRAVA DE SEGURANÇA: Se a remoção apagar o nome inteiro
   if (nSemSufixo === "") {
     n = n; // Mantém o erro original do LLM
   } else {
@@ -220,7 +254,7 @@ function normNome(nome: string): string {
     "módulo acadêmico consumidor": "módulo acadêmico (cliente)",
     "módulo acadêmico cliente": "módulo acadêmico (cliente)",
     "coordenador técnico": "coordenador tecnico do solar",
-    "coordenador técnico do solar": "coordenador tecnico do solar", // Correção de acento para bater com o gabarito
+    "coordenador técnico do solar": "coordenador tecnico do solar",
   };
 
   if (aliases[n]) {
@@ -251,16 +285,13 @@ function normNome(nome: string): string {
   // 6. Restauração de Sufixos Críticos (Específicos do Gabarito)
   // O gabarito possui distinções reais entre os sistemas que os LLMs podem ter apagado
   // Removemos parênteses temporariamente apenas para a verificação do includes
-  let nomeOriginal = nome.toLowerCase().replace(/[()]/g, ""); 
-  
+  let nomeOriginal = nome.toLowerCase().replace(/[()]/g, "");
+
   if (nomeOriginal.includes("solar mobile")) return "solar mobile";
   if (nomeOriginal.includes("solar mooc")) return "solar mooc";
 
   // SIPPA no gabarito é "SIPPA (web)", então forçamos esse retorno se o modelo falou apenas "sippa"
-  if (
-    nomeOriginal.includes("sippa web") ||
-    n === "sippa"
-  ) {
+  if (nomeOriginal.includes("sippa web") || n === "sippa") {
     return "sippa (web)";
   }
   // Se o modelo aglutinou tecnologias (ex: "java & spring boot" ou "html/css/js"),
@@ -373,6 +404,80 @@ function calcularMetricas(
 
   const round4 = (n: number) => Math.round(n * 10000) / 10000;
 
+  const atoresErroTipo: ErroTipoAtor[] = [];
+  const tiposRefPorNome = new Map<string, string>();
+  for (const ator of ref.atores) {
+    tiposRefPorNome.set(normNome(ator.nome), normTipoAtor(ator.tipo));
+  }
+  for (const ator of gerado.atores ?? []) {
+    const nome = normNome(ator.nome);
+    const tipoGerado = normTipoAtor(ator.tipo);
+    const tipoEsperado = tiposRefPorNome.get(nome);
+    if (tipoEsperado && tipoEsperado !== tipoGerado) {
+      atoresErroTipo.push({
+        nome,
+        tipo_gerado: tipoGerado,
+        tipo_esperado: tipoEsperado,
+      });
+    }
+  }
+  atoresErroTipo.sort((a, b) => a.nome.localeCompare(b.nome));
+
+  const relacoesErroFluxo: ErroFluxoRelacao[] = [];
+  const idToNomeErroFluxo: Record<string, string> = {};
+  for (const a of ref.atores) idToNomeErroFluxo[a.id] = normNome(a.nome);
+  const fluxosRefPorPar = new Map<string, string>();
+  for (const r of ref.relacoes) {
+    const origem = idToNomeErroFluxo[r.origem] ?? "";
+    const destino = idToNomeErroFluxo[r.destino] ?? "";
+    const nome = `${origem}::${destino}`;
+    fluxosRefPorPar.set(nome, normTipoFluxo(r.tipo));
+  }
+  for (const r of gerado.relacoes ?? []) {
+    const origem = normNome(r.origem);
+    const destino = normNome(r.destino);
+    const fluxoGerado = normTipoFluxo(r.tipo_fluxo);
+    const fluxoEsperado = fluxosRefPorPar.get(`${origem}::${destino}`);
+    if (fluxoEsperado && fluxoEsperado !== fluxoGerado) {
+      relacoesErroFluxo.push({
+        origem,
+        destino,
+        fluxo_gerado: fluxoGerado,
+        fluxo_esperado: fluxoEsperado,
+      });
+    }
+  }
+  relacoesErroFluxo.sort((a, b) =>
+    `${a.origem}::${a.destino}`.localeCompare(`${b.origem}::${b.destino}`),
+  );
+
+  // Nomes/pares que já têm divergência de tipo/fluxo diagnosticada — não devem
+  // contar de novo como "alucinação pura" nas listas abaixo, conforme a nota
+  // do cabeçalho ("versões PURAS... excluem erro de tipo/fluxo").
+  const nomesComErroTipo = new Set(atoresErroTipo.map((e) => e.nome));
+  const paresComErroFluxo = new Set(
+    relacoesErroFluxo.map((e) => `${e.origem}::${e.destino}`),
+  );
+
+  const atoresAlucinadosPuros = [...setDifference(Agerado, Aref)]
+    .filter((s) => !nomesComErroTipo.has(s.split("::")[0]))
+    .sort();
+  const atoresAusentesPuros = [...setDifference(Aref, Agerado)]
+    .filter((s) => !nomesComErroTipo.has(s.split("::")[0]))
+    .sort();
+  const relacoesAlucinadasPuras = [...setDifference(Rgerado, Rref)]
+    .filter((s) => {
+      const [origem, destino] = s.split("::");
+      return !paresComErroFluxo.has(`${origem}::${destino}`);
+    })
+    .sort();
+  const relacoesAusentesPuras = [...setDifference(Rref, Rgerado)]
+    .filter((s) => {
+      const [origem, destino] = s.split("::");
+      return !paresComErroFluxo.has(`${origem}::${destino}`);
+    })
+    .sort();
+
   return {
     PA: round4(PA),
     RA: round4(RA),
@@ -385,10 +490,14 @@ function calcularMetricas(
     total_relacoes_ref: Rref.size,
     total_relacoes_gerado: Rgerado.size,
     relacoes_corretas: intersecR.size,
-    atores_alucinados: [...setDifference(Agerado, Aref)].sort(),
-    atores_ausentes: [...setDifference(Aref, Agerado)].sort(),
-    relacoes_alucinadas: [...setDifference(Rgerado, Rref)].sort(),
-    relacoes_ausentes: [...setDifference(Rref, Rgerado)].sort(),
+    atores_alucinados: atoresAlucinadosPuros,
+    atores_ausentes: atoresAusentesPuros,
+    relacoes_alucinadas: relacoesAlucinadasPuras,
+    relacoes_ausentes: relacoesAusentesPuras,
+    atores_erro_tipo: atoresErroTipo,
+    relacoes_erro_fluxo: relacoesErroFluxo,
+    total_atores_erro_tipo: atoresErroTipo.length,
+    total_relacoes_erro_fluxo: relacoesErroFluxo.length,
     gateways_gerados: (gerado.gateways ?? []).length,
     gateways_ref: (ref.gateways ?? []).length,
   };
