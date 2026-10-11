@@ -1,19 +1,5 @@
-/**
- * json2xml.ts
- * Conversor de resultados JSON (LLMs) para o formato XML do ECOS Modeling (mxGraphModel)
- *
- * Suporta dois formatos de entrada:
- *   1. Arquivo de execução LLM: { resultado_parseado: { atores, relacoes, gateways[] com campo "ator" } }
- *   2. Arquivo de referência:   { atores, relacoes, gateways[] com campo "ator_id" (ID) }
- *
- * Uso:
- * npx ts-node json2xml.ts <arquivo_entrada.json> <arquivo_saida.xml>
- */
-
 import * as fs from "fs";
 import * as path from "path";
-
-// ─── Dicionários de Estilo e Layout ──────────────────────────────────────────
 
 const ESTILOS_SSN: Record<string, string> = {
   coi: "fillColor=blue;strokeColor=black;fontColor=white;tipo=empresa",
@@ -44,8 +30,6 @@ const COLUNAS_X: Record<string, number> = {
   clientedocliente: 1300,
 };
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
 function normalizarChave(tipo: string): string {
   return tipo.trim().toLowerCase().replace(/\s+/g, "");
 }
@@ -69,8 +53,6 @@ function escapeXml(unsafe: string): string {
   });
 }
 
-// ─── Conversor ───────────────────────────────────────────────────────────────
-
 export function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: string) {
   let dados: any;
 
@@ -82,7 +64,6 @@ export function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: strin
     process.exit(1);
   }
 
-  // Suporta tanto arquivo de execução LLM quanto arquivo de referência diretamente
   const conteudo = dados.resultado_parseado ? dados.resultado_parseado : dados;
 
   const atores: any[] = conteudo.atores || [];
@@ -93,7 +74,6 @@ export function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: strin
   const mapaAtores: Record<string, string> = {};
   const coordAtores: Record<string, { x: number; y: number }> = {};
 
-  // Mapa inverso: ID do ator -> nome (para suportar gabaritos que usam ator_id)
   const mapaIdParaNome: Record<string, string> = {};
   for (const ator of atores) {
     if (ator.id) {
@@ -114,7 +94,6 @@ export function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: strin
   xmlLines.push('    <mxCell id="0"/>');
   xmlLines.push('    <mxCell id="1" parent="0"/>');
 
-  // 1. Processamento dos Atores
   for (const ator of atores) {
     const nome = ator.nome || "Desconhecido";
     const tipo = normalizarChave(ator.tipo || "coi");
@@ -145,16 +124,12 @@ export function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: strin
     xmlLines.push(`    </mxCell>`);
   }
 
-  // 2. Processamento das Relações e Fluxos
-  // Suporta campo "tipo_fluxo" (execuções LLM) e "tipo" (gabarito de referência)
   const contadoresFluxo: Record<string, number> = {};
 
   for (const relacao of relacoes) {
-    // Suporta nomes diretos (execução LLM) e IDs (gabarito de referência)
     const origemRaw = relacao.origem || "";
     const destinoRaw = relacao.destino || "";
 
-    // Resolve: tenta como nome primeiro, depois como ID
     const origemNome = mapaIdParaNome[origemRaw]
       ? mapaIdParaNome[origemRaw]
       : origemRaw.toLowerCase();
@@ -162,7 +137,6 @@ export function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: strin
       ? mapaIdParaNome[destinoRaw]
       : destinoRaw.toLowerCase();
 
-    // Suporta campo "tipo_fluxo" (LLM) e "tipo" (gabarito)
     const tipoFluxoBruto = relacao.tipo_fluxo || relacao.tipo || "";
 
     const origemId = mapaAtores[origemNome];
@@ -202,9 +176,6 @@ export function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: strin
     }
   }
 
-  // 3. Processamento dos Gateways
-  // Losango só é renderizado para OUGateway e join (XOU)
-  // Split simples = ator com múltiplas saídas, sem símbolo extra
   let orphanGwY = 700;
 
   for (const gw of gateways) {
@@ -214,7 +185,6 @@ export function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: strin
       continue;
     }
 
-    // Resolve nome do ator dono
     let atorGwNome = "";
     if (gw.ator) {
       atorGwNome = (gw.ator as string).toLowerCase();
@@ -224,11 +194,10 @@ export function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: strin
 
     const idAtual = String(idCounter++);
 
-    // join → XOU (losango branco/vazio), OUGateway → losango preto
     const estiloGw =
       tipoGw === "join"
         ? ESTILOS_SSN["gateway_join"]
-        : ESTILOS_SSN["gateway_split"]; // OUGateway, ougateway, etc.
+        : ESTILOS_SSN["gateway_split"];
 
     const textoValue = tipoGw === "join" ? "XOU" : "OR";
 
@@ -263,7 +232,6 @@ export function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: strin
     xmlLines.push(`    </mxCell>`);
   }
 
-  // Finaliza o XML
   xmlLines.push("  </root>");
   xmlLines.push("</mxGraphModel>");
 
@@ -277,8 +245,6 @@ export function converterJsonParaXml(caminhoJson: string, caminhoXmlSaida: strin
     console.error(`Erro ao salvar arquivo XML: ${e}`);
   }
 }
-
-// ─── Main ────────────────────────────────────────────────────────────────────
 
 if (require.main === module) {
   const args = process.argv.slice(2);

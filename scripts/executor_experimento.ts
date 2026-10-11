@@ -1,22 +1,3 @@
-/**
- * executor_experimento.ts
- * TCC Victor Cavalcante — Executor dos Experimentos SSN (TypeScript)
- *
- * Executa os 4 grupos de prompt (G1-G4) nos 3 ecossistemas
- * em cada um dos 3 LLMs. Cada unidade é repetida 3 vezes.
- * Total: 3 ECOSs × 4 grupos × 3 modelos × 3 repetições = 108 execuções
- *
- * Instalação:
- * npm install typescript ts-node @types/node
- * npm install @anthropic-ai/sdk openai @google/genai
- *
- * Uso:
- * export GEMINI_API_KEY="..."
- * export ANTHROPIC_API_KEY="..."
- * export OPENAI_API_KEY="..."
- * npx ts-node executor_experimento.ts
- */
-
 import fs from "fs";
 import path from "path";
 import { GoogleGenAI } from "@google/genai";
@@ -25,8 +6,6 @@ import Groq from "groq-sdk";
 
 import * as dotenv from "dotenv";
 dotenv.config();
-
-// ─── Tipos ────────────────────────────────────────────────────────────────────
 
 interface Ator {
   nome: string;
@@ -70,14 +49,10 @@ interface Execucao {
     | { erro_parse: string; resposta_bruta: string };
 }
 
-// ─── Configurações ────────────────────────────────────────────────────────────
-
 const TEMPERATURA = 0.0;
 const MAX_TOKENS = 16384;
 const REPETICOES = 3;
 const OUTPUT_DIR = "execucoes";
-
-// ─── Descrições dos ECOSs ─────────────────────────────────────────────────────
 
 const DESCRICOES: Record<string, string> = {
   SkinnerBox:
@@ -114,7 +89,6 @@ const DESCRICOES: Record<string, string> = {
     "Desenvolvedores possuem Clientes próprios (ClienteDoCliente).",
 };
 
-// ─── Schemas JSON ─────────────────────────────────────────────────────────────
 const SCHEMA_BASE = `{
   "ecos": "<nome>",
   "atores": [{"nome": "<nome>", "tipo": "<CoI|Fornecedor|Cliente|Intermediario|Agregador|ClienteDoCliente>"}],
@@ -519,8 +493,6 @@ Saída:
   ]
 }`;
 
-// ─── Construtores de Prompt ───────────────────────────────────────────────────
-
 function buildPrompt(grupo: string, ecos: string): string {
   const desc = DESCRICOES[ecos];
   const instrucaoBase =
@@ -587,8 +559,6 @@ function buildPrompt(grupo: string, ecos: string): string {
   }
 }
 
-// ─── Chamadas às APIs ─────────────────────────────────────────────────────────
-
 async function chamarGemini(prompt: string): Promise<string> {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) throw new Error("GEMINI_API_KEY não definida");
@@ -597,9 +567,6 @@ async function chamarGemini(prompt: string): Promise<string> {
   const response = await ai.models.generateContent({
     model: process.env.GEMINI_MODEL ?? "gemini-3.5-flash",
     contents: prompt,
-    // thinkingBudget: 0 desliga o "thinking mode" do Gemini (que vem LIGADO
-    // por padrão na série 3.x/2.5). Sem isso, o modelo gera tokens de
-    // raciocínio interno antes da resposta mesmo sem pedirmos.
     config: {
       temperature: TEMPERATURA,
       thinkingConfig: { thinkingBudget: 0 },
@@ -608,8 +575,6 @@ async function chamarGemini(prompt: string): Promise<string> {
 
   return response.text ?? "";
 }
-
-// ── Groq (parametrizável por modelo) ─────────────────────────────────────────
 
 async function chamarGroqModelo(
   prompt: string,
@@ -620,9 +585,6 @@ async function chamarGroqModelo(
 
   const client = new Groq({ apiKey });
   const isQwenReasoning = model.startsWith("qwen/");
-  // openai/gpt-oss-120b na Groq é um modelo de raciocínio que NÃO aceita um
-  // valor "off"/"none" para reasoning_effort (só low/medium/high) — ver nota
-  // abaixo em chamarGroqGptOss120b. "low" é o mínimo possível de raciocínio.
   const isGptOssReasoning = model.startsWith("openai/gpt-oss");
 
   const response = await client.chat.completions.create({
@@ -637,16 +599,6 @@ async function chamarGroqModelo(
   return response.choices[0].message.content ?? "";
 }
 
-// Cada modelo da NVIDIA NIM expõe um mecanismo diferente para desligar/reduzir
-// o raciocínio interno (CoT), com chaves que não são intercambiáveis:
-//   - nemotron-3-ultra: chat_template_kwargs.enable_thinking (boolean)
-//   - deepseek-v4-pro:  chat_template_kwargs.thinking (boolean) — NOTA: chave
-//     diferente de "enable_thinking"; passar "enable_thinking" nela é um
-//     no-op silencioso (o parâmetro é simplesmente ignorado pela API).
-//   - kimi-k3:          reasoning_effort (top-level, "low" | "high" | "max").
-//     Kimi-K3 sempre raciocina — não existe flag para desligar — então usamos
-//     o menor esforço ("low") para manter o comportamento o mais próximo
-//     possível dos demais modelos configurados sem CoT extra.
 type ModoRaciocinio =
   | {
       tipo: "chat_template_kwargs";
@@ -690,8 +642,6 @@ async function chamarNvidiaModelo(
 
   let content = "";
   for await (const chunk of stream) {
-    // reasoning_content (quando existir) fica em um campo separado do SSE e
-    // não é acumulado aqui — só o texto final da resposta interessa para o parseJsonSeguro().
     content += chunk.choices[0]?.delta?.content ?? "";
   }
 
@@ -707,16 +657,6 @@ async function chamarNvidiaNemotron(prompt: string): Promise<string> {
 }
 
 async function chamarNvidiaKimi(prompt: string): Promise<string> {
-  // ID corrigido: "nvidia/kimi-k3" não existe mais (404) — o modelo está
-  // hospedado sob o namespace do provedor original, "moonshotai/kimi-k3".
-  //
-  // ATENÇÃO: pela documentação oficial da Moonshot (platform.kimi.ai), o
-  // Kimi-K3 é um modelo "always reasons" — thinking/Preserved Thinking ficam
-  // SEMPRE ligados e não existe parâmetro para desligar (o próprio doc
-  // recomenda nem sequer enviar um campo "thinking"). O único controle
-  // disponível é reasoning_effort ("low" | "high" | "max"), que reduz mas
-  // NUNCA zera o raciocínio. "low" abaixo é o mínimo possível — não é
-  // tecnicamente viável atender "sem thinking nenhum" com este modelo via API.
   return chamarNvidiaModelo(prompt, "moonshotai/kimi-k3", {
     tipo: "reasoning_effort",
     valor: "low",
@@ -724,7 +664,6 @@ async function chamarNvidiaKimi(prompt: string): Promise<string> {
 }
 
 async function chamarDeepseekNvidia(prompt: string): Promise<string> {
-  // ID corrigido: o modelo está sob "deepseek-ai/", não "nvidia/".
   return chamarNvidiaModelo(prompt, "deepseek-ai/deepseek-v4-pro-0813", {
     tipo: "chat_template_kwargs",
     chave: "thinking",
@@ -732,11 +671,6 @@ async function chamarDeepseekNvidia(prompt: string): Promise<string> {
   });
 }
 
-// ATENÇÃO: openai/gpt-oss-120b na Groq é um "reasoning model" e a própria
-// Groq/OpenClaw documentam que ele NÃO suporta um valor de reasoning_effort
-// que desligue o raciocínio (só existem low/medium/high; "off" não é uma
-// opção válida). "low" (aplicado em chamarGroqModelo acima) é o mínimo
-// possível de raciocínio para este modelo — não dá pra zerar via API.
 async function chamarGroqGptOss120b(prompt: string): Promise<string> {
   return chamarGroqModelo(prompt, "openai/gpt-oss-120b");
 }
@@ -753,8 +687,6 @@ const MODELOS: Record<string, (p: string) => Promise<string>> = {
   "groq-gpt-oss-120b": chamarGroqGptOss120b,
   "groq-qwen-3.6-27b": chamarGroqQwen36,
 };
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
 function parseJsonSeguro(texto: string) {
   let t = texto.trim();
   t = t.replace(/<think>[\s\S]*?<\/think>/g, "").trim();
@@ -773,8 +705,6 @@ function parseJsonSeguro(texto: string) {
 function sleep(ms: number): Promise<void> {
   return new Promise((res) => setTimeout(res, ms));
 }
-
-// ─── Executor Principal ───────────────────────────────────────────────────────
 
 const MAX_TENTATIVAS = 5;
 
@@ -798,7 +728,7 @@ async function chamarComRetry(
         msg.includes("tokens per minute");
 
       if ((is503 || isTpmLimit) && tentativa < MAX_TENTATIVAS) {
-        const espera = isTpmLimit ? 65_000 : tentativa * 15_000; // TPM reseta por minuto, espera fixa ~65s é mais segura
+        const espera = isTpmLimit ? 65_000 : tentativa * 15_000;
         console.log(
           `\n  ⚠ ${isTpmLimit ? "Limite de TPM" : "Servidor sobrecarregado"}. Tentativa ${tentativa}/${MAX_TENTATIVAS - 1}. Aguardando ${espera / 1000}s...`,
         );
@@ -932,7 +862,7 @@ async function main() {
             process.exit(0);
           }
 
-          await sleep(12_200); // respeita 5 RPM
+          await sleep(12_200);
         }
       }
     }

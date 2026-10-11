@@ -1,8 +1,3 @@
-/**
- * converter_todos.ts
- * Uso: npx ts-node scripts/converter_todos.ts [pasta_entrada] [pasta_saida] [filtro_modelo]
- */
-
 import * as fs from "fs";
 import * as path from "path";
 

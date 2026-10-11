@@ -1,29 +1,5 @@
-/**
- * calcular_metricas.ts
- * TCC Victor Cavalcante — Cálculo das Métricas de Avaliação (TypeScript)
- *
- * Compara cada modelo SSN gerado pelos LLMs com o modelo de referência.
- * Calcula: PA, RA, F1-A, PR, TA
- *
- * v2: adiciona categorização fina de divergências, distinguindo, conforme a
- * Seção "Critério de Correspondência" da metodologia:
- *   - alucinação/ausência PURA: nome do ator (ou par origem::destino da relação)
- *     não existe do outro lado — o LLM inventou ou omitiu o elemento inteiro.
- *   - erro de TIPO/FLUXO: o nome do ator (ou par da relação) existe nos dois
- *     lados, mas o tipo do ator (ou o tipo de fluxo da relação) diverge.
- * Nenhuma das duas categorias conta como acerto em PA/RA/PR/TA — a separação
- * só refina o diagnóstico usado na análise qualitativa de alucinações
- * (Nível 3 da Seção "Análise Comparativa e Síntese dos Resultados").
- *
- * Uso:
- * npx ts-node calcular_metricas.ts
- * npx ts-node calcular_metricas.ts --ecos SIPPA --grupo G2 --modelo gpt-4o
- */
-
 import fs from "fs";
 import path from "path";
-
-// ─── Tipos ────────────────────────────────────────────────────────────────────
 
 interface AtorRef {
   id: string;
@@ -33,15 +9,15 @@ interface AtorRef {
 
 interface RelacaoRef {
   id: string;
-  origem: string; // ID do ator
-  destino: string; // ID do ator
-  tipo: string; // ex: "P", "Ser", "Comp"
-  fluxo?: string; // ex: "P.1" — campo auxiliar, NÃO usado na comparação
+  origem: string;
+  destino: string;
+  tipo: string;
+  fluxo?: string;
 }
 
 interface GatewayRef {
   id: string;
-  ator_id: string; // ID do ator dono do gateway
+  ator_id: string;
   direcao: "split" | "join";
   descricao?: string;
 }
@@ -50,7 +26,7 @@ interface ModeloReferencia {
   ecos: string;
   atores: AtorRef[];
   relacoes: RelacaoRef[];
-  gateways: GatewayRef[]; // podem existir no gabarito mas NÃO são avaliados nas métricas
+  gateways: GatewayRef[];
 }
 
 interface AtorGerado {
@@ -59,13 +35,13 @@ interface AtorGerado {
 }
 
 interface RelacaoGerada {
-  origem: string; // nome do ator
-  destino: string; // nome do ator
+  origem: string;
+  destino: string;
   tipo_fluxo: string;
 }
 
 interface GatewayGerado {
-  ator: string; // nome do ator
+  ator: string;
   direcao: "split" | "join";
   logica?: "OU" | "XOU";
   descricao?: string;
@@ -74,17 +50,15 @@ interface GatewayGerado {
 interface ResultadoGerado {
   atores?: AtorGerado[];
   relacoes?: RelacaoGerada[];
-  gateways?: GatewayGerado[]; // capturado mas NÃO avaliado nas métricas quantitativas
+  gateways?: GatewayGerado[];
 }
 
-/** Ator gerado cujo nome bate com o gabarito, mas o tipo diverge. */
 interface ErroTipoAtor {
   nome: string;
   tipo_gerado: string;
   tipo_esperado: string;
 }
 
-/** Relação gerada cujo par origem::destino bate com o gabarito, mas o tipo de fluxo diverge. */
 interface ErroFluxoRelacao {
   origem: string;
   destino: string;
@@ -92,7 +66,6 @@ interface ErroFluxoRelacao {
   fluxo_esperado: string;
 }
 
-/** Gateway gerado cujo ator bate com o gabarito, mas a direção (split/join) diverge. */
 interface ErroDirecaoGateway {
   ator: string;
   direcao_gerada: string;
@@ -111,13 +84,10 @@ interface Metricas {
   total_relacoes_ref: number;
   total_relacoes_gerado: number;
   relacoes_corretas: number;
-  // Diagnóstico de divergências — versões "puras" (excluem erro de tipo/fluxo, ver abaixo)
-  atores_alucinados: string[]; // gerados, nome INEXISTENTE no gabarito
-  atores_ausentes: string[]; // no gabarito, nome NUNCA gerado
-  relacoes_alucinadas: string[]; // geradas, par de atores INEXISTENTE no gabarito
-  relacoes_ausentes: string[]; // no gabarito, par de atores NUNCA gerado
-  // Info sobre gateways (não entram nas métricas quantitativas)
-  // Diagnóstico de divergências — nome/par corretos, mas tipo/fluxo errado
+  atores_alucinados: string[];
+  atores_ausentes: string[];
+  relacoes_alucinadas: string[];
+  relacoes_ausentes: string[];
   atores_erro_tipo: ErroTipoAtor[];
   relacoes_erro_fluxo: ErroFluxoRelacao[];
   total_atores_erro_tipo: number;
@@ -137,16 +107,12 @@ interface ResultadoMetrica {
   metricas: Metricas | null;
 }
 
-// ─── Dicionários de Normalização ─────────────────────────────────────────────
-
 const NORM_TIPO_ATOR: Record<string, string> = {
-  // CoI
   coi: "CoI",
   "core of interest": "CoI",
   core: "CoI",
   "plataforma central": "CoI",
   "sistema central": "CoI",
-  // Fornecedor
   fornecedor: "Fornecedor",
   supplier: "Fornecedor",
   framework: "Fornecedor",
@@ -154,24 +120,20 @@ const NORM_TIPO_ATOR: Record<string, string> = {
   tecnologia: "Fornecedor",
   ferramenta: "Fornecedor",
   infraestrutura: "Fornecedor",
-  // Cliente
   cliente: "Cliente",
   client: "Cliente",
   usuario: "Cliente",
   usuário: "Cliente",
   user: "Cliente",
   consumidor: "Cliente",
-  // Intermediario
   intermediario: "Intermediario",
   intermediário: "Intermediario",
   intermediary: "Intermediario",
   distribuidor: "Intermediario",
   loja: "Intermediario",
   store: "Intermediario",
-  // Agregador
   agregador: "Agregador",
   aggregator: "Agregador",
-  // ClienteDoCliente
   clientedocliente: "ClienteDoCliente",
   "cliente do cliente": "ClienteDoCliente",
   "end user": "ClienteDoCliente",
@@ -203,8 +165,6 @@ const NORM_TIPO_FLUXO: Record<string, string> = {
   integração: "Sys",
 };
 
-// ─── Helpers de Normalização ──────────────────────────────────────────────────
-
 function normTipoAtor(tipo: string): string {
   return NORM_TIPO_ATOR[tipo.trim().toLowerCase()] ?? tipo.trim();
 }
@@ -216,41 +176,30 @@ function normTipoFluxo(tipo: string): string {
 }
 
 function normNome(nome: string): string {
-  // 1. Minúsculas e remoção de espaços múltiplos
   let n = nome.trim().toLowerCase().replace(/\s+/g, " ");
 
-  // 2. Remoção de sufixos de plataforma e escopo que a IA separa/isola
-  // (Ex: "sippa (plataforma web)" -> "sippa")
   let nSemSufixo = n.replace(/\s*\b(web|plataforma|mobile|mooc)\b\s*/g, "");
-  nSemSufixo = nSemSufixo.replace(/\s*\(.*?\)\s*/g, ""); // Remove o que sobrar entre parênteses
+  nSemSufixo = nSemSufixo.replace(/\s*\(.*?\)\s*/g, "");
   nSemSufixo = nSemSufixo.trim();
 
-  // TRAVA DE SEGURANÇA: Se a remoção apagar o nome inteiro
-  if (nSemSufixo === "") {
-    n = n; // Mantém o erro original do LLM
-  } else {
+  if (nSemSufixo !== "") {
     n = nSemSufixo;
   }
 
-  // 3. Dicionário de Equivalências (Aliases)
-  // Construído com base nas alucinações terminológicas do experimento (G1 a G4)
   const aliases: Record<string, string> = {
-    // ---- ECOS SIPPA ----
     "pró-reitor de graduação": "pró-reitor de grad.",
     "pró-reitores de graduação": "pró-reitor de grad.",
     "responsáveis pelo ru": "responsável r.u.",
     "responsável pelo ru": "responsável r.u.",
     "infraestrutura ntic": "ntic",
-    "universidade federal do ceará": "ufc", // Em alguns contextos o modelo chama a instituição pelo nome completo
-    "sistemas integrados": "sistemas corporativos", // IA frequentemente resume SISAC/SIPAC/SAVI
+    "universidade federal do ceará": "ufc",
+    "sistemas integrados": "sistemas corporativos",
 
-    // ---- ECOS SkinnerBox ----
     "departamento de psicologia da ufc": "departamento de psicologia",
     "departamento de psicologia ufc": "departamento de psicologia",
     "desenvolvedores do simulador": "desenvolvedores",
     "desenvolvedores do skinnerbox": "desenvolvedores",
 
-    // ---- ECOS SOLAR ----
     "módulo acadêmico consumidor": "módulo acadêmico (cliente)",
     "módulo acadêmico cliente": "módulo acadêmico (cliente)",
     "coordenador técnico": "coordenador tecnico do solar",
@@ -261,18 +210,16 @@ function normNome(nome: string): string {
     n = aliases[n];
   }
 
-  // 4. Singularização Básica (Tratamento de Plurais)
   if (n.endsWith("oes")) {
-    n = n.replace(/oes$/, "ao"); // Ex: coordenadores -> coordenador (tratado no else if abaixo, mas previne leões -> leão)
+    n = n.replace(/oes$/, "ao");
   } else if (n.endsWith("es") && !n.endsWith("res") && n !== "redes") {
     n = n.slice(0, -2);
   } else if (n.endsWith("ores")) {
-    n = n.slice(0, -1); // Ex: professores -> professore (será corrigido no ajuste fino)
+    n = n.slice(0, -1);
   } else if (n.endsWith("s") && !n.endsWith("ss") && !n.endsWith("is")) {
-    n = n.slice(0, -1); // Ex: alunos -> aluno
+    n = n.slice(0, -1);
   }
 
-  // 5. Ajuste Fino Pós-Singularização
   if (n === "professore" || n === "professo") n = "professor";
   if (n === "administradore") n = "administrador";
   if (n === "coordenadore") n = "coordenador";
@@ -282,26 +229,17 @@ function normNome(nome: string): string {
   if (n === "cliente do cliente") n = "clientedocliente";
   if (n === "desenvolvedore") n = "desenvolvedor";
 
-  // 6. Restauração de Sufixos Críticos (Específicos do Gabarito)
-  // O gabarito possui distinções reais entre os sistemas que os LLMs podem ter apagado
-  // Removemos parênteses temporariamente apenas para a verificação do includes
   let nomeOriginal = nome.toLowerCase().replace(/[()]/g, "");
 
   if (nomeOriginal.includes("solar mobile")) return "solar mobile";
   if (nomeOriginal.includes("solar mooc")) return "solar mooc";
 
-  // SIPPA no gabarito é "SIPPA (web)", então forçamos esse retorno se o modelo falou apenas "sippa"
   if (nomeOriginal.includes("sippa web") || n === "sippa") {
     return "sippa (web)";
   }
-  // Se o modelo aglutinou tecnologias (ex: "java & spring boot" ou "html/css/js"),
-  // nós retornamos a string aglutinada. Isso GERARÁ UMA ALUCINAÇÃO (reduzindo PA/RA),
-  // o que está CORRETO metodologicamente, pois o modelo falhou na granularidade da rede.
 
   return n;
 }
-
-// ─── Carregamento de Referências ──────────────────────────────────────────────
 
 const REFERENCIA_DIR = path.join(__dirname, "..", "modelos_referencia");
 const EXECUCOES_DIR = path.join(__dirname, "..", "execucoes");
@@ -315,20 +253,12 @@ function carregarReferencia(ecos: string): ModeloReferencia {
   return JSON.parse(fs.readFileSync(fname, "utf-8")) as ModeloReferencia;
 }
 
-// ─── Extração de Conjuntos para Comparação ────────────────────────────────────
-
-/** Retorna Set de strings "nome::tipo" para os atores de referência */
 function atoresRef(ref: ModeloReferencia): Set<string> {
   return new Set(
     ref.atores.map((a) => `${normNome(a.nome)}::${normTipoAtor(a.tipo)}`),
   );
 }
 
-/**
- * Retorna Set de strings "origem::destino::fluxo" para as relações de referência.
- * Usa o campo "tipo" (ex: "P", "Ser") — o campo "fluxo" (ex: "P.1") é ignorado
- * intencionalmente, pois a numeração é auxiliar e não faz parte do critério de avaliação.
- */
 function relacoesRef(ref: ModeloReferencia): Set<string> {
   const idToNome: Record<string, string> = {};
   for (const a of ref.atores) idToNome[a.id] = normNome(a.nome);
@@ -340,7 +270,6 @@ function relacoesRef(ref: ModeloReferencia): Set<string> {
   );
 }
 
-/** Retorna Set de strings "nome::tipo" para os atores gerados */
 function atoresGerado(resultado: ResultadoGerado): Set<string> {
   return new Set(
     (resultado.atores ?? []).map(
@@ -349,7 +278,6 @@ function atoresGerado(resultado: ResultadoGerado): Set<string> {
   );
 }
 
-/** Retorna Set de strings "origem::destino::fluxo" para as relações geradas */
 function relacoesGerado(resultado: ResultadoGerado): Set<string> {
   return new Set(
     (resultado.relacoes ?? []).map(
@@ -367,19 +295,6 @@ function setDifference<T>(a: Set<T>, b: Set<T>): Set<T> {
   return new Set([...a].filter((x) => !b.has(x)));
 }
 
-// ─── Cálculo de Métricas ──────────────────────────────────────────────────────
-
-/**
- * Calcula PA, RA, F1-A, PR e TA conforme a metodologia do TCC.
- *
- * Nota sobre gateways:
- *   Gateways gerados pelo LLM são registrados para diagnóstico, mas NÃO entram
- *   nas métricas quantitativas (PA, RA, F1-A, PR, TA), pois:
- *   (a) a metodologia não define uma métrica de recall para gateways;
- *   (b) gateways incorretos já são capturados indiretamente pela TA de relações
- *       (uma relação que deveria passar por um gateway correto é contabilizada
- *       como relação incorreta).
- */
 function calcularMetricas(
   gerado: ResultadoGerado,
   ref: ModeloReferencia,
@@ -397,7 +312,6 @@ function calcularMetricas(
   const F1A = PA + RA > 0 ? (2 * PA * RA) / (PA + RA) : 0;
   const PR = Rgerado.size > 0 ? intersecR.size / Rgerado.size : 0;
 
-  // Taxa de Alucinação: considera atores + relações (sem gateways, conforme metodologia)
   const totalCorretos = intersecA.size + intersecR.size;
   const totalGerados = Agerado.size + Rgerado.size;
   const TA = totalGerados > 0 ? 1 - totalCorretos / totalGerados : 0;
@@ -451,9 +365,6 @@ function calcularMetricas(
     `${a.origem}::${a.destino}`.localeCompare(`${b.origem}::${b.destino}`),
   );
 
-  // Nomes/pares que já têm divergência de tipo/fluxo diagnosticada — não devem
-  // contar de novo como "alucinação pura" nas listas abaixo, conforme a nota
-  // do cabeçalho ("versões PURAS... excluem erro de tipo/fluxo").
   const nomesComErroTipo = new Set(atoresErroTipo.map((e) => e.nome));
   const paresComErroFluxo = new Set(
     relacoesErroFluxo.map((e) => `${e.origem}::${e.destino}`),
@@ -502,8 +413,6 @@ function calcularMetricas(
     gateways_ref: (ref.gateways ?? []).length,
   };
 }
-
-// ─── Processamento de Arquivo ─────────────────────────────────────────────────
 
 interface ExecucaoArquivo {
   id_execucao: string;
@@ -568,9 +477,8 @@ function processarArquivo(
   };
 }
 
-// ─── Médias por Grupo ─────────────────────────────────────────────────────────
 
-type ChaveGrupo = string; // "ECOS_grupo_modelo"
+type ChaveGrupo = string;
 type MetricaKey = "PA" | "RA" | "F1_A" | "PR" | "TA";
 
 function calcularMediasPorGrupo(
@@ -598,8 +506,6 @@ function calcularMediasPorGrupo(
 
   return result;
 }
-
-// ─── Main ─────────────────────────────────────────────────────────────────────
 
 function main() {
   const args = process.argv.slice(2);
@@ -647,11 +553,9 @@ function main() {
     }
   }
 
-  // Salva resultados individuais
   const outIndividual = path.join(RESULTADOS_DIR, "metricas_individuais.json");
   fs.writeFileSync(outIndividual, JSON.stringify(resultados, null, 2), "utf-8");
 
-  // Calcula e salva médias por grupo
   const medias = calcularMediasPorGrupo(resultados);
   const outMedias = path.join(RESULTADOS_DIR, "metricas_medias_por_grupo.json");
   fs.writeFileSync(outMedias, JSON.stringify(medias, null, 2), "utf-8");
