@@ -120,7 +120,7 @@ Baseado em Boucharas, Jansen e Brinkkemper (2009), com a extensão do ator
 Agregador proposta por Costa et al. (2013).
  
 **Tipos de Atores:**
-- CoI (Core of Interest / Companhia de Interesse): software/plataforma central sob avaliação — pode haver múltiplos módulos autônomos, cada um modelado como um CoI separado
+- CoI (Company of Interest / Companhia de Interesse): software/plataforma central sob avaliação — pode haver múltiplos módulos autônomos, cada um modelado como um CoI separado
 - Fornecedor: fornece produtos e/ou serviços ao CoI
 - Cliente: consome, direta ou indiretamente, o produto/serviço do CoI
 - Intermediario: revendedor, distribuidor ou canal que atua entre o CoI (ou um Agregador) e os Clientes

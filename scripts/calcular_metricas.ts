@@ -109,8 +109,8 @@ interface ResultadoMetrica {
 
 const NORM_TIPO_ATOR: Record<string, string> = {
   coi: "CoI",
-  "core of interest": "CoI",
-  core: "CoI",
+  "company of interest": "CoI",
+  company: "CoI",
   "plataforma central": "CoI",
   "sistema central": "CoI",
   fornecedor: "Fornecedor",

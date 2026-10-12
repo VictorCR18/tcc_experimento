@@ -44,7 +44,7 @@ Você deve gerar um modelo SSN (Software Supply Network) para o ecossistema de s
 ## Definições da Notação SSN
 
 **Tipos de Atores:**
-- CoI (Core of Interest): software/plataforma central — pode haver múltiplos módulos autônomos, cada um modelado como um CoI separado
+- CoI (Company of Interest): software/plataforma central — pode haver múltiplos módulos autônomos, cada um modelado como um CoI separado
 - Fornecedor: fornece produtos (tecnologias, componentes) ao CoI
 - Cliente: consome serviços do CoI
 - Intermediario: distribui serviços entre CoI e Clientes (ex: lojas de apps, IDEs)
@@ -95,7 +95,7 @@ Você é um especialista em modelagem de Ecossistemas de Software (ECOS) com dom
 ## Definições da Notação SSN
 
 **Tipos de Atores:**
-- CoI (Core of Interest): software/plataforma central — pode haver múltiplos módulos autônomos, cada um modelado como um CoI separado
+- CoI (Company of Interest): software/plataforma central — pode haver múltiplos módulos autônomos, cada um modelado como um CoI separado
 - Fornecedor: fornece produtos (tecnologias, componentes) ao CoI
 - Cliente: consome serviços do CoI
 - Intermediario: distribui serviços entre CoI e Clientes (ex: lojas de apps, IDEs)
@@ -314,7 +314,7 @@ Você é um especialista em modelagem de Ecossistemas de Software (ECOS) com dom
 ## Definições da Notação SSN
 
 **Tipos de Atores:**
-- CoI (Core of Interest): software/plataforma central — pode haver múltiplos módulos autônomos, cada um modelado como um CoI separado
+- CoI (Company of Interest): software/plataforma central — pode haver múltiplos módulos autônomos, cada um modelado como um CoI separado
 - Fornecedor: fornece produtos (tecnologias, componentes) ao CoI
 - Cliente: consome serviços do CoI
 - Intermediario: distribui serviços entre CoI e Clientes (ex: lojas de apps, IDEs)
