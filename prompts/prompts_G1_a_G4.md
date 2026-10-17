@@ -247,51 +247,6 @@ Saída:
   ]
 }
 
-## Exemplo 4 (Netflix)
-Saída:
-{
-  "ecos": "Netflix",
-  "atores": [
-    {"nome": "NETFLIX (EMPRESA)", "tipo": "CoI"},
-    {"nome": "NETFLIX (PC)", "tipo": "CoI"},
-    {"nome": "NETFLIX (MOBILE)", "tipo": "CoI"},
-    {"nome": "PRODUTORAS DE MÍDIAS", "tipo": "Fornecedor"},
-    {"nome": "BANCO DE DADOS", "tipo": "Fornecedor"},
-    {"nome": "SERVIDORES", "tipo": "Fornecedor"},
-    {"nome": "VENDEDOR DE PC", "tipo": "Fornecedor"},
-    {"nome": "VENDEDOR DE SMARTPHONES", "tipo": "Fornecedor"},
-    {"nome": "INTERNET", "tipo": "Intermediario"},
-    {"nome": "NAVEGADORES DE INTERNET", "tipo": "Intermediario"},
-    {"nome": "APP STORE", "tipo": "Intermediario"},
-    {"nome": "PLAY STORE", "tipo": "Intermediario"},
-    {"nome": "USUÁRIOS", "tipo": "Cliente"}
-  ],
-  "relacoes": [
-    {"origem": "PRODUTORAS DE MÍDIAS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "N/A"},
-    {"origem": "BANCO DE DADOS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "N/A"},
-    {"origem": "SERVIDORES", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (EMPRESA)", "destino": "INTERNET", "tipo_fluxo": "N/A"},
-    {"origem": "INTERNET", "destino": "NETFLIX (PC)", "tipo_fluxo": "N/A"},
-    {"origem": "INTERNET", "destino": "NETFLIX (MOBILE)", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (PC)", "destino": "NAVEGADORES DE INTERNET", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (MOBILE)", "destino": "APP STORE", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (MOBILE)", "destino": "PLAY STORE", "tipo_fluxo": "N/A"},
-    {"origem": "NAVEGADORES DE INTERNET", "destino": "Gateway OR 1", "tipo_fluxo": "S.1"},
-    {"origem": "APP STORE", "destino": "Gateway OR 2", "tipo_fluxo": "S.2"},
-    {"origem": "PLAY STORE", "destino": "Gateway OR 2", "tipo_fluxo": "S.2"},
-    {"origem": "Gateway OR 2", "destino": "Gateway OR 1", "tipo_fluxo": "N/A"},
-    {"origem": "Gateway OR 1", "destino": "USUÁRIOS", "tipo_fluxo": "N/A"},
-    {"origem": "VENDEDOR DE PC", "destino": "USUÁRIOS", "tipo_fluxo": "P.1"},
-    {"origem": "VENDEDOR DE SMARTPHONES", "destino": "USUÁRIOS", "tipo_fluxo": "P.2"}
-  ],
-  "gateways": [
-    {"ator": "INTERNET", "tipo": "split", "descricao": "Distribui o sinal da Netflix (Empresa) para as plataformas PC e Mobile"},
-    {"ator": "NETFLIX (MOBILE)", "tipo": "split", "descricao": "Distribui o acesso mobile para as lojas de aplicativos App Store e Play Store"},
-    {"ator": "Gateway OR 2", "tipo": "OUGateway", "descricao": "Losango preto inferior: Unifica os fluxos de aplicativos mobile (S.2) vindos da App Store e Play Store"},
-    {"ator": "Gateway OR 1", "tipo": "OUGateway", "descricao": "Losango preto superior: Unifica o fluxo web (S.1) com os fluxos mobile do Gateway OR 2, entregando o serviço aos Usuários"}
-  ]
-}
-
 Retorne SOMENTE um objeto JSON válido, sem texto adicional, sem markdown, sem backticks.
 Se não houver gateways, use "gateways": [].
 O JSON deve seguir exatamente este schema:
@@ -475,52 +430,6 @@ Saída:
   ],
   "gateways": [
     {"ator": "Integradores de API", "tipo": "split", "descricao": "Distribui integrações para múltiplos tipos de clientes"}
-  ]
-}
-
-## Exemplo 4 (Netflix)
-Saída:
-{
-  "raciocinio_cot": "Passo 1: A CoI (Azul) é representada em três blocos: NETFLIX (EMPRESA), NETFLIX (PC) e NETFLIX (MOBILE). Passo 2: Os Fornecedores (Laranja) PRODUTORAS DE MÍDIAS, BANCO DE DADOS e SERVIDORES fornecem para a NETFLIX (EMPRESA). VENDEDOR DE PC e VENDEDOR DE SMARTPHONES fornecem diretamente ao Cliente. Passo 3: O Cliente (Amarelo) é USUÁRIOS. Passo 4: Os Intermediários (Verde) são INTERNET, NAVEGADORES DE INTERNET, APP STORE e PLAY STORE. Passo 5: O diagrama apresenta fluxos de split implícitos na INTERNET e na NETFLIX (MOBILE). Passo 6: Diferente dos modelos anteriores, este utiliza as figuras corretas de OUGateways (losangos pretos com a inscrição 'OR') para consolidar os caminhos (fluxos S.1 e S.2) antes de entregá-los aos USUÁRIOS.",
-  "ecos": "Netflix",
-  "atores": [
-    {"nome": "NETFLIX (EMPRESA)", "tipo": "CoI"},
-    {"nome": "NETFLIX (PC)", "tipo": "CoI"},
-    {"nome": "NETFLIX (MOBILE)", "tipo": "CoI"},
-    {"nome": "PRODUTORAS DE MÍDIAS", "tipo": "Fornecedor"},
-    {"nome": "BANCO DE DADOS", "tipo": "Fornecedor"},
-    {"nome": "SERVIDORES", "tipo": "Fornecedor"},
-    {"nome": "VENDEDOR DE PC", "tipo": "Fornecedor"},
-    {"nome": "VENDEDOR DE SMARTPHONES", "tipo": "Fornecedor"},
-    {"nome": "INTERNET", "tipo": "Intermediario"},
-    {"nome": "NAVEGADORES DE INTERNET", "tipo": "Intermediario"},
-    {"nome": "APP STORE", "tipo": "Intermediario"},
-    {"nome": "PLAY STORE", "tipo": "Intermediario"},
-    {"nome": "USUÁRIOS", "tipo": "Cliente"}
-  ],
-  "relacoes": [
-    {"origem": "PRODUTORAS DE MÍDIAS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "N/A"},
-    {"origem": "BANCO DE DADOS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "N/A"},
-    {"origem": "SERVIDORES", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (EMPRESA)", "destino": "INTERNET", "tipo_fluxo": "N/A"},
-    {"origem": "INTERNET", "destino": "NETFLIX (PC)", "tipo_fluxo": "N/A"},
-    {"origem": "INTERNET", "destino": "NETFLIX (MOBILE)", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (PC)", "destino": "NAVEGADORES DE INTERNET", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (MOBILE)", "destino": "APP STORE", "tipo_fluxo": "N/A"},
-    {"origem": "NETFLIX (MOBILE)", "destino": "PLAY STORE", "tipo_fluxo": "N/A"},
-    {"origem": "NAVEGADORES DE INTERNET", "destino": "Gateway OR 1", "tipo_fluxo": "S.1"},
-    {"origem": "APP STORE", "destino": "Gateway OR 2", "tipo_fluxo": "S.2"},
-    {"origem": "PLAY STORE", "destino": "Gateway OR 2", "tipo_fluxo": "S.2"},
-    {"origem": "Gateway OR 2", "destino": "Gateway OR 1", "tipo_fluxo": "N/A"},
-    {"origem": "Gateway OR 1", "destino": "USUÁRIOS", "tipo_fluxo": "N/A"},
-    {"origem": "VENDEDOR DE PC", "destino": "USUÁRIOS", "tipo_fluxo": "P.1"},
-    {"origem": "VENDEDOR DE SMARTPHONES", "destino": "USUÁRIOS", "tipo_fluxo": "P.2"}
-  ],
-  "gateways": [
-    {"ator": "INTERNET", "tipo": "split", "descricao": "Distribui o sinal da Netflix (Empresa) para as plataformas PC e Mobile"},
-    {"ator": "NETFLIX (MOBILE)", "tipo": "split", "descricao": "Distribui o acesso mobile para as lojas de aplicativos App Store e Play Store"},
-    {"ator": "Gateway OR 2", "tipo": "OUGateway", "descricao": "Losango preto inferior: Unifica os fluxos de aplicativos mobile (S.2) vindos da App Store e Play Store"},
-    {"ator": "Gateway OR 1", "tipo": "OUGateway", "descricao": "Losango preto superior: Unifica o fluxo web (S.1) com os fluxos mobile do Gateway OR 2, entregando o serviço aos Usuários"}
   ]
 }
 
