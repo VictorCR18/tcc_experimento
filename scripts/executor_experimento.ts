@@ -282,48 +282,6 @@ Saída:
   "gateways": [
     {"ator": "Integradores de API", "direcao": "split", "logica": "OU", "descricao": "Distribui integrações simultaneamente para múltiplos tipos de clientes"}
   ]
-}
- 
-## Exemplo 4 (Netflix)
-Saída:
-{
-  "ecos": "Netflix",
-  "atores": [
-    {"nome": "NETFLIX (EMPRESA)", "tipo": "CoI"},
-    {"nome": "NETFLIX (PC)", "tipo": "CoI"},
-    {"nome": "NETFLIX (MOBILE)", "tipo": "CoI"},
-    {"nome": "PRODUTORAS DE MÍDIAS", "tipo": "Fornecedor"},
-    {"nome": "BANCO DE DADOS", "tipo": "Fornecedor"},
-    {"nome": "SERVIDORES", "tipo": "Fornecedor"},
-    {"nome": "VENDEDOR DE PC", "tipo": "Fornecedor"},
-    {"nome": "VENDEDOR DE SMARTPHONES", "tipo": "Fornecedor"},
-    {"nome": "INTERNET", "tipo": "Intermediario"},
-    {"nome": "NAVEGADORES DE INTERNET", "tipo": "Intermediario"},
-    {"nome": "APP STORE", "tipo": "Intermediario"},
-    {"nome": "PLAY STORE", "tipo": "Intermediario"},
-    {"nome": "USUÁRIOS", "tipo": "Cliente"}
-  ],
-  "relacoes": [
-    {"origem": "PRODUTORAS DE MÍDIAS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "P"},
-    {"origem": "BANCO DE DADOS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "P"},
-    {"origem": "SERVIDORES", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "P"},
-    {"origem": "NETFLIX (EMPRESA)", "destino": "INTERNET", "tipo_fluxo": "Sys"},
-    {"origem": "INTERNET", "destino": "NETFLIX (PC)", "tipo_fluxo": "Sys"},
-    {"origem": "INTERNET", "destino": "NETFLIX (MOBILE)", "tipo_fluxo": "Sys"},
-    {"origem": "NETFLIX (PC)", "destino": "NAVEGADORES DE INTERNET", "tipo_fluxo": "Sys"},
-    {"origem": "NETFLIX (MOBILE)", "destino": "APP STORE", "tipo_fluxo": "Sys"},
-    {"origem": "NETFLIX (MOBILE)", "destino": "PLAY STORE", "tipo_fluxo": "Sys"},
-    {"origem": "NAVEGADORES DE INTERNET", "destino": "USUÁRIOS", "tipo_fluxo": "Ser"},
-    {"origem": "APP STORE", "destino": "USUÁRIOS", "tipo_fluxo": "Ser"},
-    {"origem": "PLAY STORE", "destino": "USUÁRIOS", "tipo_fluxo": "Ser"},
-    {"origem": "VENDEDOR DE PC", "destino": "USUÁRIOS", "tipo_fluxo": "P"},
-    {"origem": "VENDEDOR DE SMARTPHONES", "destino": "USUÁRIOS", "tipo_fluxo": "P"}
-  ],
-  "gateways": [
-    {"ator": "INTERNET", "direcao": "split", "logica": "OU", "descricao": "Distribui o sinal da Netflix (Empresa) simultaneamente para as plataformas PC e Mobile"},
-    {"ator": "NETFLIX (MOBILE)", "direcao": "split", "logica": "OU", "descricao": "Distribui o acesso mobile simultaneamente para App Store e Play Store"},
-    {"ator": "USUÁRIOS", "direcao": "join", "logica": "OU", "descricao": "Consolida o serviço de streaming recebido por Navegador, App Store ou Play Store, podendo vir de um ou mais canais simultaneamente"}
-  ]
 }`;
 
 const EXEMPLOS_G4 = `## Exemplo 1 (Pandas)
@@ -447,49 +405,6 @@ Saída:
   ],
   "gateways": [
     {"ator": "Integradores de API", "direcao": "split", "logica": "OU", "descricao": "Distribui integrações simultaneamente para múltiplos tipos de clientes"}
-  ]
-}
- 
-## Exemplo 4 (Netflix)
-Saída:
-{
-  "raciocinio_cot": "Passo 1: A CoI (Azul) é representada em três blocos autônomos: NETFLIX (EMPRESA), NETFLIX (PC) e NETFLIX (MOBILE). Passo 2: Fornecedores (Laranja) PRODUTORAS DE MÍDIAS, BANCO DE DADOS e SERVIDORES fornecem à NETFLIX (EMPRESA) com tipo_fluxo P (convenção do projeto); VENDEDOR DE PC e VENDEDOR DE SMARTPHONES fornecem diretamente ao Cliente, também com P. Passo 3: O Cliente (Amarelo) é USUÁRIOS. Passo 4: Os Intermediários (Verde) são INTERNET, NAVEGADORES DE INTERNET, APP STORE e PLAY STORE; os fluxos entre CoIs e Intermediários são Sys, e o fluxo final ao Cliente é Ser. Passo 5: INTERNET distribui simultaneamente para NETFLIX (PC) e NETFLIX (MOBILE) — gateway split/OU em INTERNET; NETFLIX (MOBILE) distribui simultaneamente para APP STORE e PLAY STORE — gateway split/OU em NETFLIX (MOBILE). Passo 6: USUÁRIOS recebe de três canais que podem ocorrer simultaneamente (NAVEGADORES DE INTERNET, APP STORE, PLAY STORE) — gateway join/OU em USUÁRIOS, sem criar atores fictícios do tipo 'Gateway OR': o join é representado apenas pelas três relações de entrada mais o registro em gateways. Passo 7: Todos os atores referenciados em gateways existem em atores; regras semânticas satisfeitas.",
-  "ecos": "Netflix",
-  "atores": [
-    {"nome": "NETFLIX (EMPRESA)", "tipo": "CoI"},
-    {"nome": "NETFLIX (PC)", "tipo": "CoI"},
-    {"nome": "NETFLIX (MOBILE)", "tipo": "CoI"},
-    {"nome": "PRODUTORAS DE MÍDIAS", "tipo": "Fornecedor"},
-    {"nome": "BANCO DE DADOS", "tipo": "Fornecedor"},
-    {"nome": "SERVIDORES", "tipo": "Fornecedor"},
-    {"nome": "VENDEDOR DE PC", "tipo": "Fornecedor"},
-    {"nome": "VENDEDOR DE SMARTPHONES", "tipo": "Fornecedor"},
-    {"nome": "INTERNET", "tipo": "Intermediario"},
-    {"nome": "NAVEGADORES DE INTERNET", "tipo": "Intermediario"},
-    {"nome": "APP STORE", "tipo": "Intermediario"},
-    {"nome": "PLAY STORE", "tipo": "Intermediario"},
-    {"nome": "USUÁRIOS", "tipo": "Cliente"}
-  ],
-  "relacoes": [
-    {"origem": "PRODUTORAS DE MÍDIAS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "P"},
-    {"origem": "BANCO DE DADOS", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "P"},
-    {"origem": "SERVIDORES", "destino": "NETFLIX (EMPRESA)", "tipo_fluxo": "P"},
-    {"origem": "NETFLIX (EMPRESA)", "destino": "INTERNET", "tipo_fluxo": "Sys"},
-    {"origem": "INTERNET", "destino": "NETFLIX (PC)", "tipo_fluxo": "Sys"},
-    {"origem": "INTERNET", "destino": "NETFLIX (MOBILE)", "tipo_fluxo": "Sys"},
-    {"origem": "NETFLIX (PC)", "destino": "NAVEGADORES DE INTERNET", "tipo_fluxo": "Sys"},
-    {"origem": "NETFLIX (MOBILE)", "destino": "APP STORE", "tipo_fluxo": "Sys"},
-    {"origem": "NETFLIX (MOBILE)", "destino": "PLAY STORE", "tipo_fluxo": "Sys"},
-    {"origem": "NAVEGADORES DE INTERNET", "destino": "USUÁRIOS", "tipo_fluxo": "Ser"},
-    {"origem": "APP STORE", "destino": "USUÁRIOS", "tipo_fluxo": "Ser"},
-    {"origem": "PLAY STORE", "destino": "USUÁRIOS", "tipo_fluxo": "Ser"},
-    {"origem": "VENDEDOR DE PC", "destino": "USUÁRIOS", "tipo_fluxo": "P"},
-    {"origem": "VENDEDOR DE SMARTPHONES", "destino": "USUÁRIOS", "tipo_fluxo": "P"}
-  ],
-  "gateways": [
-    {"ator": "INTERNET", "direcao": "split", "logica": "OU", "descricao": "Distribui o sinal da Netflix (Empresa) simultaneamente para as plataformas PC e Mobile"},
-    {"ator": "NETFLIX (MOBILE)", "direcao": "split", "logica": "OU", "descricao": "Distribui o acesso mobile simultaneamente para App Store e Play Store"},
-    {"ator": "USUÁRIOS", "direcao": "join", "logica": "OU", "descricao": "Consolida o serviço de streaming recebido por Navegador, App Store ou Play Store, podendo vir de um ou mais canais simultaneamente"}
   ]
 }`;
 
